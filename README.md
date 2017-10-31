@@ -1,25 +1,14 @@
 # SINF
 
-### THEME
+### Run Example
 
-Selling Paper
+- Open "C:\SINF\Code_Examples\FirstREST\FirstREST.sln" with Visual Studio
+- Press Run (Google Chrome) - it should open http://localhost:49822/ in browser
+- Run Advanced REST client (under applications on Google Chrome - or go to https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/related)
 
-### Tasks
 
-* Mockups: Simão & Tiago Grosso
-* Features: Simão & Tiago Grosso
-* Interoperability: Ines & Tiago Silva
-* Paths: António
-* Project Overview: Simão
-* Join Everything and write report itself: Tiago Grosso
+### TODO (backend)
 
-### TODO
-
-* Mockup for 'add entry' (add small screen for google maps visiting routes)
-for both registries (customer visits and sales orders)
-
-* Customer group profile mockup
-
-* Redo all mockups into something less shitty than paint
-
-* Read Tasks Above
+- Create controllers
+- Extend Models
+- Extend PriIntegration
