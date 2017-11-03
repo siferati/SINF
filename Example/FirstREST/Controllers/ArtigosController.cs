@@ -15,16 +15,14 @@ namespace FirstREST.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ArtigosController : ApiController
     {
-        //
-        // GET: /Artigos/
-
+        // GET: api/artigos
         public IEnumerable<Lib_Primavera.Model.Artigo> Get()
         {
             return Lib_Primavera.PriIntegration.ListaArtigos();
         }
 
 
-        // GET api/artigo/5    
+        // GET: api/artigos/a0001    
         public Artigo Get(string id)
         {
             Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(id);
