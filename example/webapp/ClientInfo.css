@@ -5,11 +5,40 @@ body {
 html, body {
 	height: 100%;
 }
+.first-row {
+	height: 5%;
+}
+
 
 .col {
 	float: left;
 	width: 30%;
 	margin: 1%;
+}
+
+.client-image {
+	float: left;
+	width: 25%;
+	margin-right: 2%;
+}
+
+.client-profile-image {
+	width: 100%;
+	height: 100%;
+}
+
+.c-name {
+	margin-bottom: 0;
+}
+
+.c-address {
+	margin-bottom: 1%;
+}
+
+
+
+.client-info {
+	margin-bottom: 1%;
 }
 
 .client-info > p {
@@ -18,7 +47,7 @@ html, body {
 }
 
 .client-description {
-	margin-top: 10%;
+	margin-top: 3%;
 	border: 2px solid black;
 }
 
@@ -114,3 +143,4 @@ html, body {
 .client-information>span:last-child, .order-information>span:last-child {
 	border: none;
 }
+
