@@ -310,10 +310,103 @@ namespace FirstREST.Lib_Primavera
 
         #endregion Artigo
 
-   
+
+        #region Vendedor
+
+        public static List<Model.Vendedor> ListaVendedores()
+        {
+            return null;
+        }
+
+        #endregion Vendedor
+
+
+        #region DbInfo
+
+        public static List<Model.DbInfo> getDbInfo()
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // returns queried information
+                List<Model.DbInfo> retorno = new List<Model.DbInfo>();
+
+                // list of queries to perform
+                List<StdBELista> listQueries = new List<StdBELista>();
+
+                // get info for Vendedor Filipe Dias
+                /*listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT *
+                    FROM Vendedores
+                    WHERE Nome = 'Filipe Dias'
+                "));*/
+
+                // get Nome, Cargo for ALL Vendedores
+                listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT Funcionarios.Nome, CargoPrincipal
+                    FROM Funcionarios, Vendedores
+                    WHERE Funcionarios.NomeAbreviado = Vendedores.Nome
+                    OR Funcionarios.CargoPrincipal = '004'
+                "));
+
+                // get info for ALL Vendedores
+                /*listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT Funcionarios.*
+                    FROM Funcionarios, Cargos
+                    WHERE Cargos.Descricao = 'Vendedor'
+                    AND Cargos.Cargo = Funcionarios.CargoPrincipal
+                "));*/
+
+                foreach (StdBELista dbQuery in listQueries)
+                {
+                    while (!dbQuery.NoFim())
+                    {
+                        // holder for query result
+                        Model.DbInfo dbInfo = new Model.DbInfo();
+                        // initialize string[]
+                        dbInfo.Result = new string[dbQuery.NumColunas()];
+                        // get query
+                        dbInfo.Query = dbQuery.Query;
+
+                        for (short i = 0; i < dbQuery.NumColunas(); i++)
+                        {
+                            // col name
+                            string colName = dbQuery.Nome(i);
+                            // col value
+                            string colVal = "" + dbQuery.Valor(colName);
+
+                            // add to query result
+                            dbInfo.Result[i] = colName + ": " + colVal;
+                            if (String.IsNullOrEmpty(colVal))
+                                dbInfo.Result[i] += "N/A";
+                        }
+
+                        // order result alphabetically
+                        Array.Sort(dbInfo.Result);
+
+                        // add to return list
+                        retorno.Add(dbInfo);
+
+                        // next ite
+                        dbQuery.Seguinte();
+                    }
+                }
+
+                return retorno;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        #endregion DbInfo
+
 
         #region DocCompra
-        
+
 
         public static List<Model.DocCompra> VGR_List()
         {
