@@ -9,11 +9,18 @@ html, body {
 	height: 5%;
 }
 
+.active {
+	background-color: lightblue !important;
+}
 
 .col {
 	float: left;
 	width: 30%;
 	margin: 1%;
+}
+
+.sale-rep-header {
+	margin-bottom: 10%;
 }
 
 .sale-rep-image {
@@ -57,23 +64,23 @@ html, body {
 	background-color: darkgray;
 }
 
-.sale-item, .sale-info {
+.sale-item, .sale-rep-item {
 	border: 1px solid black;
 	border-bottom: none;
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
-.sale-item:hover, .sale-info:hover {
+.sale-item:hover, .sale-rep-item:hover {
 	background-color: lightgray;
 }
 
-.sale-item:last-child, .sale-info:last-child {
+.sale-item:last-child, .sale-rep-item:last-child {
 
 	border-bottom: 1px solid black;
 }
 
-.sale-item-text, .sale-item-text {
+.sale-item-text, .sale-rep-item-text {
 	margin: 1%;
 	margin-left: 2%;
 	margin-bottom: 0;

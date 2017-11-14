@@ -1,3 +1,42 @@
+
+function getProductById(id) {
+        // ajax request to the RESTful web service
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:49822/api/artigos/' + id.toString(),
+        success: getProductByIdHandler,
+        error: function () {
+            console.log("Request failed!");
+        }
+    });
+}
+
+function getProductByIdHandler(data) {
+
+    // debug
+    console.log("Request Successful!");
+    //console.log(data);
+
+    var product = data;
+    var productInfo =
+                '<p class="p-name">Name: ' + product.DescArtigo + '</p>' +
+                '<p class="p-type">Type: ' + product.Type + '</p>' +
+                '<p class="p-size">Size: ' + product.Size + '</p>' +
+                '<p class="p-brand">Brand: ' + product.Brand + '</p>' +
+                '<p class="p-price">Price: ' + product.Price + '</p>' +
+                '<p class="p-vat">Vat: ' + product.Vat + '</p>' +
+                '<p class="p-stock">Stock: ' + product.STKAtual + '</p>' +
+                '<p class="p-wight">Weight: ' + product.Weight + '</p>';
+
+
+    $('.product-info').html(productInfo);
+
+
+    var productDescription = product.Description;
+
+    $('.product-description-text').html(productDescription);
+}
+
 /**
 * Gets all products and update html to show them
 */
@@ -30,13 +69,13 @@ function getAllProductsHandler(data) {
 
         var product = data[i];
         var html =
-            '<div class="product-item">'
+            '<div class="product-item" id="' + product.CodArtigo + '">'
                 + '<div class="product-item-text">'
                 + '<h4 class="product-name">' + product.DescArtigo + '</h4>'
                         +  '<div class="product-information">'
-                            + '<span class="product-size"> Size: % </span>'
+                            + '<span class="product-size"> Size: ' + product.size + ' </span>'
                             + '<span class="product-stock"> Stock: ' + product.STKAtual + ' </span>'
-                            + '<span class="product-price"> Price: % </span>'
+                            + '<span class="product-price"> Price: ' + product.price + ' </span>'
                         + '</div>'
                     + '</div>'
                 + '</div>';
@@ -53,6 +92,26 @@ function getAllProductsHandler(data) {
 $(document).ready(function () {
 
     getAllProducts();
+    
 
+});
+
+$(".product-list").click(function(event) {
+    var product = $(event.target);
+
+    //Finds root element
+    while(!product.hasClass('product-item'))
+        product = product.parent();
+
+    //Resets previous clicked elements
+    var active = $(".product-list").find('.active');
+    for(var i = 0; i < active.length; i++)
+        $(active[i]).removeClass('active');
+
+    //Sets current element as active
+    product.addClass('active');
+
+    var id = product.attr('id')
+    getProductById(id);
 
 });

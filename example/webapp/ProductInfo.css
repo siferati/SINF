@@ -2,7 +2,9 @@ body {
     background-color: lightsteelblue;
 }
 
-
+.active {
+	background-color: lightblue !important;
+}
 
 .col {
 	float: left;
