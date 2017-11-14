@@ -313,9 +313,100 @@ namespace FirstREST.Lib_Primavera
 
         #region Vendedor
 
+        public static Lib_Primavera.Model.Vendedor GetVendedor(string codVendedor)
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // get info about given sales rep
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Codigo, NumContr, Nome, Morada, Telemovel, Email, DataNascimento, DataAdmissao, Notas, Foto
+                    FROM Funcionarios, Cargos
+                    WHERE Cargos.Descricao = 'Vendedor'
+                    AND Cargos.Cargo = Funcionarios.CargoPrincipal
+                    AND Codigo = '" + codVendedor + "'"
+                );
+
+                if (!queryResult.Vazia())
+                {
+                    // return sales rep
+                    return new Model.Vendedor
+                    {
+                        repId = queryResult.Valor("Codigo"),
+                        fiscalId = queryResult.Valor("NumContr"),
+                        name = queryResult.Valor("Nome"),
+                        address = queryResult.Valor("Morada"),
+                        phone = queryResult.Valor("Telemovel"),
+                        email = queryResult.Valor("Email"),
+                        birthDate = queryResult.Valor("DataNascimento"),
+                        hiredDate = queryResult.Valor("DataAdmissao"),
+                        // TODO sales count
+                        sales = 0,
+                        description = queryResult.Valor("Notas"),
+                        picture = queryResult.Valor("Foto")
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            else
+            {
+                return null;
+
+            }
+            
+
+        }
+
         public static List<Model.Vendedor> ListaVendedores()
         {
-            return null;
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // list of sales reps
+                List<Model.Vendedor> listVendedores = new List<Model.Vendedor>();
+
+                // get info about all sales reps
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Codigo, NumContr, Nome, Morada, Telemovel, Email, DataNascimento, DataAdmissao, Notas, Foto
+                    FROM Funcionarios, Cargos
+                    WHERE Cargos.Descricao = 'Vendedor'
+                    AND Cargos.Cargo = Funcionarios.CargoPrincipal
+                ");
+
+                while (!queryResult.NoFim())
+                {
+                    // add new sales rep
+                    listVendedores.Add(new Model.Vendedor
+                    {
+                        repId = queryResult.Valor("Codigo"),
+                        fiscalId = queryResult.Valor("NumContr"),
+                        name = queryResult.Valor("Nome"),
+                        address = queryResult.Valor("Morada"),
+                        phone = queryResult.Valor("Telemovel"),
+                        email = queryResult.Valor("Email"),
+                        birthDate = queryResult.Valor("DataNascimento"),
+                        hiredDate = queryResult.Valor("DataAdmissao"),
+                        // TODO sales count
+                        sales = 0,
+                        description = queryResult.Valor("Notas"),
+                        picture = queryResult.Valor("Foto")
+                    });
+
+                    // next ite
+                    queryResult.Seguinte();
+
+                }
+
+                return listVendedores;
+
+            }
+            else
+            {
+                return null;
+
+            }
         }
 
         #endregion Vendedor
@@ -341,20 +432,20 @@ namespace FirstREST.Lib_Primavera
                 "));*/
 
                 // get Nome, Cargo for ALL Vendedores
-                listQueries.Add(PriEngine.Engine.Consulta(@"
+                /*listQueries.Add(PriEngine.Engine.Consulta(@"
                     SELECT Funcionarios.Nome, CargoPrincipal
                     FROM Funcionarios, Vendedores
                     WHERE Funcionarios.NomeAbreviado = Vendedores.Nome
                     OR Funcionarios.CargoPrincipal = '004'
-                "));
+                "));*/
 
-                // get info for ALL Vendedores
-                /*listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT Funcionarios.*
+                // get NEEDED info for ALL Vendedores
+                listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT Codigo AS repId, NumContr AS fiscalId, Nome AS name, Morada AS address, Telemovel AS phone, Email AS email, DataNascimento AS birthDate, DataAdmissao AS hiredDate, Notas AS description, Foto AS picture
                     FROM Funcionarios, Cargos
                     WHERE Cargos.Descricao = 'Vendedor'
                     AND Cargos.Cargo = Funcionarios.CargoPrincipal
-                "));*/
+                "));
 
                 foreach (StdBELista dbQuery in listQueries)
                 {

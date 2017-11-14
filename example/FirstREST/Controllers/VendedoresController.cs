@@ -17,5 +17,13 @@ namespace FirstREST.Controllers
         {
             return Lib_Primavera.PriIntegration.ListaVendedores();
         }
+
+        // GET: api/vendedores/A017    
+        public Vendedor Get(string id)
+        {
+            Lib_Primavera.Model.Vendedor vendedor = Lib_Primavera.PriIntegration.GetVendedor(id);
+
+            return vendedor;
+        }
     }
 }
