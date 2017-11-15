@@ -476,6 +476,10 @@ namespace FirstREST.Lib_Primavera
                 "));*/
 
                 listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT Vendedor, Nome FROM Vendedores
+                "));
+
+                listQueries.Add(PriEngine.Engine.Consulta(@"
                     SELECT * FROM CabecDoc
                     WHERE Data = '2017-11-10'
                 "));
