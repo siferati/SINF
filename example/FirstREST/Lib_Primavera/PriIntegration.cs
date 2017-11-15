@@ -7,6 +7,7 @@ using Interop.StdPlatBS900;
 using Interop.StdBE900;
 using Interop.GcpBE900;
 using ADODB;
+using Interop.CrmBE900;
 
 namespace FirstREST.Lib_Primavera
 {
@@ -563,7 +564,7 @@ namespace FirstREST.Lib_Primavera
             GcpBELinhaDocumentoCompra myLin = new GcpBELinhaDocumentoCompra();
             GcpBELinhasDocumentoCompra myLinhas = new GcpBELinhasDocumentoCompra();
 
-            PreencheRelacaoCompras rl = new PreencheRelacaoCompras();
+            Interop.CrmBE900.PreencheRelacaoCompras rl = new Interop.CrmBE900.PreencheRelacaoCompras();
             List<Model.LinhaDocCompra> lstlindv = new List<Model.LinhaDocCompra>();
 
             try
@@ -627,7 +628,7 @@ namespace FirstREST.Lib_Primavera
 
             GcpBELinhasDocumentoVenda myLinhas = new GcpBELinhasDocumentoVenda();
              
-            PreencheRelacaoVendas rl = new PreencheRelacaoVendas();
+            Interop.CrmBE900.PreencheRelacaoVendas rl = new Interop.CrmBE900.PreencheRelacaoVendas();
             List<Model.LinhaDocVenda> lstlindv = new List<Model.LinhaDocVenda>();
             
             try
@@ -783,5 +784,160 @@ namespace FirstREST.Lib_Primavera
         }
 
         #endregion DocsVenda
+
+        #region OportunidadeVenda
+
+        public static Lib_Primavera.Model.OportunidadeVenda GetOpVenda(string codOpVenda)
+        {
+
+            CrmBEOportunidadeVenda objOpVenda = new CrmBEOportunidadeVenda();
+            Model.OportunidadeVenda myOpVenda = new Model.OportunidadeVenda();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                if (PriEngine.Engine.CRM.OportunidadesVenda.Existe(codOpVenda) == false)
+                {
+                    return null;
+                }
+                else
+                {
+                    objOpVenda = PriEngine.Engine.CRM.OportunidadesVenda.Edita(codOpVenda);
+                    myOpVenda.OportunidadeID = objOpVenda.get_Oportunidade();
+                    myOpVenda.DescricaoOp = objOpVenda.get_Descricao();
+                    myOpVenda.Vendedor = objOpVenda.get_Vendedor();
+                    myOpVenda.Resumo = objOpVenda.get_Resumo();
+                    myOpVenda.Origem = objOpVenda.get_Origem();
+                    myOpVenda.Data = objOpVenda.get_DataExpiracao();
+                    myOpVenda.Entidade = objOpVenda.get_Entidade();
+                    myOpVenda.TipoEntidade = objOpVenda.get_TipoEntidade();
+                    myOpVenda.Entidade = objOpVenda.get_Entidade();
+                    /*Model.Zona myZona = new Model.Zona();
+                    myZona = GetZona(myOpVenda.Zona);
+                    myOpVenda.Zona = myZona.ZonaNome;*/
+                    myOpVenda.CicloDeVenda = objOpVenda.get_CicloVenda();
+                    myOpVenda.Origem = objOpVenda.get_Origem();
+                    Model.CicloVenda myCVenda = new Model.CicloVenda();
+                    myCVenda = GetCV(myOpVenda.CicloDeVenda);
+                    myOpVenda.CicloDeVendaDesc = myCVenda.CVDesc;
+
+                    return myOpVenda;
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public static List<Model.OportunidadeVenda> ListaOpVenda()
+        {
+
+            Model.OportunidadeVenda art = new Model.OportunidadeVenda();
+            List<Model.OportunidadeVenda> listOpsVenda = new List<Model.OportunidadeVenda>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                List<Model.OportunidadeVenda> listOpVenda = new List<Model.OportunidadeVenda>();
+
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                ");
+
+                while (!queryResult.NoFim())
+                {
+                    listOpVenda.Add(new Model.OportunidadeVenda
+                    {
+                        
+                    });
+
+                    queryResult.Seguinte();
+
+                }
+
+                return listOpVenda;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        #endregion OportunidadeVenda
+
+        #region CicloVenda
+
+        public static Lib_Primavera.Model.CicloVenda GetCV(string codCV)
+        {
+
+            CrmBECicloVenda objCVenda = new CrmBECicloVenda();
+            Model.CicloVenda myCVenda = new Model.CicloVenda();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                if (PriEngine.Engine.CRM.CiclosVenda.Existe(codCV) == false)
+                {
+                    return null;
+                }
+                else
+                {
+                    objCVenda = PriEngine.Engine.CRM.CiclosVenda.Edita(codCV);
+                    myCVenda.CVId = objCVenda.get_CicloVenda();
+                    myCVenda.CVDesc = objCVenda.get_Descricao();
+
+                    return myCVenda;
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        #endregion CicloVenda
+
+
+        #region Zona
+
+        public static Lib_Primavera.Model.Zona GetZona(string codZona)
+        {
+
+            GcpBEZona objZona = new GcpBEZona();
+            Model.Zona myZona = new Model.Zona();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                if (PriEngine.Engine.CRM.CiclosVenda.Existe(codZona) == false)
+                {
+                    return null;
+                }
+                else
+                {
+                    objZona = PriEngine.Engine.Comercial.Zonas.Edita(codZona);
+                    myZona.ZonaID = objZona.get_Zona();
+                    myZona.ZonaNome = objZona.get_Descricao();
+
+                    return myZona;
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        #endregion Zona
+
     }
 }
