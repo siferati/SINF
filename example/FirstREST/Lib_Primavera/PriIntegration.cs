@@ -412,6 +412,49 @@ namespace FirstREST.Lib_Primavera
         #endregion Vendedor
 
 
+        #region Order
+
+        public static List<Model.Order> ListaOrders()
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // list of sales orderse
+                List<Model.Order> listOrders = new List<Model.Order>();
+
+                // get info about all sales orders
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Codigo, NumContr, Nome, Morada, Telemovel, Email, DataNascimento, DataAdmissao, Notas, Foto
+                    FROM Funcionarios, Cargos
+                    WHERE Cargos.Descricao = 'Vendedor'
+                    AND Cargos.Cargo = Funcionarios.CargoPrincipal
+                ");
+
+                while (!queryResult.NoFim())
+                {
+                    // add new sales order
+                    listOrders.Add(new Model.Order
+                    {
+                        // TODO
+                    });
+
+                    // next ite
+                    queryResult.Seguinte();
+
+                }
+
+                return listOrders;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
+        #endregion Order
+
+
         #region DbInfo
 
         public static List<Model.DbInfo> getDbInfo()
@@ -424,27 +467,17 @@ namespace FirstREST.Lib_Primavera
                 // list of queries to perform
                 List<StdBELista> listQueries = new List<StdBELista>();
 
-                // get info for Vendedor Filipe Dias
+                // get info sales
+                //listQueries.Add(PriEngine.Engine.Comercial.Vendas.LstLinhasDocVendas("", new DateTime(2016, 1, 1), new DateTime(2017, 1, 1), "", "", ""));
+
+                // get info for ALL sales
                 /*listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT *
-                    FROM Vendedores
-                    WHERE Nome = 'Filipe Dias'
+                    SELECT * FROM DocumentosVenda
                 "));*/
 
-                // get Nome, Cargo for ALL Vendedores
-                /*listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT Funcionarios.Nome, CargoPrincipal
-                    FROM Funcionarios, Vendedores
-                    WHERE Funcionarios.NomeAbreviado = Vendedores.Nome
-                    OR Funcionarios.CargoPrincipal = '004'
-                "));*/
-
-                // get NEEDED info for ALL Vendedores
                 listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT Codigo AS repId, NumContr AS fiscalId, Nome AS name, Morada AS address, Telemovel AS phone, Email AS email, DataNascimento AS birthDate, DataAdmissao AS hiredDate, Notas AS description, Foto AS picture
-                    FROM Funcionarios, Cargos
-                    WHERE Cargos.Descricao = 'Vendedor'
-                    AND Cargos.Cargo = Funcionarios.CargoPrincipal
+                    SELECT * FROM CabecDoc
+                    WHERE Data = '2017-11-10'
                 "));
 
                 foreach (StdBELista dbQuery in listQueries)
