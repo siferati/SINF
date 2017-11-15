@@ -802,26 +802,28 @@ namespace FirstREST.Lib_Primavera
                 }
                 else
                 {
-                    objOpVenda = PriEngine.Engine.CRM.OportunidadesVenda.Edita(codOpVenda);
-                    myOpVenda.OportunidadeID = objOpVenda.get_Oportunidade();
-                    myOpVenda.DescricaoOp = objOpVenda.get_Descricao();
-                    myOpVenda.Vendedor = objOpVenda.get_Vendedor();
-                    myOpVenda.Resumo = objOpVenda.get_Resumo();
-                    myOpVenda.Origem = objOpVenda.get_Origem();
-                    myOpVenda.Data = objOpVenda.get_DataExpiracao();
-                    myOpVenda.Entidade = objOpVenda.get_Entidade();
-                    myOpVenda.TipoEntidade = objOpVenda.get_TipoEntidade();
-                    myOpVenda.Entidade = objOpVenda.get_Entidade();
-                    /*Model.Zona myZona = new Model.Zona();
-                    myZona = GetZona(myOpVenda.Zona);
-                    myOpVenda.Zona = myZona.ZonaNome;*/
-                    myOpVenda.CicloDeVenda = objOpVenda.get_CicloVenda();
-                    myOpVenda.Origem = objOpVenda.get_Origem();
-                    Model.CicloVenda myCVenda = new Model.CicloVenda();
-                    myCVenda = GetCV(myOpVenda.CicloDeVenda);
-                    myOpVenda.CicloDeVendaDesc = myCVenda.CVDesc;
 
-                    return myOpVenda;
+                    StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.Entidade, CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.DataCriacao, Zonas.Descricao as zona, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel, EntidadesExternas.Entidade
+                    FROM CabecOportunidadesVenda 
+                    LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
+                    LEFT JOIN EntidadesExternas ON (CabecOportunidadesVenda.Entidade = EntidadesExternas.Entidade)
+                    WHERE CabecOportunidadesVenda.Oportunidade = '" + codOpVenda + "'"
+                    );
+
+                    Model.OportunidadeVenda objOPVenda = new  Model.OportunidadeVenda();
+
+                    objOPVenda.OportunidadeID = queryResult.Valor("Oportunidade");
+                    objOPVenda.DescricaoOp = queryResult.Valor("Descricao");
+                    objOPVenda.TipoEntidade = queryResult.Valor("TipoEntidade");
+                    objOPVenda.Data = queryResult.Valor("DataCriacao");
+                    objOPVenda.Zona = queryResult.Valor("zona");
+                    objOPVenda.Nome = queryResult.Valor("Nome");
+                    objOPVenda.Email = queryResult.Valor("Email");
+                    objOPVenda.Morada = queryResult.Valor("Morada");
+                    objOPVenda.Telemovel = queryResult.Valor("Telemovel");
+
+
+                    return objOPVenda;
                 }
 
             }
@@ -843,14 +845,26 @@ namespace FirstREST.Lib_Primavera
 
                 List<Model.OportunidadeVenda> listOpVenda = new List<Model.OportunidadeVenda>();
 
-                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.Entidade, CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.DataCriacao, Zonas.Descricao as zona, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel, EntidadesExternas.Entidade
+                    FROM CabecOportunidadesVenda 
+                    LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
+                    LEFT JOIN EntidadesExternas ON (CabecOportunidadesVenda.Entidade = EntidadesExternas.Entidade)
+                    
                 ");
-
+//, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel
                 while (!queryResult.NoFim())
                 {
                     listOpVenda.Add(new Model.OportunidadeVenda
                     {
-                        
+                        OportunidadeID = queryResult.Valor("Oportunidade"),
+                        DescricaoOp = queryResult.Valor("Descricao"),
+                        TipoEntidade = queryResult.Valor("TipoEntidade"),
+                        Data = queryResult.Valor("DataCriacao"),
+                        Zona = queryResult.Valor("zona"),
+                        Nome = queryResult.Valor("Nome"),
+                        Email = queryResult.Valor("Email"),
+                        Morada = queryResult.Valor("Morada"),
+                        Telemovel = queryResult.Valor("Telemovel")
                     });
 
                     queryResult.Seguinte();
@@ -869,75 +883,6 @@ namespace FirstREST.Lib_Primavera
         }
 
         #endregion OportunidadeVenda
-
-        #region CicloVenda
-
-        public static Lib_Primavera.Model.CicloVenda GetCV(string codCV)
-        {
-
-            CrmBECicloVenda objCVenda = new CrmBECicloVenda();
-            Model.CicloVenda myCVenda = new Model.CicloVenda();
-
-            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
-            {
-
-                if (PriEngine.Engine.CRM.CiclosVenda.Existe(codCV) == false)
-                {
-                    return null;
-                }
-                else
-                {
-                    objCVenda = PriEngine.Engine.CRM.CiclosVenda.Edita(codCV);
-                    myCVenda.CVId = objCVenda.get_CicloVenda();
-                    myCVenda.CVDesc = objCVenda.get_Descricao();
-
-                    return myCVenda;
-                }
-
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-
-        #endregion CicloVenda
-
-
-        #region Zona
-
-        public static Lib_Primavera.Model.Zona GetZona(string codZona)
-        {
-
-            GcpBEZona objZona = new GcpBEZona();
-            Model.Zona myZona = new Model.Zona();
-
-            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
-            {
-
-                if (PriEngine.Engine.CRM.CiclosVenda.Existe(codZona) == false)
-                {
-                    return null;
-                }
-                else
-                {
-                    objZona = PriEngine.Engine.Comercial.Zonas.Edita(codZona);
-                    myZona.ZonaID = objZona.get_Zona();
-                    myZona.ZonaNome = objZona.get_Descricao();
-
-                    return myZona;
-                }
-
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-
-        #endregion Zona
 
     }
 }

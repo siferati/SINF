@@ -17,16 +17,6 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
-        public string Resumo
-        {
-            get;
-            set;
-        }
-        public string Entidade
-        {
-            get;
-            set;
-        }
         public string TipoEntidade
         {
             get;
@@ -37,22 +27,27 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
-        public string Vendedor
-        {
-            get;
-            set;
-        }
-        public string Origem
-        {
-            get;
-            set;
-        }
-        public string CicloDeVenda
-        {
-            get;
-            set;
-        }
         public string Zona
+        {
+            get;
+            set;
+        }
+        public string Nome
+        {
+            get;
+            set;
+        }
+        public string Email
+        {
+            get;
+            set;
+        }
+        public string Morada
+        {
+            get;
+            set;
+        }
+        public string Telemovel
         {
             get;
             set;

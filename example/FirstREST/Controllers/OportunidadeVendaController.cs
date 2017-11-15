@@ -27,5 +27,10 @@ namespace FirstREST.Controllers
             }
         }
 
+        public IEnumerable<Lib_Primavera.Model.OportunidadeVenda> Get()
+        {
+            return Lib_Primavera.PriIntegration.ListaOpVenda();
+        }
+
     }
 }
