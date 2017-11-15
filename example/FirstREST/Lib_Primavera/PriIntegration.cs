@@ -476,15 +476,22 @@ namespace FirstREST.Lib_Primavera
                 "));*/
 
                 // get cabecalho de factura
-                listQueries.Add(PriEngine.Engine.Consulta(@"
+                /*listQueries.Add(PriEngine.Engine.Consulta(@"
                     SELECT * FROM CabecDoc
                     WHERE Data = '2017-11-10'
-                "));
+                "));*/
 
                 // get corpo de factura
-                listQueries.Add(PriEngine.Engine.Consulta(@"
+                /*listQueries.Add(PriEngine.Engine.Consulta(@"
                     SELECT * FROM LinhasDoc
                     WHERE Data = '2017-11-10'
+                "));*/
+
+                // get factura of day 2016-11-16
+                listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT * FROM CabecDoc, LinhasDoc
+                    WHERE CabecDoc.Id = LinhasDoc.IdCabecDoc
+                    AND CabecDoc.Data = '2016-11-16'
                 "));
 
                 foreach (StdBELista dbQuery in listQueries)
