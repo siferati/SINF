@@ -475,12 +475,15 @@ namespace FirstREST.Lib_Primavera
                     SELECT * FROM DocumentosVenda
                 "));*/
 
-                listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT Vendedor, Nome FROM Vendedores
-                "));
-
+                // get cabecalho de factura
                 listQueries.Add(PriEngine.Engine.Consulta(@"
                     SELECT * FROM CabecDoc
+                    WHERE Data = '2017-11-10'
+                "));
+
+                // get corpo de factura
+                listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT * FROM LinhasDoc
                     WHERE Data = '2017-11-10'
                 "));
 
