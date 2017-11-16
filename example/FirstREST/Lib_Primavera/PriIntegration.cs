@@ -7,6 +7,7 @@ using Interop.StdPlatBS900;
 using Interop.StdBE900;
 using Interop.GcpBE900;
 using ADODB;
+using Interop.CrmBE900;
 
 namespace FirstREST.Lib_Primavera
 {
@@ -638,7 +639,7 @@ namespace FirstREST.Lib_Primavera
             GcpBELinhaDocumentoCompra myLin = new GcpBELinhaDocumentoCompra();
             GcpBELinhasDocumentoCompra myLinhas = new GcpBELinhasDocumentoCompra();
 
-            PreencheRelacaoCompras rl = new PreencheRelacaoCompras();
+            Interop.CrmBE900.PreencheRelacaoCompras rl = new Interop.CrmBE900.PreencheRelacaoCompras();
             List<Model.LinhaDocCompra> lstlindv = new List<Model.LinhaDocCompra>();
 
             try
@@ -702,7 +703,7 @@ namespace FirstREST.Lib_Primavera
 
             GcpBELinhasDocumentoVenda myLinhas = new GcpBELinhasDocumentoVenda();
              
-            PreencheRelacaoVendas rl = new PreencheRelacaoVendas();
+            Interop.CrmBE900.PreencheRelacaoVendas rl = new Interop.CrmBE900.PreencheRelacaoVendas();
             List<Model.LinhaDocVenda> lstlindv = new List<Model.LinhaDocVenda>();
             
             try
@@ -858,5 +859,133 @@ namespace FirstREST.Lib_Primavera
         }
 
         #endregion DocsVenda
+
+        #region OportunidadeVenda
+
+        public static Lib_Primavera.Model.OportunidadeVenda GetOpVenda(string codOpVenda)
+        {
+
+            CrmBEOportunidadeVenda objOpVenda = new CrmBEOportunidadeVenda();
+            Model.OportunidadeVenda myOpVenda = new Model.OportunidadeVenda();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                if (PriEngine.Engine.CRM.OportunidadesVenda.Existe(codOpVenda) == false)
+                {
+                    return null;
+                }
+                else
+                {
+
+                    StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.Entidade, CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.DataCriacao, Zonas.Descricao as zona, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel, EntidadesExternas.Entidade
+                    FROM CabecOportunidadesVenda 
+                    LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
+                    LEFT JOIN EntidadesExternas ON (CabecOportunidadesVenda.Entidade = EntidadesExternas.Entidade)
+                    WHERE CabecOportunidadesVenda.Oportunidade = '" + codOpVenda + "'"
+                    );
+
+                    Model.OportunidadeVenda objOPVenda = new  Model.OportunidadeVenda();
+
+                    objOPVenda.OportunidadeID = queryResult.Valor("Oportunidade");
+                    objOPVenda.DescricaoOp = queryResult.Valor("Descricao");
+                    objOPVenda.TipoEntidade = queryResult.Valor("TipoEntidade");
+                    objOPVenda.Data = queryResult.Valor("DataCriacao");
+                    objOPVenda.Zona = queryResult.Valor("zona");
+                    objOPVenda.Nome = queryResult.Valor("Nome");
+                    objOPVenda.Email = queryResult.Valor("Email");
+                    objOPVenda.Morada = queryResult.Valor("Morada");
+                    objOPVenda.Telemovel = queryResult.Valor("Telemovel");
+
+
+                    return objOPVenda;
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public static List<Model.OportunidadeVenda> ListaOpVenda()
+        {
+
+            Model.OportunidadeVenda myOpVenda = new Model.OportunidadeVenda();
+            List<Model.OportunidadeVenda> listOpsVenda = new List<Model.OportunidadeVenda>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                List<Model.OportunidadeVenda> listOpVenda = new List<Model.OportunidadeVenda>();
+
+
+
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.DataCriacao, CabecOportunidadesVenda.TipoEntidade, CabecOportunidadesVenda.Entidade as entidade, CabecOportunidadesVenda.Vendedor, Zonas.Descricao as zona , Clientes.Nome, Clientes.Fac_Mor, Clientes.Fac_Tel
+                    FROM CabecOportunidadesVenda 
+                    LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
+                    JOIN Clientes ON (CabecOportunidadesVenda.Entidade = Clientes.Cliente)
+                    
+                ");
+
+                while (!queryResult.NoFim())
+                {
+                    listOpVenda.Add(new Model.OportunidadeVenda
+                    {
+                        OportunidadeID = queryResult.Valor("Oportunidade"),
+                        DescricaoOp = queryResult.Valor("Descricao"),
+                        TipoEntidade = queryResult.Valor("TipoEntidade"),
+                        Entidade = queryResult.Valor("entidade"),
+                        VendedorCod = queryResult.Valor("Vendedor"),
+                        Data = queryResult.Valor("DataCriacao"),
+                        Zona = queryResult.Valor("zona"),
+                        Nome = queryResult.Valor("Nome"),
+                        Morada = queryResult.Valor("Fac_Mor"),
+                        Telemovel = queryResult.Valor("Fac_Tel")
+                    });
+
+                    queryResult.Seguinte();
+                }
+
+                queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao,CabecOportunidadesVenda.DataCriacao,  CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.Entidade as entidade, CabecOportunidadesVenda.Vendedor, Zonas.Descricao as zona , EntidadesExternas.Nome, EntidadesExternas.Morada, EntidadesExternas.Telemovel
+                    FROM CabecOportunidadesVenda 
+                    LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
+                    JOIN EntidadesExternas ON (CabecOportunidadesVenda.Entidade = EntidadesExternas.Entidade)
+                    
+                ");
+                   
+                while (!queryResult.NoFim())
+                {
+                    listOpVenda.Add(new Model.OportunidadeVenda
+                    {
+                        OportunidadeID = queryResult.Valor("Oportunidade"),
+                        DescricaoOp = queryResult.Valor("Descricao"),
+                        TipoEntidade = queryResult.Valor("TipoEntidade"),
+                        Entidade = queryResult.Valor("entidade"),
+                        VendedorCod = queryResult.Valor("Vendedor"),
+                        Data = queryResult.Valor("DataCriacao"),
+                        Zona = queryResult.Valor("zona"),
+                        Nome = queryResult.Valor("Nome"),
+                        Morada = queryResult.Valor("Morada"),
+                        Telemovel = queryResult.Valor("Telemovel")
+                    });
+
+                    queryResult.Seguinte();
+                }
+
+                return listOpVenda;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        #endregion OportunidadeVenda
+
     }
 }
