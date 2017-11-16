@@ -918,7 +918,7 @@ namespace FirstREST.Lib_Primavera
                 else
                 {
 
-                    StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.DataCriacao, CabecOportunidadesVenda.TipoEntidade, CabecOportunidadesVenda.Entidade as entidade, CabecOportunidadesVenda.Vendedor, Zonas.Descricao as zona , Clientes.Nome, Clientes.Fac_Mor, Clientes.Fac_Tel, 
+                    StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.DataCriacao, CabecOportunidadesVenda.TipoEntidade, CabecOportunidadesVenda.Entidade as entidade, CabecOportunidadesVenda.Vendedor, Zonas.Descricao as zona , Clientes.Nome, Clientes.Fac_Mor, Clientes.Fac_Tel
                     FROM CabecOportunidadesVenda 
                     LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
                     JOIN Clientes ON (CabecOportunidadesVenda.Entidade = Clientes.Cliente)
@@ -938,7 +938,7 @@ namespace FirstREST.Lib_Primavera
                     objOPVenda.Telemovel = queryResult.Valor("Fac_Mor");
                     objOPVenda.VendedorCod = queryResult.Valor("Vendedor");
 
-                    if (objOPVenda == null)
+                    if (objOPVenda.Entidade == null)
                     {
 
                         queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.Entidade, CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.DataCriacao, Zonas.Descricao as zona, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel, EntidadesExternas.Entidade
