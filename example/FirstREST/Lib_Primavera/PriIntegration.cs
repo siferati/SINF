@@ -443,11 +443,16 @@ namespace FirstREST.Lib_Primavera
                         repId = cabecQueryResult.Valor("Responsavel"),
                         products = new List<Model.Product>(),
                         orderDate = cabecQueryResult.Valor("Data"),
-                        deliveryDate = DateTime.Parse(cabecQueryResult.Valor("DataDescarga")),
                         // TOOD
                         status = "N/A",
                         deliveryAddress = cabecQueryResult.Valor("MoradaEntrega") + cabecQueryResult.Valor("Morada2Entrega")
                     };
+
+                    // delivery date might be null, so this needs to be outside order initialization
+                    if (!String.IsNullOrEmpty(cabecQueryResult.Valor("DataDescarga")))
+                    {
+                        order.deliveryDate = DateTime.Parse(cabecQueryResult.Valor("DataDescarga"));
+                    }
 
                     // iterate through every line
                     while (!linhasQueryResult.NoFim())
@@ -469,6 +474,41 @@ namespace FirstREST.Lib_Primavera
                 {
                     return null;
                 }
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
+
+        public static List<Model.Order> GetOrdersByRep(string id)
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // list of sales orders
+                List<Model.Order> listOrders = new List<Model.Order>();
+
+                // get id of all sales orders for given rep
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Id
+                    FROM CabecDoc
+                    WHERE Responsavel = '" + id + @"'
+                ");
+
+                while (!queryResult.NoFim())
+                {
+                    // add sales rep
+                    listOrders.Add(GetOrder(queryResult.Valor("Id")));
+
+                    // next ite
+                    queryResult.Seguinte();
+
+                }
+
+                return listOrders;
 
             }
             else

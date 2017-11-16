@@ -12,6 +12,8 @@ namespace FirstREST
             // Enable CORS
             config.EnableCors();
 
+            config.MapHttpAttributeRoutes();
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

@@ -19,5 +19,13 @@ namespace FirstREST.Controllers
 
             return order;
         }
+
+        [Route("api/vendedores/{id}/orders")]
+        public List<Order> GetByRep(string id)
+        {
+            List<Order> orders = Lib_Primavera.PriIntegration.GetOrdersByRep(id);
+
+            return orders;
+        }
     }
 }
