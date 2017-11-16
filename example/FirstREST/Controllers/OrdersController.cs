@@ -12,10 +12,12 @@ namespace FirstREST.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OrdersController : ApiController
     {
-        // GET: api/orders
-        public IEnumerable<Lib_Primavera.Model.Order> Get()
+        // GET: api/orders/DBAE7851-AC30-11E6-A18F-080027397412
+        public Order Get(string id)
         {
-            return Lib_Primavera.PriIntegration.ListaOrders();
+            Lib_Primavera.Model.Order order = Lib_Primavera.PriIntegration.GetOrder(id);
+
+            return order;
         }
     }
 }

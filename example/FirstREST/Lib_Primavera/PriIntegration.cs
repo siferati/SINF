@@ -414,35 +414,60 @@ namespace FirstREST.Lib_Primavera
 
         #region Order
 
-        public static List<Model.Order> ListaOrders()
+        public static Model.Order GetOrder(string id)
         {
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                // list of sales orderse
-                List<Model.Order> listOrders = new List<Model.Order>();
-
-                // get info about all sales orders
-                StdBELista queryResult = PriEngine.Engine.Consulta(@"
-                    SELECT Codigo, NumContr, Nome, Morada, Telemovel, Email, DataNascimento, DataAdmissao, Notas, Foto
-                    FROM Funcionarios, Cargos
-                    WHERE Cargos.Descricao = 'Vendedor'
-                    AND Cargos.Cargo = Funcionarios.CargoPrincipal
+                // get info about given sales order (CabecDoc)
+                StdBELista cabecQueryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Id, Entidade, Responsavel, MoradaEntrega, Morada2Entrega, Data, DataDescarga
+                    FROM CabecDoc
+                    WHERE Id = '" + id + @"'
                 ");
 
-                while (!queryResult.NoFim())
+                if (!cabecQueryResult.Vazia())
                 {
-                    // add new sales order
-                    listOrders.Add(new Model.Order
+                    // get info about given sales order (LinhasDoc)
+                    StdBELista linhasQueryResult = PriEngine.Engine.Consulta(@"
+                        SELECT Artigo, Quantidade
+                        FROM LinhasDoc
+                        WHERE IdCabecDoc = '" + id + @"'
+                    ");
+
+                    // sales order to return
+                    Model.Order order = new Model.Order
                     {
-                        // TODO
-                    });
+                        salesOrderId = cabecQueryResult.Valor("Id"),
+                        customerId = cabecQueryResult.Valor("Entidade"),
+                        repId = cabecQueryResult.Valor("Responsavel"),
+                        products = new List<Model.Product>(),
+                        orderDate = cabecQueryResult.Valor("Data"),
+                        deliveryDate = DateTime.Parse(cabecQueryResult.Valor("DataDescarga")),
+                        // TOOD
+                        status = "N/A",
+                        deliveryAddress = cabecQueryResult.Valor("MoradaEntrega") + cabecQueryResult.Valor("Morada2Entrega")
+                    };
 
-                    // next ite
-                    queryResult.Seguinte();
+                    // iterate through every line
+                    while (!linhasQueryResult.NoFim())
+                    {
+                        // add ordered product to sales order
+                        order.products.Add(new Model.Product
+                        {
+                            productId = linhasQueryResult.Valor("Artigo"),
+                            quantity = linhasQueryResult.Valor("Quantidade")
+                        });
 
+                        // next ite
+                        linhasQueryResult.Seguinte();
+                    }                    
+
+                    return order;
                 }
-
-                return listOrders;
+                else
+                {
+                    return null;
+                }
 
             }
             else
@@ -477,19 +502,22 @@ namespace FirstREST.Lib_Primavera
 
                 // get cabecalho de factura
                 /*listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT * FROM CabecDoc
+                    SELECT Id, Entidade, Responsavel, MoradaEntrega, Morada2Entrega
+                    FROM CabecDoc
                     WHERE Data = '2017-11-10'
                 "));*/
 
                 // get corpo de factura
                 /*listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT * FROM LinhasDoc
+                    SELECT Artigo, Quantidade, Data, DataEntrega
+                    FROM LinhasDoc
                     WHERE Data = '2017-11-10'
                 "));*/
 
                 // get factura of day 2016-11-16
                 listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT * FROM CabecDoc, LinhasDoc
+                    SELECT CabecDoc.Id, Entidade, Responsavel, MoradaEntrega, Morada2Entrega, Artigo, Quantidade, CabecDoc.Data, DataDescarga
+                    FROM CabecDoc, LinhasDoc
                     WHERE CabecDoc.Id = LinhasDoc.IdCabecDoc
                     AND CabecDoc.Data = '2016-11-16'
                 "));

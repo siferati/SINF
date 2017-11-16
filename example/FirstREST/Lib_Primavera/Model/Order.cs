@@ -5,6 +5,21 @@ using System.Web;
 
 namespace FirstREST.Lib_Primavera.Model
 {
+    public class Product
+    {
+        public string productId
+        {
+            get;
+            set;
+        }
+
+        public double quantity
+        {
+            get;
+            set;
+        }
+    }
+
     public class Order
     {
         public string salesOrderId
@@ -25,13 +40,7 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public string productId
-        {
-            get;
-            set;
-        }
-
-        public int quantity
+        public List<Product> products
         {
             get;
             set;
