@@ -1,3 +1,70 @@
+function getSalesForSaleRep(id) {
+        // ajax request to the RESTful web service
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:49822/api/vendedores/' + id.toString() + '/orders',
+        success: getSalesForSaleRepHandler,
+        error: function () {
+            console.log("Request failed!");
+        }
+    });
+}
+
+
+
+function getSalesForSaleRepHandler(data) {
+
+    // debug
+    console.log("Request Successful!");
+    console.log(data);
+    
+	$('.sale-products-list').html('');
+    for (i = 0; i < data.length; i++) {
+		var rep = data[i];
+		for (j = 0; j < rep.products.length; j++) {
+			
+			var products = rep.products[j];
+			var html =
+				'<div class="sale-item id="' + products.productId +' ">'
+					  +  '<div class="sale-item-text">'
+					  +  '<h4 class="sale-item-name">' + products.productId + '</h4>'
+					  +   '<div class="sale-information">'
+					  +     '     <span class="sale-quantity"> Quantity: ' + products.quantity + '</span>'
+					  +     '     <span class="sale-date"> Date: ' + rep.orderDate + '</span>'
+					  +     '     <span class="sale-customer"> Customer: ' + rep.customerId + '</span>'
+					  +     ' </div> ' 
+				   +    ' </div>'
+				   +' </div>';
+				
+				$('.sale-products-list').append(html);
+		}
+	
+	}
+}
+
+function getProductById(id) {
+        // ajax request to the RESTful web service
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:49822/api/artigos/' + id.toString(),
+        success: getProductHandler,
+        error: function () {
+            console.log("Request failed!");
+        }
+    });
+}
+
+function getProductHandler(data) {
+
+    // debug
+    console.log("Request Successful!");
+    console.log(data);
+    
+	var product = data.DescArtigo;
+
+}
+
+
 
 
 function getSalesRepById(id) {
@@ -118,7 +185,7 @@ $(document).ready(function () {
 
 $(".sale-rep-list").click(function(event) {
     var rep = $(event.target);
-
+	
 
     //Finds root element
     while(!rep.hasClass('sale-rep-item'))
@@ -134,4 +201,6 @@ $(".sale-rep-list").click(function(event) {
 
     var id = rep.attr('id')
     getSalesRepById(id);
+	getSalesForSaleRep(3); //because id doesn't match
+	
 });
