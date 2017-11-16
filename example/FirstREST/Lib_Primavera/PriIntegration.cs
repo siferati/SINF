@@ -837,7 +837,7 @@ namespace FirstREST.Lib_Primavera
         public static List<Model.OportunidadeVenda> ListaOpVenda()
         {
 
-            Model.OportunidadeVenda art = new Model.OportunidadeVenda();
+            Model.OportunidadeVenda myOpVenda = new Model.OportunidadeVenda();
             List<Model.OportunidadeVenda> listOpsVenda = new List<Model.OportunidadeVenda>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
@@ -845,13 +845,15 @@ namespace FirstREST.Lib_Primavera
 
                 List<Model.OportunidadeVenda> listOpVenda = new List<Model.OportunidadeVenda>();
 
-                StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.Entidade, CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.DataCriacao, Zonas.Descricao as zona, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel, EntidadesExternas.Entidade
+
+
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.DataCriacao, CabecOportunidadesVenda.TipoEntidade, CabecOportunidadesVenda.Entidade as entidade, CabecOportunidadesVenda.Vendedor, Zonas.Descricao as zona , Clientes.Nome, Clientes.Fac_Mor, Clientes.Fac_Tel
                     FROM CabecOportunidadesVenda 
                     LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
-                    LEFT JOIN EntidadesExternas ON (CabecOportunidadesVenda.Entidade = EntidadesExternas.Entidade)
+                    JOIN Clientes ON (CabecOportunidadesVenda.Entidade = Clientes.Cliente)
                     
                 ");
-//, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel
+
                 while (!queryResult.NoFim())
                 {
                     listOpVenda.Add(new Model.OportunidadeVenda
@@ -859,16 +861,42 @@ namespace FirstREST.Lib_Primavera
                         OportunidadeID = queryResult.Valor("Oportunidade"),
                         DescricaoOp = queryResult.Valor("Descricao"),
                         TipoEntidade = queryResult.Valor("TipoEntidade"),
+                        Entidade = queryResult.Valor("entidade"),
+                        VendedorCod = queryResult.Valor("Vendedor"),
                         Data = queryResult.Valor("DataCriacao"),
                         Zona = queryResult.Valor("zona"),
                         Nome = queryResult.Valor("Nome"),
-                        Email = queryResult.Valor("Email"),
+                        Morada = queryResult.Valor("Fac_Mor"),
+                        Telemovel = queryResult.Valor("Fac_Tel")
+                    });
+
+                    queryResult.Seguinte();
+                }
+
+                queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao,CabecOportunidadesVenda.DataCriacao,  CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.Entidade as entidade, CabecOportunidadesVenda.Vendedor, Zonas.Descricao as zona , EntidadesExternas.Nome, EntidadesExternas.Morada, EntidadesExternas.Telemovel
+                    FROM CabecOportunidadesVenda 
+                    LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
+                    JOIN EntidadesExternas ON (CabecOportunidadesVenda.Entidade = EntidadesExternas.Entidade)
+                    
+                ");
+                   
+                while (!queryResult.NoFim())
+                {
+                    listOpVenda.Add(new Model.OportunidadeVenda
+                    {
+                        OportunidadeID = queryResult.Valor("Oportunidade"),
+                        DescricaoOp = queryResult.Valor("Descricao"),
+                        TipoEntidade = queryResult.Valor("TipoEntidade"),
+                        Entidade = queryResult.Valor("entidade"),
+                        VendedorCod = queryResult.Valor("Vendedor"),
+                        Data = queryResult.Valor("DataCriacao"),
+                        Zona = queryResult.Valor("zona"),
+                        Nome = queryResult.Valor("Nome"),
                         Morada = queryResult.Valor("Morada"),
                         Telemovel = queryResult.Valor("Telemovel")
                     });
 
                     queryResult.Seguinte();
-
                 }
 
                 return listOpVenda;

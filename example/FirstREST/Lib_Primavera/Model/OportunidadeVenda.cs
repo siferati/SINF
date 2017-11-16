@@ -22,6 +22,11 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
+        public string Entidade
+        {
+            get;
+            set;
+        }
         public DateTime Data
         {
             get;
@@ -48,6 +53,11 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
         public string Telemovel
+        {
+            get;
+            set;
+        }
+        public string VendedorCod
         {
             get;
             set;
