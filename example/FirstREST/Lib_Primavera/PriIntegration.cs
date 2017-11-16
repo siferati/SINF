@@ -918,26 +918,50 @@ namespace FirstREST.Lib_Primavera
                 else
                 {
 
-                    StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.Entidade, CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.DataCriacao, Zonas.Descricao as zona, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel, EntidadesExternas.Entidade
+                    StdBELista queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.DataCriacao, CabecOportunidadesVenda.TipoEntidade, CabecOportunidadesVenda.Entidade as entidade, CabecOportunidadesVenda.Vendedor, Zonas.Descricao as zona , Clientes.Nome, Clientes.Fac_Mor, Clientes.Fac_Tel, 
                     FROM CabecOportunidadesVenda 
                     LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
-                    LEFT JOIN EntidadesExternas ON (CabecOportunidadesVenda.Entidade = EntidadesExternas.Entidade)
+                    JOIN Clientes ON (CabecOportunidadesVenda.Entidade = Clientes.Cliente)
                     WHERE CabecOportunidadesVenda.Oportunidade = '" + codOpVenda + "'"
                     );
 
-                    Model.OportunidadeVenda objOPVenda = new  Model.OportunidadeVenda();
+                    Model.OportunidadeVenda objOPVenda = new Model.OportunidadeVenda();
 
                     objOPVenda.OportunidadeID = queryResult.Valor("Oportunidade");
                     objOPVenda.DescricaoOp = queryResult.Valor("Descricao");
                     objOPVenda.TipoEntidade = queryResult.Valor("TipoEntidade");
+                    objOPVenda.Entidade = queryResult.Valor("entidade");
                     objOPVenda.Data = queryResult.Valor("DataCriacao");
                     objOPVenda.Zona = queryResult.Valor("zona");
                     objOPVenda.Nome = queryResult.Valor("Nome");
-                    objOPVenda.Email = queryResult.Valor("Email");
-                    objOPVenda.Morada = queryResult.Valor("Morada");
-                    objOPVenda.Telemovel = queryResult.Valor("Telemovel");
+                    objOPVenda.Morada = queryResult.Valor("Fac_Mor");
+                    objOPVenda.Telemovel = queryResult.Valor("Fac_Mor");
+                    objOPVenda.VendedorCod = queryResult.Valor("Vendedor");
+
+                    if (objOPVenda == null)
+                    {
+
+                        queryResult = PriEngine.Engine.Consulta(@"SELECT CabecOportunidadesVenda.Oportunidade, CabecOportunidadesVenda.Descricao, CabecOportunidadesVenda.Entidade, CabecOportunidadesVenda.TipoEntidade,CabecOportunidadesVenda.DataCriacao, Zonas.Descricao as zona, EntidadesExternas.Nome, EntidadesExternas.Email, EntidadesExternas.Morada, EntidadesExternas.Telemovel, EntidadesExternas.Entidade
+                    FROM CabecOportunidadesVenda 
+                    LEFT JOIN Zonas ON(CabecOportunidadesVenda.Zona = Zonas.Zona)
+                    JOIN EntidadesExternas ON (CabecOportunidadesVenda.Entidade = EntidadesExternas.Entidade)
+                    WHERE CabecOportunidadesVenda.Oportunidade = '" + codOpVenda + "'"
+                        );
 
 
+                        objOPVenda.OportunidadeID = queryResult.Valor("Oportunidade");
+                        objOPVenda.DescricaoOp = queryResult.Valor("Descricao");
+                        objOPVenda.Entidade = queryResult.Valor("entidade");
+                        objOPVenda.TipoEntidade = queryResult.Valor("TipoEntidade");
+                        objOPVenda.Data = queryResult.Valor("DataCriacao");
+                        objOPVenda.Zona = queryResult.Valor("zona");
+                        objOPVenda.Nome = queryResult.Valor("Nome");
+                        objOPVenda.Email = queryResult.Valor("Email");
+                        objOPVenda.Morada = queryResult.Valor("Morada");
+                        objOPVenda.Telemovel = queryResult.Valor("Telemovel");
+                        objOPVenda.VendedorCod = queryResult.Valor("Vendedor");
+
+                    }
                     return objOPVenda;
                 }
 
@@ -982,7 +1006,7 @@ namespace FirstREST.Lib_Primavera
                         Zona = queryResult.Valor("zona"),
                         Nome = queryResult.Valor("Nome"),
                         Morada = queryResult.Valor("Fac_Mor"),
-                        Telemovel = queryResult.Valor("Fac_Tel")
+                        Telemovel = queryResult.Valor("Fac_Tel"),
                     });
 
                     queryResult.Seguinte();
