@@ -1,71 +1,87 @@
-function getSalesForSaleRep(id) {
-        // ajax request to the RESTful web service
+function getSaleById(id){
+
+
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:49822/api/vendedores/' + id.toString() + '/orders',
-        success: getSalesForSaleRepHandler,
+        url: 'http://localhost:49822/api/orders/' + id.toString(),
+        success: getSaleByIdHandler,
         error: function () {
             console.log("Request failed!");
         }
     });
 }
 
-
-
-function getSalesForSaleRepHandler(data) {
-
-    // debug
-    console.log("Request Successful!");
+function getSaleByIdHandler(data) {
     console.log(data);
-    
-	$('.sale-products-list').html('');
-    for (i = 0; i < data.length; i++) {
-		var rep = data[i];
-		for (j = 0; j < rep.products.length; j++) {
-			
-			var products = rep.products[j];
-			var html =
-				'<div class="sale-item id="' + products.productId +' ">'
-					  +  '<div class="sale-item-text">'
-					  +  '<h4 class="sale-item-name">' + products.productId + '</h4>'
-					  +   '<div class="sale-information">'
-					  +     '     <span class="sale-quantity"> Quantity: ' + products.quantity + '</span>'
-					  +     '     <span class="sale-date"> Date: ' + rep.orderDate + '</span>'
-					  +     '     <span class="sale-customer"> Customer: ' + rep.customerId + '</span>'
-					  +     ' </div> ' 
-				   +    ' </div>'
-				   +' </div>';
-				
-				$('.sale-products-list').append(html);
-		}
-	
-	}
+
+    var sale = data;
+
+
+    var html =
+            '<div class="title">'
+                + '<h2 class="title-text"><span class="glyphicon glyphicon-inbox"></span> Order Info </h2>'
+            +' </div>'
+            + '<div class="order-info">'
+                + '<p class="customer">Client: ' + sale.customerId + '</p>'
+                + '<p class="delivery-address">Delivery Address: ' + sale.deliveryAddress + '</p>'
+                + '<p class="delivery-date">Delivery Date: ' + sale.deliveryDate + '</p>'
+                + '<p class="order-date">Order Date: ' + sale.orderDate + '</p>'
+                + '<p class="products">Products:</p>'
+                + '<ul class="products-list">';
+                    + '<li> Product: 1 | Quantity: 100</li>'
+                    + '<li> Product: 2 | Quantity: 200</li>';
+
+    var products = sale.products;
+
+    for(var i = 0; i < products.length; i++)
+        html += '<li> Product: ' + products[i].productId + ' | Quantity: ' + products[i].quantity + '</li>';
+
+    html += 
+                '</ul>'          
+            + '</div>';
+
+    $('.left-col').html(html);
 }
 
-function getProductById(id) {
-        // ajax request to the RESTful web service
+function getSalesRepSalesOrders(repId) {
+
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:49822/api/artigos/' + id.toString(),
-        success: getProductHandler,
+        url: 'http://localhost:49822/api/vendedores/' + repId.toString() + '/orders',
+        success: getSalesRepSalesOrdersHandler,
         error: function () {
             console.log("Request failed!");
         }
     });
 }
 
-function getProductHandler(data) {
+function getSalesRepSalesOrdersHandler(data) {
 
     // debug
     console.log("Request Successful!");
     console.log(data);
-    
-	var product = data.DescArtigo;
+
+    var html = '';
+    for(var i = 0; i < data.length; i++)
+    {
+        var order = data[i];
+
+        html +=
+            '<div class="sale-item" id="' + order.salesOrderId + '">'
+                + '<div class="sale-item-text">'
+                    + '<h4 class="sale-item-name">' + order.customerId + '</h4>'
+                        + '<div class="sale-information">'
+                            + '<span class="sale-quantity">Delivered: ' + order.deliveryDate.toString() + ' </span>'
+                            + '<span class="sale-date">Placed: ' + order.orderDate.toString() + '</span>'
+                        + '</div>'
+                + '</div>'
+            + '</div>';
+    }
+
+
+    $('.sale-products-list').html(html);
 
 }
-
-
-
 
 function getSalesRepById(id) {
         // ajax request to the RESTful web service
@@ -88,21 +104,6 @@ function getSalesRepByIdHandler(data) {
     console.log(data);
 
     var rep = data;
-    var generalInfo = 
-        '<h4 class= "s-name">' + rep.name.substring(0, 31) + '</h4>'
-        + '<p class="s-address">' + rep.address + '</p>'
-        + '<p class="s-zip">' + rep.zip + '</p>';
-
-    var info =  
-        '<p class="phone"> Phone: ' + rep.phone + '</p>'
-        + '<p class="email"> Email: ' + rep.email + '</p>'
-        + '<p class="fiscal-id"> Fiscal ID: ' + rep.fiscalID + '</p>'
-            + '<div class="sale-rep-info-last-row">'
-            + '<p class="birth-date"> Birth Date: ' + rep.birthDate + '</p>'
-                + '<button type="button" class="btn btn-default edit-button">Edit</button>'
-            + '</div>';
-
-    var description = rep.description;
 
     var picture = rep.picture;
     var defaultPath = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf2u0RWmYALKJ431XNoTKjzu77ERLBIvXKlOEA-Q3DPo2h2rCB';
@@ -112,19 +113,41 @@ function getSalesRepByIdHandler(data) {
     {
         var obj = new Image();
         obj.src = picture;
-        if(obj.complete){
-            $('.sale-rep-profile-image').attr('src', picture);
+        if(!obj.complete){
+            picture = defaultPath;
         }
-        else
-            $('.sale-rep-profile-image').attr('src', defaultPath);
     }
-    else
-        $('.sale-rep-profile-image').attr('src', defaultPath);
+    else{
+        picture = defaultPath;
+    }
 
-    $('.sale-rep-general-info').html(generalInfo);
-    $('.sale-rep-info').html(info);
-    $('.sale-rep-description-text').html(description);
-}
+    var html = 
+            '<div class= "sale-rep-header">'
+                + '<div class= "sale-rep-image">'
+                    + '<img class= "sale-rep-profile-image" src= "' + picture + '" alt="Profile Image">'
+                + '</div>'
+                + '<div class= "sale-rep-general-info">'            
+                    + '<h4 class= "s-name">' + rep.name.substring(0, 31) + '</h4>'
+                    + '<p class="s-address">' + rep.address + '</p>'
+                    + '<p class="s-zip">' + rep.zip + '</p>'
+                + '</div>'
+            + '</div>'
+            + '<div class="sale-rep-info">'        
+                + '<p class="phone"> Phone: ' + rep.phone + '</p>'
+                + '<p class="email"> Email: ' + rep.email + '</p>'
+                + '<p class="fiscal-id"> Fiscal ID: ' + rep.fiscalID + '</p>'
+                + '<div class="sale-rep-info-last-row">'
+                    + '<p class="birth-date"> Birth Date: ' + rep.birthDate + '</p>'
+                    + '<button type="button" class="btn btn-default edit-button">Edit</button>'
+                + '</div>'
+            + '</div>'
+            + '<div class="sale-rep-description">'
+                + '<h3 class="sale-rep-description-title">' +  rep.description + '</h3>'
+                + '<p class="sale-rep-description-text"> Good employee. Likes this company.</p>'
+            + '</div>';
+
+    $('.left-col').html(html);           
+} 
 
 /**
 * Gets all reps and update html to show them
@@ -173,13 +196,15 @@ function getAllSalesRepsHandler(data) {
 }
 
 
+
+
+
 /**
 * Main
 */
 $(document).ready(function () {
 
     getAllSalesReps();
-
 
 });
 
@@ -192,7 +217,7 @@ $(".sale-rep-list").click(function(event) {
         rep = rep.parent();
 
     //Resets previous clicked elements
-    var active = $(".sale-rep-list").find('.active');
+    var active = $(".sale-rep-list, .sale-products-list").find('.active');
     for(var i = 0; i < active.length; i++)
         $(active[i]).removeClass('active');
 
@@ -201,6 +226,32 @@ $(".sale-rep-list").click(function(event) {
 
     var id = rep.attr('id')
     getSalesRepById(id);
-	getSalesForSaleRep(3); //because id doesn't match
-	
+
+
+    //HARDCODED EXAMPLE
+    getSalesRepSalesOrders(3);
+
+});
+
+
+$(".sale-products-list").click(function(event) {
+    var sale = $(event.target);
+    
+
+    //Finds root element
+    while(!sale.hasClass('sale-item'))
+        sale = sale.parent();
+
+    //Resets previous clicked elements
+    var active = $(".sale-products-list").find('.active');
+    for(var i = 0; i < active.length; i++)
+        $(active[i]).removeClass('active');
+
+    //Sets current element as active
+    sale.addClass('active');
+
+    var id = sale.attr('id')
+
+    getSaleById(id);
+
 });

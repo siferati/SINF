@@ -19,6 +19,11 @@ html, body {
 	margin: 1%;
 }
 
+.order-info > p {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
 .sale-rep-header {
 	margin-bottom: 10%;
 }
