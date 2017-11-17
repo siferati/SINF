@@ -1,0 +1,146 @@
+body {
+    background-color: lightsteelblue;
+}
+
+html, body {
+	height: 100%;
+}
+.first-row {
+	height: 5%;
+}
+
+
+.col {
+	float: left;
+	width: 30%;
+	margin: 1%;
+}
+
+.client-image {
+	float: left;
+	width: 25%;
+	margin-right: 2%;
+}
+
+.client-profile-image {
+	width: 100%;
+	height: 100%;
+}
+
+.c-name {
+	margin-bottom: 0;
+}
+
+.c-address {
+	margin-bottom: 1%;
+}
+
+
+
+.client-info {
+	margin-bottom: 1%;
+}
+
+.client-info > p {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.client-description {
+	margin-top: 3%;
+	border: 2px solid black;
+}
+
+.client-description-title {
+	margin-top: 0;
+	border-bottom: 2px solid black;
+	background-color: darkgray;
+}
+
+.order-item, .client-item {
+	border: 1px solid black;
+	border-bottom: none;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.order-item:hover, .client-item:hover {
+	background-color: lightgray;
+}
+
+.order-item:last-child, .client-item:last-child {
+
+	border-bottom: 1px solid black;
+}
+
+.order-item-text, .client-item-text {
+	margin: 1%;
+	margin-left: 2%;
+	margin-bottom: 0;
+
+}
+.order-customer-name, .client-name{
+	margin: 0%;
+}
+
+.order-information, .client-information {
+	margin-top: 1%;
+}
+
+
+.client-list {
+	float: left;
+	width: 100%;
+}
+
+.search {
+	margin-bottom: 0%;
+	display: flex;
+	margin-top: 11.5%;
+}
+
+.search-term {
+	color: gray;
+	width: 93%;
+}
+
+.search-term:focus{
+  	color: black;
+}
+
+.search-icon {
+	margin-left: 2%;
+	margin-top: 1%;
+}
+
+.search-icon:hover {
+	font-size: 16px;
+}
+
+.scrollbar
+{
+	height: 300px;
+	width: 100%;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
+
+
+.client-information > span, .order-information > span{
+	border-right: 1px solid lightgray;
+	margin-left: 5px;
+}
+
+.client-information>span:first-child, .order-information>span:first-child {
+	margin: 0;
+}
+
+.client-information>span:last-child, .order-information>span:last-child {
+	border: none;
+}
+
