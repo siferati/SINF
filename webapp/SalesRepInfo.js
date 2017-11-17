@@ -142,8 +142,8 @@ function getSalesRepByIdHandler(data) {
                 + '</div>'
             + '</div>'
             + '<div class="sale-rep-description">'
-                + '<h3 class="sale-rep-description-title">' +  rep.description + '</h3>'
-                + '<p class="sale-rep-description-text"> Good employee. Likes this company.</p>'
+                + '<h3 class="sale-rep-description-title">Description</h3>'
+                + '<p class="sale-rep-description-text">' + rep.description + '</p>'
             + '</div>';
 
     $('.left-col').html(html);           

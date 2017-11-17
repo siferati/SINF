@@ -1,0 +1,7 @@
+.sales-oportunities-item {
+	border: 1px solid black;
+}
+
+.active {
+	background-color: lightblue;
+}
