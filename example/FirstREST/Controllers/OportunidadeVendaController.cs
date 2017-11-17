@@ -11,6 +11,7 @@ using FirstREST.Lib_Primavera.Model;
 
 namespace FirstREST.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OportunidadeVendaController : ApiController
     {
         public OportunidadeVenda Get(string id)
