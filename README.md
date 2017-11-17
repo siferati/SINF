@@ -20,3 +20,5 @@
 * http://localhost:49822/api/vendedores/A017 - get given sales rep
 * http://localhost:49822/api/vendedores/3/orders - get sales of given rep
 * http://localhost:49822/api/orders/DBAE7851-AC30-11E6-A18F-080027397412 - get given sales order
+* http://localhost:49822/api/oportunidadeVenda/OPV001 - get given sale's oportunity
+* http://localhost:49822/api/oportunidadeVenda - get sale's oportunities
