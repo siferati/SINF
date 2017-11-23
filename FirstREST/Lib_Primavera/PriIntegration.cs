@@ -320,11 +320,9 @@ namespace FirstREST.Lib_Primavera
             {
                 // get info about given sales rep
                 StdBELista queryResult = PriEngine.Engine.Consulta(@"
-                    SELECT Codigo, NumContr, Nome, Morada, Telemovel, Email, DataNascimento, DataAdmissao, Notas, Foto
-                    FROM Funcionarios, Cargos
-                    WHERE Cargos.Descricao = 'Vendedor'
-                    AND Cargos.Cargo = Funcionarios.CargoPrincipal
-                    AND Codigo = '" + codVendedor + "'"
+                    SELECT Vendedor, CDU_NumContr, Nome, Morada, Telemovel, EMail, CDU_DataNascimento, CDU_DataAdmissao, Notas
+                    FROM Vendedores
+                    WHERE Vendedor = '" + codVendedor + "'"
                 );
 
                 if (!queryResult.Vazia())
@@ -332,18 +330,18 @@ namespace FirstREST.Lib_Primavera
                     // return sales rep
                     return new Model.Vendedor
                     {
-                        repId = queryResult.Valor("Codigo"),
-                        fiscalId = queryResult.Valor("NumContr"),
+                        repId = queryResult.Valor("Vendedor"),
+                        fiscalId = queryResult.Valor("CDU_NumContr"),
                         name = queryResult.Valor("Nome"),
                         address = queryResult.Valor("Morada"),
                         phone = queryResult.Valor("Telemovel"),
-                        email = queryResult.Valor("Email"),
-                        birthDate = queryResult.Valor("DataNascimento"),
-                        hiredDate = queryResult.Valor("DataAdmissao"),
-                        // TODO sales count
-                        sales = 0,
+                        email = queryResult.Valor("EMail"),
+                        birthDate = queryResult.Valor("CDU_DataNascimento"),
+                        hiredDate = queryResult.Valor("CDU_DataAdmissao"),
+                        sales = GetOrdersByRep(codVendedor).Count,
                         description = queryResult.Valor("Notas"),
-                        picture = queryResult.Valor("Foto")
+                        // TODO foto
+                        picture = ""
                     };
                 }
                 else
@@ -368,36 +366,19 @@ namespace FirstREST.Lib_Primavera
                 // list of sales reps
                 List<Model.Vendedor> listVendedores = new List<Model.Vendedor>();
 
-                // get info about all sales reps
+                // get id of all sales reps
                 StdBELista queryResult = PriEngine.Engine.Consulta(@"
-                    SELECT Codigo, NumContr, Nome, Morada, Telemovel, Email, DataNascimento, DataAdmissao, Notas, Foto
-                    FROM Funcionarios, Cargos
-                    WHERE Cargos.Descricao = 'Vendedor'
-                    AND Cargos.Cargo = Funcionarios.CargoPrincipal
+                    SELECT Vendedor
+                    FROM Vendedores
                 ");
 
                 while (!queryResult.NoFim())
                 {
                     // add new sales rep
-                    listVendedores.Add(new Model.Vendedor
-                    {
-                        repId = queryResult.Valor("Codigo"),
-                        fiscalId = queryResult.Valor("NumContr"),
-                        name = queryResult.Valor("Nome"),
-                        address = queryResult.Valor("Morada"),
-                        phone = queryResult.Valor("Telemovel"),
-                        email = queryResult.Valor("Email"),
-                        birthDate = queryResult.Valor("DataNascimento"),
-                        hiredDate = queryResult.Valor("DataAdmissao"),
-                        // TODO sales count
-                        sales = 0,
-                        description = queryResult.Valor("Notas"),
-                        picture = queryResult.Valor("Foto")
-                    });
+                    listVendedores.Add(GetVendedor(queryResult.Valor("Vendedor")));
 
                     // next ite
                     queryResult.Seguinte();
-
                 }
 
                 return listVendedores;
