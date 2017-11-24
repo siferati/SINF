@@ -245,60 +245,69 @@ namespace FirstREST.Lib_Primavera
 
         public static Lib_Primavera.Model.Artigo GetArtigo(string codArtigo)
         {
-            
-            GcpBEArtigo objArtigo = new GcpBEArtigo();
-            Model.Artigo myArt = new Model.Artigo();
-
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
+                // get info about given product
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Artigo, Descricao, Iva, STKActual, Peso, CDU_Preco, CDU_Tipo, CDU_Tamanho, CDU_Descricao
+                    FROM Artigo
+                    WHERE Artigo = '" + codArtigo + "'"
+                );
 
-                if (PriEngine.Engine.Comercial.Artigos.Existe(codArtigo) == false)
+                if (!queryResult.Vazia())
                 {
-                    return null;
+                    // return product
+                    return new Model.Artigo
+                    {
+                        productId = queryResult.Valor("Artigo"),
+                        name = queryResult.Valor("Descricao"),
+                        price = queryResult.Valor("CDU_Preco"),
+                        VAT = queryResult.Valor("Iva"),
+                        size = queryResult.Valor("CDU_Tamanho"),
+                        type = queryResult.Valor("CDU_Tipo"),
+                        stock = queryResult.Valor("STKActual"),
+                        weight = queryResult.Valor("Peso"),
+                        description = queryResult.Valor("CDU_Descricao")
+                    };
                 }
                 else
                 {
-                    objArtigo = PriEngine.Engine.Comercial.Artigos.Edita(codArtigo);
-                    myArt.CodArtigo = objArtigo.get_Artigo();
-                    myArt.DescArtigo = objArtigo.get_Descricao();
-                    myArt.STKAtual = objArtigo.get_StkActual(); 
-
-                    return myArt;
+                    return null;
                 }
-                
+
             }
             else
             {
                 return null;
+
             }
 
         }
 
         public static List<Model.Artigo> ListaArtigos()
         {
-                        
-            StdBELista objList;
-
-            Model.Artigo art = new Model.Artigo();
-            List<Model.Artigo> listArts = new List<Model.Artigo>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
+                // list of artigos
+                List<Model.Artigo> listArtigos = new List<Model.Artigo>();
 
-                objList = PriEngine.Engine.Comercial.Artigos.LstArtigos();
+                // get id of all sales reps
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Artigo
+                    FROM Artigo
+                ");
 
-                while (!objList.NoFim())
+                while (!queryResult.NoFim())
                 {
-                    art = new Model.Artigo();
-                    art.CodArtigo = objList.Valor("artigo");
-                    art.DescArtigo = objList.Valor("descricao");
-                    //art.STKAtual = objList.Valor("stkatual");
-                    
-                    listArts.Add(art);
-                    objList.Seguinte();
+                    // add new artigo
+                    listArtigos.Add(GetArtigo(queryResult.Valor("Artigo")));
+
+                    // next ite
+                    queryResult.Seguinte();
                 }
 
-                return listArts;
+                return listArtigos;
 
             }
             else
@@ -306,7 +315,6 @@ namespace FirstREST.Lib_Primavera
                 return null;
 
             }
-
         }
 
         #endregion Artigo
@@ -537,11 +545,17 @@ namespace FirstREST.Lib_Primavera
                 "));*/
 
                 // get factura of day 2016-11-16
-                listQueries.Add(PriEngine.Engine.Consulta(@"
+                /*listQueries.Add(PriEngine.Engine.Consulta(@"
                     SELECT CabecDoc.Id, Entidade, Responsavel, MoradaEntrega, Morada2Entrega, Artigo, Quantidade, CabecDoc.Data, DataDescarga
                     FROM CabecDoc, LinhasDoc
                     WHERE CabecDoc.Id = LinhasDoc.IdCabecDoc
                     AND CabecDoc.Data = '2016-11-16'
+                "));*/
+
+                listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT Artigo, Descricao, Iva, STKActual, Peso, CDU_Preco, CDU_Tipo, CDU_Tamanho, Observacoes
+                    FROM Artigo
+                    WHERE Artigo = 'A0001'
                 "));
 
                 foreach (StdBELista dbQuery in listQueries)

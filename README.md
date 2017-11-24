@@ -11,7 +11,8 @@
 * Open ``Primavera Admin``
 * Click ``Empresas`` on the left side
 * On the right side, Right Mouse Button on`` DEMOSINF`` > ``Administração`` > ``Importar/Exportar Configurações``
-* Choose ``Importar definições de XML`` and select ``primavera.xml`` 
+* Choose ``Importar definições de XML`` and select ``primavera.xml``
+* Select ``Tabelas de Utilizador`` and ``Campos de Utilizador``
 
 ### How to run RESTful Service
 

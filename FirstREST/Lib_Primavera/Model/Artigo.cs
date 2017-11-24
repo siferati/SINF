@@ -7,19 +7,55 @@ namespace FirstREST.Lib_Primavera.Model
 {
     public class Artigo
     {
-        public string CodArtigo
+        public string productId
         {
             get;
             set;
         }
 
-        public string DescArtigo
+        public string name
         {
             get;
             set;
         }
 
-        public double STKAtual
+        public double price
+        {
+            get;
+            set;
+        }
+
+        public string VAT
+        {
+            get;
+            set;
+        }
+
+        public string size
+        {
+            get;
+            set;
+        }
+
+        public string type
+        {
+            get;
+            set;
+        }
+
+        public double stock
+        {
+            get;
+            set;
+        }
+
+        public double weight
+        {
+            get;
+            set;
+        }
+
+        public string description
         {
             get;
             set;
