@@ -16,7 +16,7 @@ namespace FirstREST.Controllers
         //
         // GET: /Clientes/
 
-        public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
+       /* public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
         {
             return Lib_Primavera.PriIntegration.Encomendas_List();
         }
@@ -115,6 +115,6 @@ namespace FirstREST.Controllers
 
             }
 
-        }
+        }*/
     }
 }

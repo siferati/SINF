@@ -5,39 +5,30 @@ using System.Web;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using FirstREST.Lib_Primavera.Model;
 
 namespace FirstREST.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ClientesController : ApiController
     {
-        //
-        // GET: /Clientes/
-
+        // GET: api/clientes/
         public IEnumerable<Lib_Primavera.Model.Cliente> Get()
         {
                 return Lib_Primavera.PriIntegration.ListaClientes();
         }
 
 
-        // GET api/cliente/5    
+        // GET: api/clientes/SOLUCAO-Z
         public Cliente Get(string id)
         {
             Lib_Primavera.Model.Cliente cliente = Lib_Primavera.PriIntegration.GetCliente(id);
-            if (cliente == null)
-            {
-                throw new HttpResponseException(
-                        Request.CreateResponse(HttpStatusCode.NotFound));
-
-            }
-            else
-            {
-                return cliente;
-            }
+            return cliente;
         }
 
 
-        public HttpResponseMessage Post(Lib_Primavera.Model.Cliente cliente)
+        /*public HttpResponseMessage Post(Lib_Primavera.Model.Cliente cliente)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.InsereClienteObj(cliente);
@@ -113,7 +104,7 @@ namespace FirstREST.Controllers
 
             }
 
-        }
+        }*/
 
 
     }

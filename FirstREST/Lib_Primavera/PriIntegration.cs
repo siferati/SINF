@@ -19,75 +19,82 @@ namespace FirstREST.Lib_Primavera
 
         public static List<Model.Cliente> ListaClientes()
         {
-            
-            
-            StdBELista objList;
-
-            List<Model.Cliente> listClientes = new List<Model.Cliente>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
+                // list of clients
+                List<Model.Cliente> listClientes = new List<Model.Cliente>();
 
-                //objList = PriEngine.Engine.Comercial.Clientes.LstClientes();
+                // get id of all clientes
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Cliente
+                    FROM Clientes
+                ");
 
-                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome, Moeda, NumContrib as NumContribuinte, Fac_Mor AS campo_exemplo, CDU_Email as Email FROM  CLIENTES");
-
-                
-                while (!objList.NoFim())
+                while (!queryResult.NoFim())
                 {
-                    listClientes.Add(new Model.Cliente
-                    {
-                        CodCliente = objList.Valor("Cliente"),
-                        NomeCliente = objList.Valor("Nome"),
-                        Moeda = objList.Valor("Moeda"),
-                        NumContribuinte = objList.Valor("NumContribuinte"),
-                        Morada = objList.Valor("campo_exemplo"),
-                        Email = objList.Valor("Email")
-                    });
-                    objList.Seguinte();
+                    // add new cliente
+                    listClientes.Add(GetCliente(queryResult.Valor("Cliente")));
 
+                    // next ite
+                    queryResult.Seguinte();
                 }
 
                 return listClientes;
+
             }
             else
+            {
                 return null;
+
+            }
         }
 
         public static Lib_Primavera.Model.Cliente GetCliente(string codCliente)
         {
-            
-
-            GcpBECliente objCli = new GcpBECliente();
-
-
-            Model.Cliente myCli = new Model.Cliente();
-
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
+                // get info about given product
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Cliente, NumContrib, Nome, Fac_Mor, Fac_Mor2, Fac_Tel, CDU_Email, Notas
+                    FROM Clientes
+                    WHERE Cliente = '" + codCliente + "'"
+                );
 
-                if (PriEngine.Engine.Comercial.Clientes.Existe(codCliente) == true)
+                if (!queryResult.Vazia())
                 {
-                    
-                    objCli = PriEngine.Engine.Comercial.Clientes.Edita(codCliente);
-                    myCli.CodCliente = objCli.get_Cliente();
-                    myCli.NomeCliente = objCli.get_Nome();
-                    myCli.Moeda = objCli.get_Moeda();
-                    myCli.NumContribuinte = objCli.get_NumContribuinte();
-                    myCli.Morada = objCli.get_Morada();
-                    myCli.Email = PriEngine.Engine.Comercial.Clientes.DaValorAtributo(codCliente, "CDU_Email");
+                    // return product
+                    return new Model.Cliente
+                    {
+                        customerId = queryResult.Valor("Cliente"),
+                        fiscalId = queryResult.Valor("NumContrib"),
+                        name = queryResult.Valor("Nome"),
+                        address = queryResult.Valor("Fac_Mor") + " " + queryResult.Valor("Fac_Mor2"),
+                        phone = queryResult.Valor("Fac_Tel"),
+                        email = queryResult.Valor("CDU_Email"),
+                        // TODO
+                        status = "N/A",
+                        orders = GetOrdersByClient(codCliente).Count,
+                        description = queryResult.Valor("Notas"),
+                        // TODO
+                        picture = ""
 
-                    
-                    return myCli;
+                    };
                 }
                 else
                 {
                     return null;
                 }
+
             }
             else
+            {
                 return null;
+
+            }
         }
+
+        /*
 
         public static Lib_Primavera.Model.RespostaErro UpdCliente(Lib_Primavera.Model.Cliente cliente)
         {
@@ -236,7 +243,7 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-       
+       */
 
         #endregion Cliente;   // -----------------------------  END   CLIENTE    -----------------------
 
@@ -292,7 +299,7 @@ namespace FirstREST.Lib_Primavera
                 // list of artigos
                 List<Model.Artigo> listArtigos = new List<Model.Artigo>();
 
-                // get id of all sales reps
+                // get id of all artigos
                 StdBELista queryResult = PriEngine.Engine.Consulta(@"
                     SELECT Artigo
                     FROM Artigo
@@ -434,7 +441,7 @@ namespace FirstREST.Lib_Primavera
                         orderDate = cabecQueryResult.Valor("Data"),
                         // TOOD
                         status = "N/A",
-                        deliveryAddress = cabecQueryResult.Valor("MoradaEntrega") + cabecQueryResult.Valor("Morada2Entrega")
+                        deliveryAddress = cabecQueryResult.Valor("MoradaEntrega") + " " + cabecQueryResult.Valor("Morada2Entrega")
                     };
 
                     // delivery date might be null, so this needs to be outside order initialization
@@ -507,6 +514,41 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+
+        public static List<Model.Order> GetOrdersByClient(string id)
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // list of sales orders
+                List<Model.Order> listOrders = new List<Model.Order>();
+
+                // get id of all sales orders for given client
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Id
+                    FROM CabecDoc
+                    WHERE Entidade = '" + id + @"'
+                ");
+
+                while (!queryResult.NoFim())
+                {
+                    // add sales rep
+                    listOrders.Add(GetOrder(queryResult.Valor("Id")));
+
+                    // next ite
+                    queryResult.Seguinte();
+
+                }
+
+                return listOrders;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
         #endregion Order
 
 
@@ -553,9 +595,15 @@ namespace FirstREST.Lib_Primavera
                 "));*/
 
                 listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT Artigo, Descricao, Iva, STKActual, Peso, CDU_Preco, CDU_Tipo, CDU_Tamanho, Observacoes
-                    FROM Artigo
-                    WHERE Artigo = 'A0001'
+                    SELECT Cliente, NumContrib, Nome, Fac_Mor, Fac_Mor2, Fac_Tel, CDU_Email, Notas
+                    FROM Clientes
+                    WHERE Cliente = 'NW-CORP.'
+                "));
+
+                listQueries.Add(PriEngine.Engine.Consulta(@"
+                    SELECT *
+                    FROM Clientes
+                    WHERE Cliente = 'NW-CORP.'
                 "));
 
                 foreach (StdBELista dbQuery in listQueries)

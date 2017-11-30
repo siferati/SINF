@@ -20,10 +20,20 @@ namespace FirstREST.Controllers
             return order;
         }
 
+        // GET: api/vendedores/3/orders
         [Route("api/vendedores/{id}/orders")]
         public List<Order> GetByRep(string id)
         {
             List<Order> orders = Lib_Primavera.PriIntegration.GetOrdersByRep(id);
+
+            return orders;
+        }
+
+        // GET: api/clientes/SOLUCAO-Z/orders
+        [Route("api/clientes/{id}/orders")]
+        public List<Order> GetByClient(string id)
+        {
+            List<Order> orders = Lib_Primavera.PriIntegration.GetOrdersByClient(id);
 
             return orders;
         }

@@ -24,9 +24,28 @@
 
 ### RESTful Service Endpoints
 
-* http://localhost:49822/api/vendedores/ - get all sales reps
+#### Sales Representative
+
+* http://localhost:49822/api/vendedores - get all sales reps
 * http://localhost:49822/api/vendedores/3 - get given sales rep
 * http://localhost:49822/api/vendedores/3/orders - get sales of given rep
+
+#### Customer
+
+* http://localhost:49822/api/clientes - get all customers
+* http://localhost:49822/api/clientes/SOLUCAO-Z - get given customer
+* http://localhost:49822/api/clientes/SOLUCAO-Z/orders - get sales of given customer
+
+#### Sales Orders
+
 * http://localhost:49822/api/orders/DBAE7851-AC30-11E6-A18F-080027397412 - get given sales order
-* http://localhost:49822/api/oportunidadeVenda/OPV001 - get given sale's oportunity
-* http://localhost:49822/api/oportunidadeVenda - get sale's oportunities
+
+#### Opportunities
+
+* http://localhost:49822/api/oportunidadeVenda - get all sales oportunities
+* http://localhost:49822/api/oportunidadeVenda/OPV001 - get given sales oportunity
+
+#### Products
+
+* http://localhost:49822/api/artigos - get all products
+* http://localhost:49822/api/artigos/a0001  - get given product
