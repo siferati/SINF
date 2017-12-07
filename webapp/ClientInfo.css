@@ -9,11 +9,23 @@ html, body {
 	height: 5%;
 }
 
+.active {
+	background-color: lightblue !important;
+}
 
 .col {
 	float: left;
 	width: 30%;
 	margin: 1%;
+}
+
+.order-info > p {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.client-header {
+	margin-bottom: 10%;
 }
 
 .client-image {
@@ -79,7 +91,7 @@ html, body {
 	margin-bottom: 0;
 
 }
-.order-customer-name, .client-name{
+.order-item-name, .client-name{
 	margin: 0%;
 }
 
@@ -131,16 +143,15 @@ html, body {
 }
 
 
-.client-information > span, .order-information > span{
+.order-information > span, .client-information > span{
 	border-right: 1px solid lightgray;
 	margin-left: 5px;
 }
 
-.client-information>span:first-child, .order-information>span:first-child {
+.order-information>span:first-child, .client-information>span:first-child {
 	margin: 0;
 }
 
-.client-information>span:last-child, .order-information>span:last-child {
+.order-information>span:last-child, .client-information>span:last-child {
 	border: none;
 }
-
