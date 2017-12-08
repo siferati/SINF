@@ -1,1 +1,1208 @@
-﻿<ImportExportData><TDUs><TDU><Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela><Campo>CDU_TipoEntidade</Campo><ChavePrimaria>0</ChavePrimaria><Aplicacoes>TTE</Aplicacoes><Descricao>Tipo Entidade</Descricao><Texto>Tipo Entidade</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(1) NOT NULL </Tipo></TDU><TDU><Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela><Campo>CDU_TIPOENTIDADE</Campo><ChavePrimaria>0</ChavePrimaria><Aplicacoes>TTE</Aplicacoes><Descricao>Tipo Entidade</Descricao><Texto>Tipo Entidade</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(1) NOT NULL </Tipo></TDU><TDU><Tabela>TDU_TTE_SCHEDULE_LOG</Tabela><Campo>CDU_ID</Campo><ChavePrimaria>0</ChavePrimaria><Aplicacoes>TTE</Aplicacoes><Descricao>ID do Log</Descricao><Texto>ID do Log</Texto><Visivel>False</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Unique Identifier (GUID) NOT NULL </Tipo></TDU></TDUs><CDUs><CDU><Tabela>Artigo</Tabela><Campo>CDU_CampoVar1</Campo><Descricao>CampoVar1</Descricao><Texto>CampoVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Artigo</Tabela><Campo>CDU_CampoVar2</Campo><Descricao>CampoVar2</Descricao><Texto>CampoVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Artigo</Tabela><Campo>CDU_CampoVar3</Campo><Descricao>CampoVar3</Descricao><Texto>CampoVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Artigo</Tabela><Campo>CDU_Descricao</Campo><Descricao>Descricao do Artigo</Descricao><Texto>CDU_Descricao</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito>Papel para efeitos genéricos utilizável por todo o tipo de impressoras</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nText NOT NULL </Tipo></CDU><CDU><Tabela>Artigo</Tabela><Campo>CDU_Preco</Campo><Descricao>Preço do Artigo</Descricao><Texto>CDU_Preco</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito>0</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Float NOT NULL </Tipo></CDU><CDU><Tabela>Artigo</Tabela><Campo>CDU_Tamanho</Campo><Descricao>Tamanho do Artigo</Descricao><Texto>CDU_Tamanho</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito>A4</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(10) NOT NULL </Tipo></CDU><CDU><Tabela>Artigo</Tabela><Campo>CDU_Tipo</Campo><Descricao>Tipo do Artigo</Descricao><Texto>CDU_Tipo</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito>Papel de impressão</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(50) NOT NULL </Tipo></CDU><CDU><Tabela>ArtigoCliente</Tabela><Campo>CDU_CodBarrasEntidade</Campo><Descricao>Cod. Barras Entidade</Descricao><Texto>Cod. Barras</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>7</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(14) NULL </Tipo></CDU><CDU><Tabela>ArtigoFornecedor</Tabela><Campo>CDU_CodBarrasEntidade</Campo><Descricao>Ignora Desc. Artigo</Descricao><Texto>Cod. Barras</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(14) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar1</Campo><Descricao>CabVar1</Descricao><Texto>CabVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar1ENC</Campo><Descricao>CabVar1ENC</Descricao><Texto>CabVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar2</Campo><Descricao>CabVar2</Descricao><Texto>CabVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar2ENC</Campo><Descricao>CabVar2ENC</Descricao><Texto>CabVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar3</Campo><Descricao>CabVar3</Descricao><Texto>CabVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar3ENC</Campo><Descricao>CabVar3ENC</Descricao><Texto>CabVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar4</Campo><Descricao>CabVar4</Descricao><Texto>CabVar4</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar4ENC</Campo><Descricao>CabVar4ENC</Descricao><Texto>CabVar4</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar5</Campo><Descricao>CabVar5</Descricao><Texto>CabVar5</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CabVar5ENC</Campo><Descricao>CabVar5ENC</Descricao><Texto>CabVar5</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecCompras</Tabela><Campo>CDU_CodigoLocalizacao</Campo><Descricao>Cod. Localização</Descricao><Texto>Cod. Localização</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>True</ExportarTTE><Tipo>nVarChar(13) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar1</Campo><Descricao>CabVar1</Descricao><Texto>CabVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar1ENC</Campo><Descricao>CabVar1ENC</Descricao><Texto>CabVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar2</Campo><Descricao>CabVar2</Descricao><Texto>CabVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar2ENC</Campo><Descricao>CabVar2ENC</Descricao><Texto>CabVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar3</Campo><Descricao>CabVar3</Descricao><Texto>CabVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar3ENC</Campo><Descricao>CabVar3ENC</Descricao><Texto>CabVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar4</Campo><Descricao>CabVar4</Descricao><Texto>CabVar4</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar4ENC</Campo><Descricao>CabVar4ENC</Descricao><Texto>CabVar4</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar5</Campo><Descricao>CabVar5</Descricao><Texto>CabVar5</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CabVar5ENC</Campo><Descricao>CabVar5ENC</Descricao><Texto>CabVar5</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>CabecDoc</Tabela><Campo>CDU_CodigoLocalizacao</Campo><Descricao>Cod. Localização</Descricao><Texto>Cod. Localização</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>VarChar(13) NULL </Tipo></CDU><CDU><Tabela>CabecDocRascunhos</Tabela><Campo>CDU_CodigoLocalizacao</Campo><Descricao>Cod. Localização</Descricao><Texto>Cod. Localização</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>VarChar(13) NULL </Tipo></CDU><CDU><Tabela>CabecOportunidadesVenda</Tabela><Campo>CDU_DataEncontro</Campo><Descricao></Descricao><Texto></Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito>12/31/2018 00:00:00</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>SmallDateTime NOT NULL </Tipo></CDU><CDU><Tabela>CabecOportunidadesVenda</Tabela><Campo>CDU_LocalEncontro</Campo><Descricao></Descricao><Texto></Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito>FEUP</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(10) NOT NULL </Tipo></CDU><CDU><Tabela>Clientes</Tabela><Campo>CDU_AplicaDescComercIntegracao</Campo><Descricao>Aplica Desc. Comer. Integr.</Descricao><Texto>Apl Desc Comer Inte</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>6</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NULL </Tipo></CDU><CDU><Tabela>Clientes</Tabela><Campo>CDU_CampoVar1</Campo><Descricao>CampoVar1</Descricao><Texto>CampoVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Clientes</Tabela><Campo>CDU_CampoVar2</Campo><Descricao>CampoVar2</Descricao><Texto>CampoVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Clientes</Tabela><Campo>CDU_CampoVar3</Campo><Descricao>CampoVar3</Descricao><Texto>CampoVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Clientes</Tabela><Campo>CDU_Email</Campo><Descricao>Email</Descricao><Texto>Email</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>8</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>VarChar(50) NULL </Tipo></CDU><CDU><Tabela>Clientes</Tabela><Campo>CDU_GLNFornecedor</Campo><Descricao>Cod. GLN Contrato Fornecedor</Descricao><Texto>GLN Contr. Forn.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>4</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>VarChar(13) NULL </Tipo></CDU><CDU><Tabela>Clientes</Tabela><Campo>CDU_IgnoraDescArtB2B</Campo><Descricao>Ignora Desc. Artigo</Descricao><Texto>Ignorar Desc</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>7</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NULL </Tipo></CDU><CDU><Tabela>Clientes</Tabela><Campo>CDU_IgnoraElemFin</Campo><Descricao>Ignora Elem. Fin</Descricao><Texto>Ignora Elem. Fin</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>5</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NULL </Tipo></CDU><CDU><Tabela>Contactos</Tabela><Campo>CDU_B2C</Campo><Descricao>TTE Envio B2C:</Descricao><Texto>TTE Envio B2C:</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query>SELECT &#39;To&#39; AS B2C UNION SELECT &#39;Cc&#39; AS B2C UNION SELECT &#39;Bcc&#39; AS B2C</Query><ExportarTTE>False</ExportarTTE><Tipo>VarChar(10) NULL </Tipo></CDU><CDU><Tabela>Fornecedores</Tabela><Campo>CDU_AplicaDescComercIntegracao</Campo><Descricao>Aplica Desc. Comer. Integr.</Descricao><Texto>Apl Desc Comer Inte</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NULL </Tipo></CDU><CDU><Tabela>Fornecedores</Tabela><Campo>CDU_CampoVar1</Campo><Descricao>CampoVar1</Descricao><Texto>CampoVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Fornecedores</Tabela><Campo>CDU_CampoVar2</Campo><Descricao>CampoVar2</Descricao><Texto>CampoVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Fornecedores</Tabela><Campo>CDU_CampoVar3</Campo><Descricao>CampoVar3</Descricao><Texto>CampoVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>Fornecedores</Tabela><Campo>CDU_IgnoraDescArtB2B</Campo><Descricao>Ignora Desc. Artigo</Descricao><Texto>Ignorar Desc</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NULL </Tipo></CDU><CDU><Tabela>Fornecedores</Tabela><Campo>CDU_IgnoraElemFin</Campo><Descricao>Ignora Elem. Fin</Descricao><Texto>Ignora Elem. Fin</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NULL </Tipo></CDU><CDU><Tabela>LinhasCompras</Tabela><Campo>CDU_FactorConversaoAlternativa</Campo><Descricao>Factor Conversão Alternativa</Descricao><Texto>Fac. Conv. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Float NULL </Tipo></CDU><CDU><Tabela>LinhasCompras</Tabela><Campo>CDU_LinVar1</Campo><Descricao>LinVar1</Descricao><Texto>LinVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasCompras</Tabela><Campo>CDU_LinVar2</Campo><Descricao>LinVar2</Descricao><Texto>LinVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasCompras</Tabela><Campo>CDU_LinVar3</Campo><Descricao>LinVar3</Descricao><Texto>LinVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasCompras</Tabela><Campo>CDU_LinVar4</Campo><Descricao>LinVar4</Descricao><Texto>LinVar4</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasCompras</Tabela><Campo>CDU_LinVar5</Campo><Descricao>LinVar5</Descricao><Texto>LinVar5</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasCompras</Tabela><Campo>CDU_QuantidadeAlternativa</Campo><Descricao>Quantidade Alternativa</Descricao><Texto>Qtd. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Float NULL </Tipo></CDU><CDU><Tabela>LinhasCompras</Tabela><Campo>CDU_UnidadeAlternativa</Campo><Descricao>Unidade Alternativa</Descricao><Texto>Un. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(5) NULL </Tipo></CDU><CDU><Tabela>LinhasDoc</Tabela><Campo>CDU_FactorConversaoAlternativa</Campo><Descricao>Factor Conversão Alternativa</Descricao><Texto>Fac. Conv. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>8</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Float NULL </Tipo></CDU><CDU><Tabela>LinhasDoc</Tabela><Campo>CDU_LinVar1</Campo><Descricao>LinVar1</Descricao><Texto>LinVar1</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasDoc</Tabela><Campo>CDU_LinVar2</Campo><Descricao>LinVar2</Descricao><Texto>LinVar2</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasDoc</Tabela><Campo>CDU_LinVar3</Campo><Descricao>LinVar3</Descricao><Texto>LinVar3</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasDoc</Tabela><Campo>CDU_LinVar4</Campo><Descricao>LinVar4</Descricao><Texto>LinVar4</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>4</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasDoc</Tabela><Campo>CDU_LinVar5</Campo><Descricao>LinVar5</Descricao><Texto>LinVar5</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>5</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(15) NULL </Tipo></CDU><CDU><Tabela>LinhasDoc</Tabela><Campo>CDU_QuantidadeAlternativa</Campo><Descricao>Quantidade Alternativa</Descricao><Texto>Qtd. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>7</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Float NULL </Tipo></CDU><CDU><Tabela>LinhasDoc</Tabela><Campo>CDU_UnidadeAlternativa</Campo><Descricao>Unidade Alternativa</Descricao><Texto>Un. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>6</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(5) NULL </Tipo></CDU><CDU><Tabela>LinhasDocRascunhos</Tabela><Campo>CDU_FactorConversaoAlternativa</Campo><Descricao>Factor Conversão Alternativa</Descricao><Texto>Fac. Conv. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>8</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Float NULL </Tipo></CDU><CDU><Tabela>LinhasDocRascunhos</Tabela><Campo>CDU_QuantidadeAlternativa</Campo><Descricao>Quantidade Alternativa</Descricao><Texto>Qtd. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>7</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Float NULL </Tipo></CDU><CDU><Tabela>LinhasDocRascunhos</Tabela><Campo>CDU_UnidadeAlternativa</Campo><Descricao>Unidade Alternativa</Descricao><Texto>Un. Altern.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>6</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(5) NULL </Tipo></CDU><CDU><Tabela>OutrosTerceiros</Tabela><Campo>CDU_GLNFornecedor</Campo><Descricao>Cod. GLN Contrato Fornecedor</Descricao><Texto>GLN Contr. Forn.</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>VarChar(13) NULL </Tipo></CDU><CDU><Tabela>OutrosTerceiros</Tabela><Campo>CDU_IgnoraDescArtB2B</Campo><Descricao>Ignora Desc. Artigo</Descricao><Texto>Ignorar Desc</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NULL </Tipo></CDU><CDU><Tabela>OutrosTerceiros</Tabela><Campo>CDU_IgnoraElemFin</Campo><Descricao>Ignora Elem. Fin</Descricao><Texto>Ignora Elem. Fin</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela><Campo>CDU_Entidade</Campo><Descricao>Entidade</Descricao><Texto>Entidade</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(12) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela><Campo>CDU_TipoEntidade</Campo><Descricao>Tipo Entidade</Descricao><Texto>Tipo Entidade</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(1) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela><Campo>CDU_Unidade</Campo><Descricao>Unidade ERP</Descricao><Texto>Unidade ERP</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(5) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela><Campo>CDU_UnidadeEntidade</Campo><Descricao>Unidade Entidade</Descricao><Texto>Unidade Entidade</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(20) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela><Campo>CDU_ARTIGO</Campo><Descricao>Artigo</Descricao><Texto>Artigo</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(48) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela><Campo>CDU_ENTIDADE</Campo><Descricao>Entidade</Descricao><Texto>Entidade</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(12) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela><Campo>CDU_TipoEntidade</Campo><Descricao>Tipo Entidade</Descricao><Texto>Tipo Entidade</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(1) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela><Campo>CDU_UNIDADE</Campo><Descricao>Unidade ERP</Descricao><Texto>Unidade ERP</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>4</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(5) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_SCHEDULE_LOG</Tabela><Campo>CDU_DataExecucao</Campo><Descricao>Data Execução</Descricao><Texto>Data Execução</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>4</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>SmallDateTime NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_SCHEDULE_LOG</Tabela><Campo>CDU_EnvioRecepcao</Campo><Descricao>EnvioRecepcao</Descricao><Texto>EnvioRecepcao</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>2</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>UnsignedTinyInt NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_SCHEDULE_LOG</Tabela><Campo>CDU_Erros</Campo><Descricao>Erros</Descricao><Texto>UErros</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>7</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(4000) NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_SCHEDULE_LOG</Tabela><Campo>CDU_ID</Campo><Descricao>ID do Log</Descricao><Texto>ID do Log</Texto><Visivel>False</Visivel><Pagina></Pagina><Ordem>1</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>UniqueIdentifier NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_SCHEDULE_LOG</Tabela><Campo>CDU_Sucesso</Campo><Descricao>Sucesso</Descricao><Texto>Sucesso</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>3</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Bit NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_SCHEDULE_LOG</Tabela><Campo>CDU_TotalMensagens</Campo><Descricao>Total Mensagens</Descricao><Texto>Total Mensagens</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>5</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Integer NOT NULL </Tipo></CDU><CDU><Tabela>TDU_TTE_SCHEDULE_LOG</Tabela><Campo>CDU_TotalMsgsSucesso</Campo><Descricao>Tot. Msgs. Sucesso</Descricao><Texto>Tot. Msgs. Sucesso</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem>6</Ordem><ValorDefeito></ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>Integer NOT NULL </Tipo></CDU><CDU><Tabela>Vendedores</Tabela><Campo>CDU_DataAdmissao</Campo><Descricao>Data de admissão do Vendedor</Descricao><Texto>DataAdmissao</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito>11/23/2017 00:00:00</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>SmallDateTime NOT NULL </Tipo></CDU><CDU><Tabela>Vendedores</Tabela><Campo>CDU_DataNascimento</Campo><Descricao>Data de Nascimento</Descricao><Texto>Data de Nascimento</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito>11/17/2017 00:00:00</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>SmallDateTime NOT NULL </Tipo></CDU><CDU><Tabela>Vendedores</Tabela><Campo>CDU_NumContr</Campo><Descricao>Número de contribuinte do Vendedor</Descricao><Texto>NumContr</Texto><Visivel>True</Visivel><Pagina></Pagina><Ordem></Ordem><ValorDefeito>123456789</ValorDefeito><Query></Query><ExportarTTE>False</ExportarTTE><Tipo>nVarChar(20) NOT NULL </Tipo></CDU></CDUs> </ImportExportData>
+﻿<ImportExportData>
+  <TDUs>
+    <TDU>
+      <Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela>
+      <Campo>CDU_TipoEntidade</Campo>
+      <ChavePrimaria>0</ChavePrimaria>
+      <Aplicacoes>TTE</Aplicacoes>
+      <Descricao>Tipo Entidade</Descricao>
+      <Texto>Tipo Entidade</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(1) NOT NULL </Tipo>
+    </TDU>
+    <TDU>
+      <Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela>
+      <Campo>CDU_TIPOENTIDADE</Campo>
+      <ChavePrimaria>0</ChavePrimaria>
+      <Aplicacoes>TTE</Aplicacoes>
+      <Descricao>Tipo Entidade</Descricao>
+      <Texto>Tipo Entidade</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(1) NOT NULL </Tipo>
+    </TDU>
+    <TDU>
+      <Tabela>TDU_TTE_SCHEDULE_LOG</Tabela>
+      <Campo>CDU_ID</Campo>
+      <ChavePrimaria>0</ChavePrimaria>
+      <Aplicacoes>TTE</Aplicacoes>
+      <Descricao>ID do Log</Descricao>
+      <Texto>ID do Log</Texto>
+      <Visivel>False</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Unique Identifier (GUID) NOT NULL </Tipo>
+    </TDU>
+  </TDUs>
+  <CDUs>
+    <CDU>
+      <Tabela>Artigo</Tabela>
+      <Campo>CDU_CampoVar1</Campo>
+      <Descricao>CampoVar1</Descricao>
+      <Texto>CampoVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Artigo</Tabela>
+      <Campo>CDU_CampoVar2</Campo>
+      <Descricao>CampoVar2</Descricao>
+      <Texto>CampoVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Artigo</Tabela>
+      <Campo>CDU_CampoVar3</Campo>
+      <Descricao>CampoVar3</Descricao>
+      <Texto>CampoVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Artigo</Tabela>
+      <Campo>CDU_Descricao</Campo>
+      <Descricao>Descricao do Artigo</Descricao>
+      <Texto>CDU_Descricao</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>7</Ordem>
+      <ValorDefeito>Papel para efeitos genéricos utilizável por todo o tipo de impressoras</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nText NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Artigo</Tabela>
+      <Campo>CDU_Preco</Campo>
+      <Descricao>Preço do Artigo</Descricao>
+      <Texto>CDU_Preco</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>4</Ordem>
+      <ValorDefeito>0</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Float NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Artigo</Tabela>
+      <Campo>CDU_Tamanho</Campo>
+      <Descricao>Tamanho do Artigo</Descricao>
+      <Texto>CDU_Tamanho</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>5</Ordem>
+      <ValorDefeito>A4</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(10) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Artigo</Tabela>
+      <Campo>CDU_Tipo</Campo>
+      <Descricao>Tipo do Artigo</Descricao>
+      <Texto>CDU_Tipo</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>6</Ordem>
+      <ValorDefeito>Papel de impressão</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(50) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>ArtigoCliente</Tabela>
+      <Campo>CDU_CodBarrasEntidade</Campo>
+      <Descricao>Cod. Barras Entidade</Descricao>
+      <Texto>Cod. Barras</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>7</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(14) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>ArtigoFornecedor</Tabela>
+      <Campo>CDU_CodBarrasEntidade</Campo>
+      <Descricao>Ignora Desc. Artigo</Descricao>
+      <Texto>Cod. Barras</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(14) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar1</Campo>
+      <Descricao>CabVar1</Descricao>
+      <Texto>CabVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar1ENC</Campo>
+      <Descricao>CabVar1ENC</Descricao>
+      <Texto>CabVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar2</Campo>
+      <Descricao>CabVar2</Descricao>
+      <Texto>CabVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar2ENC</Campo>
+      <Descricao>CabVar2ENC</Descricao>
+      <Texto>CabVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar3</Campo>
+      <Descricao>CabVar3</Descricao>
+      <Texto>CabVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar3ENC</Campo>
+      <Descricao>CabVar3ENC</Descricao>
+      <Texto>CabVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar4</Campo>
+      <Descricao>CabVar4</Descricao>
+      <Texto>CabVar4</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar4ENC</Campo>
+      <Descricao>CabVar4ENC</Descricao>
+      <Texto>CabVar4</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar5</Campo>
+      <Descricao>CabVar5</Descricao>
+      <Texto>CabVar5</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CabVar5ENC</Campo>
+      <Descricao>CabVar5ENC</Descricao>
+      <Texto>CabVar5</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecCompras</Tabela>
+      <Campo>CDU_CodigoLocalizacao</Campo>
+      <Descricao>Cod. Localização</Descricao>
+      <Texto>Cod. Localização</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>True</ExportarTTE>
+      <Tipo>nVarChar(13) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar1</Campo>
+      <Descricao>CabVar1</Descricao>
+      <Texto>CabVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar1ENC</Campo>
+      <Descricao>CabVar1ENC</Descricao>
+      <Texto>CabVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar2</Campo>
+      <Descricao>CabVar2</Descricao>
+      <Texto>CabVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar2ENC</Campo>
+      <Descricao>CabVar2ENC</Descricao>
+      <Texto>CabVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar3</Campo>
+      <Descricao>CabVar3</Descricao>
+      <Texto>CabVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar3ENC</Campo>
+      <Descricao>CabVar3ENC</Descricao>
+      <Texto>CabVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar4</Campo>
+      <Descricao>CabVar4</Descricao>
+      <Texto>CabVar4</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar4ENC</Campo>
+      <Descricao>CabVar4ENC</Descricao>
+      <Texto>CabVar4</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar5</Campo>
+      <Descricao>CabVar5</Descricao>
+      <Texto>CabVar5</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CabVar5ENC</Campo>
+      <Descricao>CabVar5ENC</Descricao>
+      <Texto>CabVar5</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDoc</Tabela>
+      <Campo>CDU_CodigoLocalizacao</Campo>
+      <Descricao>Cod. Localização</Descricao>
+      <Texto>Cod. Localização</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>VarChar(13) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecDocRascunhos</Tabela>
+      <Campo>CDU_CodigoLocalizacao</Campo>
+      <Descricao>Cod. Localização</Descricao>
+      <Texto>Cod. Localização</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>VarChar(13) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecOportunidadesVenda</Tabela>
+      <Campo>CDU_DataEncontro</Campo>
+      <Descricao></Descricao>
+      <Texto></Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito>12/31/2018 00:00:00</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>SmallDateTime NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>CabecOportunidadesVenda</Tabela>
+      <Campo>CDU_LocalEncontro</Campo>
+      <Descricao></Descricao>
+      <Texto></Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito>FEUP</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(10) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Clientes</Tabela>
+      <Campo>CDU_AplicaDescComercIntegracao</Campo>
+      <Descricao>Aplica Desc. Comer. Integr.</Descricao>
+      <Texto>Apl Desc Comer Inte</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>6</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Clientes</Tabela>
+      <Campo>CDU_CampoVar1</Campo>
+      <Descricao>CampoVar1</Descricao>
+      <Texto>CampoVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Clientes</Tabela>
+      <Campo>CDU_CampoVar2</Campo>
+      <Descricao>CampoVar2</Descricao>
+      <Texto>CampoVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Clientes</Tabela>
+      <Campo>CDU_CampoVar3</Campo>
+      <Descricao>CampoVar3</Descricao>
+      <Texto>CampoVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Clientes</Tabela>
+      <Campo>CDU_Email</Campo>
+      <Descricao>Email</Descricao>
+      <Texto>Email</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>8</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>VarChar(50) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Clientes</Tabela>
+      <Campo>CDU_GLNFornecedor</Campo>
+      <Descricao>Cod. GLN Contrato Fornecedor</Descricao>
+      <Texto>GLN Contr. Forn.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>4</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>VarChar(13) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Clientes</Tabela>
+      <Campo>CDU_IgnoraDescArtB2B</Campo>
+      <Descricao>Ignora Desc. Artigo</Descricao>
+      <Texto>Ignorar Desc</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>7</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Clientes</Tabela>
+      <Campo>CDU_IgnoraElemFin</Campo>
+      <Descricao>Ignora Elem. Fin</Descricao>
+      <Texto>Ignora Elem. Fin</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>5</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Contactos</Tabela>
+      <Campo>CDU_B2C</Campo>
+      <Descricao>TTE Envio B2C:</Descricao>
+      <Texto>TTE Envio B2C:</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query>SELECT &#39;To&#39; AS B2C UNION SELECT &#39;Cc&#39; AS B2C UNION SELECT &#39;Bcc&#39; AS B2C</Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>VarChar(10) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Fornecedores</Tabela>
+      <Campo>CDU_AplicaDescComercIntegracao</Campo>
+      <Descricao>Aplica Desc. Comer. Integr.</Descricao>
+      <Texto>Apl Desc Comer Inte</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Fornecedores</Tabela>
+      <Campo>CDU_CampoVar1</Campo>
+      <Descricao>CampoVar1</Descricao>
+      <Texto>CampoVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Fornecedores</Tabela>
+      <Campo>CDU_CampoVar2</Campo>
+      <Descricao>CampoVar2</Descricao>
+      <Texto>CampoVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Fornecedores</Tabela>
+      <Campo>CDU_CampoVar3</Campo>
+      <Descricao>CampoVar3</Descricao>
+      <Texto>CampoVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Fornecedores</Tabela>
+      <Campo>CDU_IgnoraDescArtB2B</Campo>
+      <Descricao>Ignora Desc. Artigo</Descricao>
+      <Texto>Ignorar Desc</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Fornecedores</Tabela>
+      <Campo>CDU_IgnoraElemFin</Campo>
+      <Descricao>Ignora Elem. Fin</Descricao>
+      <Texto>Ignora Elem. Fin</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasCompras</Tabela>
+      <Campo>CDU_FactorConversaoAlternativa</Campo>
+      <Descricao>Factor Conversão Alternativa</Descricao>
+      <Texto>Fac. Conv. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Float NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasCompras</Tabela>
+      <Campo>CDU_LinVar1</Campo>
+      <Descricao>LinVar1</Descricao>
+      <Texto>LinVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasCompras</Tabela>
+      <Campo>CDU_LinVar2</Campo>
+      <Descricao>LinVar2</Descricao>
+      <Texto>LinVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasCompras</Tabela>
+      <Campo>CDU_LinVar3</Campo>
+      <Descricao>LinVar3</Descricao>
+      <Texto>LinVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasCompras</Tabela>
+      <Campo>CDU_LinVar4</Campo>
+      <Descricao>LinVar4</Descricao>
+      <Texto>LinVar4</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasCompras</Tabela>
+      <Campo>CDU_LinVar5</Campo>
+      <Descricao>LinVar5</Descricao>
+      <Texto>LinVar5</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem></Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasCompras</Tabela>
+      <Campo>CDU_QuantidadeAlternativa</Campo>
+      <Descricao>Quantidade Alternativa</Descricao>
+      <Texto>Qtd. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Float NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasCompras</Tabela>
+      <Campo>CDU_UnidadeAlternativa</Campo>
+      <Descricao>Unidade Alternativa</Descricao>
+      <Texto>Un. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(5) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDoc</Tabela>
+      <Campo>CDU_FactorConversaoAlternativa</Campo>
+      <Descricao>Factor Conversão Alternativa</Descricao>
+      <Texto>Fac. Conv. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>8</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Float NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDoc</Tabela>
+      <Campo>CDU_LinVar1</Campo>
+      <Descricao>LinVar1</Descricao>
+      <Texto>LinVar1</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDoc</Tabela>
+      <Campo>CDU_LinVar2</Campo>
+      <Descricao>LinVar2</Descricao>
+      <Texto>LinVar2</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDoc</Tabela>
+      <Campo>CDU_LinVar3</Campo>
+      <Descricao>LinVar3</Descricao>
+      <Texto>LinVar3</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDoc</Tabela>
+      <Campo>CDU_LinVar4</Campo>
+      <Descricao>LinVar4</Descricao>
+      <Texto>LinVar4</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>4</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDoc</Tabela>
+      <Campo>CDU_LinVar5</Campo>
+      <Descricao>LinVar5</Descricao>
+      <Texto>LinVar5</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>5</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(15) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDoc</Tabela>
+      <Campo>CDU_QuantidadeAlternativa</Campo>
+      <Descricao>Quantidade Alternativa</Descricao>
+      <Texto>Qtd. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>7</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Float NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDoc</Tabela>
+      <Campo>CDU_UnidadeAlternativa</Campo>
+      <Descricao>Unidade Alternativa</Descricao>
+      <Texto>Un. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>6</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(5) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDocRascunhos</Tabela>
+      <Campo>CDU_FactorConversaoAlternativa</Campo>
+      <Descricao>Factor Conversão Alternativa</Descricao>
+      <Texto>Fac. Conv. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>8</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Float NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDocRascunhos</Tabela>
+      <Campo>CDU_QuantidadeAlternativa</Campo>
+      <Descricao>Quantidade Alternativa</Descricao>
+      <Texto>Qtd. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>7</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Float NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>LinhasDocRascunhos</Tabela>
+      <Campo>CDU_UnidadeAlternativa</Campo>
+      <Descricao>Unidade Alternativa</Descricao>
+      <Texto>Un. Altern.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>6</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(5) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>OutrosTerceiros</Tabela>
+      <Campo>CDU_GLNFornecedor</Campo>
+      <Descricao>Cod. GLN Contrato Fornecedor</Descricao>
+      <Texto>GLN Contr. Forn.</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>VarChar(13) NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>OutrosTerceiros</Tabela>
+      <Campo>CDU_IgnoraDescArtB2B</Campo>
+      <Descricao>Ignora Desc. Artigo</Descricao>
+      <Texto>Ignorar Desc</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>OutrosTerceiros</Tabela>
+      <Campo>CDU_IgnoraElemFin</Campo>
+      <Descricao>Ignora Elem. Fin</Descricao>
+      <Texto>Ignora Elem. Fin</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela>
+      <Campo>CDU_Entidade</Campo>
+      <Descricao>Entidade</Descricao>
+      <Texto>Entidade</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(12) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela>
+      <Campo>CDU_TipoEntidade</Campo>
+      <Descricao>Tipo Entidade</Descricao>
+      <Texto>Tipo Entidade</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(1) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela>
+      <Campo>CDU_Unidade</Campo>
+      <Descricao>Unidade ERP</Descricao>
+      <Texto>Unidade ERP</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(5) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_Entidade_Relacao_Unidades</Tabela>
+      <Campo>CDU_UnidadeEntidade</Campo>
+      <Descricao>Unidade Entidade</Descricao>
+      <Texto>Unidade Entidade</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(20) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela>
+      <Campo>CDU_ARTIGO</Campo>
+      <Descricao>Artigo</Descricao>
+      <Texto>Artigo</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(48) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela>
+      <Campo>CDU_ENTIDADE</Campo>
+      <Descricao>Entidade</Descricao>
+      <Texto>Entidade</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(12) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela>
+      <Campo>CDU_TipoEntidade</Campo>
+      <Descricao>Tipo Entidade</Descricao>
+      <Texto>Tipo Entidade</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(1) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_ENTIDADE_UN_INTEGRACAO</Tabela>
+      <Campo>CDU_UNIDADE</Campo>
+      <Descricao>Unidade ERP</Descricao>
+      <Texto>Unidade ERP</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>4</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(5) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_SCHEDULE_LOG</Tabela>
+      <Campo>CDU_DataExecucao</Campo>
+      <Descricao>Data Execução</Descricao>
+      <Texto>Data Execução</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>4</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>SmallDateTime NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_SCHEDULE_LOG</Tabela>
+      <Campo>CDU_EnvioRecepcao</Campo>
+      <Descricao>EnvioRecepcao</Descricao>
+      <Texto>EnvioRecepcao</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>UnsignedTinyInt NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_SCHEDULE_LOG</Tabela>
+      <Campo>CDU_Erros</Campo>
+      <Descricao>Erros</Descricao>
+      <Texto>UErros</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>7</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(4000) NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_SCHEDULE_LOG</Tabela>
+      <Campo>CDU_ID</Campo>
+      <Descricao>ID do Log</Descricao>
+      <Texto>ID do Log</Texto>
+      <Visivel>False</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>UniqueIdentifier NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_SCHEDULE_LOG</Tabela>
+      <Campo>CDU_Sucesso</Campo>
+      <Descricao>Sucesso</Descricao>
+      <Texto>Sucesso</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Bit NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_SCHEDULE_LOG</Tabela>
+      <Campo>CDU_TotalMensagens</Campo>
+      <Descricao>Total Mensagens</Descricao>
+      <Texto>Total Mensagens</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>5</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Integer NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>TDU_TTE_SCHEDULE_LOG</Tabela>
+      <Campo>CDU_TotalMsgsSucesso</Campo>
+      <Descricao>Tot. Msgs. Sucesso</Descricao>
+      <Texto>Tot. Msgs. Sucesso</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>6</Ordem>
+      <ValorDefeito></ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>Integer NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Vendedores</Tabela>
+      <Campo>CDU_DataAdmissao</Campo>
+      <Descricao>Data de admissão do Vendedor</Descricao>
+      <Texto>DataAdmissao</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>3</Ordem>
+      <ValorDefeito>11/23/2017 00:00:00</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>SmallDateTime NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Vendedores</Tabela>
+      <Campo>CDU_DataNascimento</Campo>
+      <Descricao>Data de Nascimento</Descricao>
+      <Texto>Data de Nascimento</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>1</Ordem>
+      <ValorDefeito>11/17/2017 00:00:00</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>SmallDateTime NOT NULL </Tipo>
+    </CDU>
+    <CDU>
+      <Tabela>Vendedores</Tabela>
+      <Campo>CDU_NumContr</Campo>
+      <Descricao>Número de contribuinte do Vendedor</Descricao>
+      <Texto>NumContr</Texto>
+      <Visivel>True</Visivel>
+      <Pagina></Pagina>
+      <Ordem>2</Ordem>
+      <ValorDefeito>123456789</ValorDefeito>
+      <Query></Query>
+      <ExportarTTE>False</ExportarTTE>
+      <Tipo>nVarChar(20) NOT NULL </Tipo>
+    </CDU>
+  </CDUs>
+</ImportExportData>
