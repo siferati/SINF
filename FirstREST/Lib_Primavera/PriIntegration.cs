@@ -94,6 +94,104 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static int GetLastClientId()
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // get max id
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT MAX(Cliente) AS Id
+                    FROM Clientes
+                    WHERE ISNUMERIC(Cliente) = 1
+                ");
+
+                if (!queryResult.Vazia())
+                {
+                    // return product
+                    string id = queryResult.Valor("Id");
+
+                    if (String.IsNullOrEmpty(id))
+                        return 0;
+                    else
+                        return int.Parse(id);
+                }
+                else
+                {
+                    return 0;
+                }
+
+            }
+            else
+            {
+                return 0;
+
+            }
+        }
+
+        public static Lib_Primavera.Model.RespostaErro InsereClienteObj(Model.Cliente cli)
+        {
+
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+
+            // initialize client
+            GcpBECliente myCli = new GcpBECliente();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    // campos de utilizador
+                    StdBECampos cdu = new StdBECampos();
+
+                    // cdu_email
+                    StdBECampo email = new StdBECampo();
+                    email.Nome = "CDU_Email";
+                    email.Valor = cli.email;
+                    cdu.Insere(email);
+                    
+                    // set client fields
+                    myCli.set_Cliente("" + (GetLastClientId() + 1));
+                    myCli.set_NumContribuinte(cli.fiscalId);
+                    myCli.set_Nome(cli.name);
+                    if (cli.address.Length <= 50)
+                    {
+                        myCli.set_Morada(cli.address);
+                    }
+                    else
+                    {
+                        myCli.set_Morada(cli.address.Substring(0, 50));
+                        myCli.set_Morada2(cli.address.Substring(50, cli.address.Length - 50));
+                    }                    
+                    myCli.set_Telefone(cli.phone);
+                    myCli.set_CamposUtil(cdu);
+                    myCli.set_Observacoes(cli.description);
+                    myCli.set_Moeda("EUR");
+
+                    // insert client
+                    PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
+
+                    erro.Erro = 0;
+                    erro.Descricao = "Sucesso";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
+
+
+        }
+
         /*
 
         public static Lib_Primavera.Model.RespostaErro UpdCliente(Lib_Primavera.Model.Cliente cliente)
@@ -195,51 +293,6 @@ namespace FirstREST.Lib_Primavera
                 erro.Descricao = ex.Message;
                 return erro;
             }
-
-        }
-
-
-
-        public static Lib_Primavera.Model.RespostaErro InsereClienteObj(Model.Cliente cli)
-        {
-
-            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
-            
-
-            GcpBECliente myCli = new GcpBECliente();
-
-            try
-            {
-                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
-                {
-
-                    myCli.set_Cliente(cli.CodCliente);
-                    myCli.set_Nome(cli.NomeCliente);
-                    myCli.set_NumContribuinte(cli.NumContribuinte);
-                    myCli.set_Moeda(cli.Moeda);
-                    myCli.set_Morada(cli.Morada);
-
-                    PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
-
-                    erro.Erro = 0;
-                    erro.Descricao = "Sucesso";
-                    return erro;
-                }
-                else
-                {
-                    erro.Erro = 1;
-                    erro.Descricao = "Erro ao abrir empresa";
-                    return erro;
-                }
-            }
-
-            catch (Exception ex)
-            {
-                erro.Erro = 1;
-                erro.Descricao = ex.Message;
-                return erro;
-            }
-
 
         }
 
@@ -650,15 +703,9 @@ namespace FirstREST.Lib_Primavera
                 "));*/
 
                 listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT Cliente, NumContrib, Nome, Fac_Mor, Fac_Mor2, Fac_Tel, CDU_Email, Notas
+                    SELECT MAX(Cliente) AS Id
                     FROM Clientes
-                    WHERE Cliente = 'NW-CORP.'
-                "));
-
-                listQueries.Add(PriEngine.Engine.Consulta(@"
-                    SELECT *
-                    FROM Clientes
-                    WHERE Cliente = 'NW-CORP.'
+                    WHERE ISNUMERIC(Cliente) = 1
                 "));
 
                 foreach (StdBELista dbQuery in listQueries)

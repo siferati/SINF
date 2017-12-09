@@ -27,21 +27,17 @@ namespace FirstREST.Controllers
             return cliente;
         }
 
-
-        /*public HttpResponseMessage Post(Lib_Primavera.Model.Cliente cliente)
+        // POST: api/clientes/
+        public HttpResponseMessage Post(Lib_Primavera.Model.Cliente cliente)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.InsereClienteObj(cliente);
 
             if (erro.Erro == 0)
             {
-                var response = Request.CreateResponse(
-                   HttpStatusCode.Created, cliente);
-                string uri = Url.Link("DefaultApi", new { CodCliente = cliente.CodCliente });
-                response.Headers.Location = new Uri(uri);
+                var response = Request.CreateResponse(HttpStatusCode.Created, cliente);
                 return response;
             }
-
             else
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -49,7 +45,7 @@ namespace FirstREST.Controllers
 
         }
 
-
+        /*
         public HttpResponseMessage Put(string id, Lib_Primavera.Model.Cliente cliente)
         {
 
