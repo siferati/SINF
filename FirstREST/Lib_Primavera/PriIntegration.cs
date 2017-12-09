@@ -74,7 +74,7 @@ namespace FirstREST.Lib_Primavera
                         email = queryResult.Valor("CDU_Email"),
                         // TODO
                         status = "N/A",
-                        orders = GetOrdersByClient(codCliente).Count,
+                        orders = GetNOrdersByClient(codCliente),
                         description = queryResult.Valor("Notas"),
                         // TODO
                         picture = ""
@@ -353,7 +353,7 @@ namespace FirstREST.Lib_Primavera
                         email = queryResult.Valor("EMail"),
                         birthDate = queryResult.Valor("CDU_DataNascimento"),
                         hiredDate = queryResult.Valor("CDU_DataAdmissao"),
-                        sales = GetOrdersByRep(codVendedor).Count,
+                        sales = GetNOrdersByRep(codVendedor),
                         description = queryResult.Valor("Notas"),
                         // TODO foto
                         picture = ""
@@ -479,7 +479,6 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
-
         public static List<Model.Order> GetOrdersByRep(string id)
         {
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
@@ -514,6 +513,33 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static int GetNOrdersByRep(string id)
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // get id of all sales orders for given rep
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT COUNT(*) AS Norders
+                    FROM CabecDoc
+                    WHERE Responsavel = '" + id + @"'
+                ");
+
+                if (!queryResult.Vazia())
+                {
+                    return queryResult.Valor("Norders");
+
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+
+            }
+        }
 
         public static List<Model.Order> GetOrdersByClient(string id)
         {
@@ -545,6 +571,34 @@ namespace FirstREST.Lib_Primavera
             else
             {
                 return null;
+
+            }
+        }
+
+        public static int GetNOrdersByClient(string id)
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // get id of all sales orders for given client
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT COUNT(*) AS Norders
+                    FROM CabecDoc
+                    WHERE Entidade = '" + id + @"'
+                ");
+
+                if (!queryResult.Vazia())
+                {
+                    return queryResult.Valor("Norders");
+
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
 
             }
         }
