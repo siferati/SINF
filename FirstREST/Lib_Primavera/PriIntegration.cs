@@ -8,6 +8,7 @@ using Interop.StdBE900;
 using Interop.GcpBE900;
 using ADODB;
 using Interop.CrmBE900;
+using System.Diagnostics;
 
 namespace FirstREST.Lib_Primavera
 {
@@ -657,6 +658,7 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+
         #endregion Order
 
 
@@ -1123,6 +1125,64 @@ namespace FirstREST.Lib_Primavera
             }
 
         }
+
+        public static Lib_Primavera.Model.RespostaErro InsereOpVenda(Model.OportunidadeVenda opVenda)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+
+            CrmBEOportunidadeVenda objOpVenda = new CrmBEOportunidadeVenda();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+
+                    StdBECampos cdu = new StdBECampos();
+
+                    // cdu_local
+                    StdBECampo local = new StdBECampo();
+                    local.Nome = "CDU_LocalEncontro";
+                    local.Valor = opVenda.Local;
+                    cdu.Insere(local);
+
+                    // cdu_data
+                    StdBECampo data = new StdBECampo();
+                    data.Nome = "CDU_DataEncontro";
+                    data.Valor = opVenda.Data;
+                    cdu.Insere(data);
+
+                    objOpVenda.set_Oportunidade(opVenda.OportunidadeID);
+                    objOpVenda.set_Descricao(opVenda.DescricaoOp);
+                    objOpVenda.set_Entidade(opVenda.Entidade);
+                    objOpVenda.set_Vendedor(opVenda.VendedorCod);
+                    objOpVenda.set_DataCriacao(DateTime.Now);
+                    objOpVenda.set_TipoEntidade("C");
+                    objOpVenda.set_DataExpiracao((DateTime)opVenda.Data);
+                    objOpVenda.set_CicloVenda("CV_SOFT");
+                    objOpVenda.set_Moeda("EUR");
+                    objOpVenda.set_CamposUtil(cdu);
+
+                    PriEngine.Engine.CRM.OportunidadesVenda.Actualiza(ref objOpVenda);
+                    erro.Erro = 0;
+                    erro.Descricao = "Sucesso";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                Debug.WriteLine(ex);
+                return erro;
+            }
+        }
+
 
         #endregion OportunidadeVenda
 
