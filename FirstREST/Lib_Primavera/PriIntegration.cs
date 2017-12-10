@@ -536,7 +536,7 @@ namespace FirstREST.Lib_Primavera
                     // cdu_dataAdmissao
                     StdBECampo dataAdmissao = new StdBECampo();
                     dataAdmissao.Nome = "CDU_DataAdmissao";
-                    dataAdmissao.Valor = vend.birthDate;
+                    dataAdmissao.Valor = vend.hiredDate;
                     cdu.Insere(dataAdmissao);
 
                     // cdu_numcontrb
@@ -577,6 +577,81 @@ namespace FirstREST.Lib_Primavera
                 return erro;
             }
 
+
+        }
+
+        public static Lib_Primavera.Model.RespostaErro UpdVendedor(String id, Lib_Primavera.Model.Vendedor vendedor)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+
+            // initialize vendedor
+            GcpBEVendedor objVend = new GcpBEVendedor();
+
+            try
+            {
+
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+
+                    if (PriEngine.Engine.Comercial.Vendedores.Existe(id) == false)
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "O vendedor não existe";
+                        return erro;
+                    }
+                    else
+                    {
+
+                        objVend = PriEngine.Engine.Comercial.Vendedores.Edita(id);
+                        objVend.set_EmModoEdicao(true);
+
+                        // campos de utilizador
+                        StdBECampos cdu = new StdBECampos();
+
+                        // cdu_dataNascimento
+                        StdBECampo dataNascimento = new StdBECampo();
+                        dataNascimento.Nome = "CDU_DataNascimento";
+                        dataNascimento.Valor = vendedor.birthDate;
+                        cdu.Insere(dataNascimento);
+
+                        // cdu_dataAdmissao
+                        StdBECampo dataAdmissao = new StdBECampo();
+                        dataAdmissao.Nome = "CDU_DataAdmissao";
+                        dataAdmissao.Valor = vendedor.hiredDate;
+                        cdu.Insere(dataAdmissao);
+
+                        // set vend fields
+                        objVend.set_CamposUtil(cdu);
+                        objVend.set_Nome(vendedor.name);
+                        objVend.set_Morada(vendedor.address);
+                        objVend.set_Telefone(vendedor.phone);
+                        objVend.set_Email(vendedor.email);
+                        objVend.set_Observacoes(vendedor.description);
+
+                        // update client
+                        PriEngine.Engine.Comercial.Vendedores.Actualiza(objVend);
+
+                        erro.Erro = 0;
+                        erro.Descricao = "Sucesso";
+                        return erro;
+                    }
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir a empresa";
+                    return erro;
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
 
         }
 

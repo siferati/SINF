@@ -30,6 +30,7 @@
 * http://localhost:49822/api/vendedores/3 - GET given sales rep
 * http://localhost:49822/api/vendedores/3/orders - GET sales of given rep
 * http://localhost:49822/api/vendedores - POST new sales reps (fiscalId, name, address, phone, email, birthDate, hiredDate, description)
+* http://localhost:49822/api/vendedores/3 - PUT update given sales rep (name, address, phone, email, birthDate, hiredDate, description)
 
 #### Customer
 
@@ -37,7 +38,7 @@
 * http://localhost:49822/api/clientes/SOLUCAO-Z - GET given customer
 * http://localhost:49822/api/clientes/SOLUCAO-Z/orders - GET sales of given customer
 * http://localhost:49822/api/clientes - POST new customer (fiscalId, name, address, phone, email, description)
-* http://localhost:49822/api/clientes/SOLUCAO-Z - PUT update customer (name, address, phone, email, description)
+* http://localhost:49822/api/clientes/SOLUCAO-Z - PUT update given customer (name, address, phone, email, description)
 
 #### Sales Orders
 
