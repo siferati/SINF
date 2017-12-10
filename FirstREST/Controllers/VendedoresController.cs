@@ -25,5 +25,23 @@ namespace FirstREST.Controllers
 
             return vendedor;
         }
+
+        // POST: api/vendedores/
+        public HttpResponseMessage Post(Lib_Primavera.Model.Vendedor vendedor)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
+            erro = Lib_Primavera.PriIntegration.InsereVendedorObj(vendedor);
+
+            if (erro.Erro == 0)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.Created, vendedor);
+                return response;
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+        }
     }
 }

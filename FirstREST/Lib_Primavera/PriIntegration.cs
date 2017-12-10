@@ -478,6 +478,108 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static int GetLastVendedorId()
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // get max id
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT MAX(Vendedor) AS Id
+                    FROM Vendedores
+                    WHERE ISNUMERIC(Vendedor) = 1
+                ");
+
+                if (!queryResult.Vazia())
+                {
+                    // return product
+                    string id = queryResult.Valor("Id");
+
+                    if (String.IsNullOrEmpty(id))
+                        return 0;
+                    else
+                        return int.Parse(id);
+                }
+                else
+                {
+                    return 0;
+                }
+
+            }
+            else
+            {
+                return 0;
+
+            }
+        }
+
+        public static Lib_Primavera.Model.RespostaErro InsereVendedorObj(Model.Vendedor vend)
+        {
+
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+
+            // initialize rep
+            GcpBEVendedor myVend = new GcpBEVendedor();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    // campos de utilizador
+                    StdBECampos cdu = new StdBECampos();
+
+                    // cdu_dataNascimento
+                    StdBECampo dataNascimento = new StdBECampo();
+                    dataNascimento.Nome = "CDU_DataNascimento";
+                    dataNascimento.Valor = vend.birthDate;
+                    cdu.Insere(dataNascimento);
+
+                    // cdu_dataAdmissao
+                    StdBECampo dataAdmissao = new StdBECampo();
+                    dataAdmissao.Nome = "CDU_DataAdmissao";
+                    dataAdmissao.Valor = vend.birthDate;
+                    cdu.Insere(dataAdmissao);
+
+                    // cdu_numcontrb
+                    StdBECampo numcontrb = new StdBECampo();
+                    numcontrb.Nome = "CDU_NumContr";
+                    numcontrb.Valor = vend.fiscalId;
+                    cdu.Insere(numcontrb);
+
+                    // set vend fields
+                    myVend.set_CamposUtil(cdu);
+                    myVend.set_Vendedor("" + (GetLastVendedorId() + 1));
+                    myVend.set_Nome(vend.name);
+                    myVend.set_Morada(vend.address);
+                    myVend.set_Telefone(vend.phone);
+                    myVend.set_Email(vend.email);
+                    myVend.set_Observacoes(vend.description);
+                    myVend.set_Moeda("EUR");
+
+                    // insert vend
+                    PriEngine.Engine.Comercial.Vendedores.Actualiza(myVend);
+
+                    erro.Erro = 0;
+                    erro.Descricao = "Sucesso";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
+
+
+        }
+
         #endregion Vendedor
 
 
