@@ -45,7 +45,7 @@ namespace FirstREST.Controllers
 
         }
 
-        /*
+        // PUT: api/clientes/1
         public HttpResponseMessage Put(string id, Lib_Primavera.Model.Cliente cliente)
         {
 
@@ -53,7 +53,7 @@ namespace FirstREST.Controllers
 
             try
             {
-                erro = Lib_Primavera.PriIntegration.UpdCliente(cliente);
+                erro = Lib_Primavera.PriIntegration.UpdCliente(id, cliente);
                 if (erro.Erro == 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, erro.Descricao);
@@ -71,7 +71,7 @@ namespace FirstREST.Controllers
         }
 
 
-
+        /*
         public HttpResponseMessage Delete(string id)
         {
 
