@@ -36,6 +36,7 @@
 * http://localhost:49822/api/clientes/SOLUCAO-Z - GET given customer
 * http://localhost:49822/api/clientes/SOLUCAO-Z/orders - GET sales of given customer
 * http://localhost:49822/api/clientes - POST new customer (fiscalId, name, address, phone, email, description)
+* http://localhost:49822/api/clientes - PUT update customer (name, address, phone, email, description)
 
 #### Sales Orders
 

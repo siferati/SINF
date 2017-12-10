@@ -192,13 +192,11 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-        /*
-
-        public static Lib_Primavera.Model.RespostaErro UpdCliente(Lib_Primavera.Model.Cliente cliente)
+        public static Lib_Primavera.Model.RespostaErro UpdCliente(String id, Lib_Primavera.Model.Cliente cliente)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
-           
 
+            // initialize client
             GcpBECliente objCli = new GcpBECliente();
 
             try
@@ -207,7 +205,7 @@ namespace FirstREST.Lib_Primavera
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
 
-                    if (PriEngine.Engine.Comercial.Clientes.Existe(cliente.CodCliente) == false)
+                    if (PriEngine.Engine.Comercial.Clientes.Existe(id) == false)
                     {
                         erro.Erro = 1;
                         erro.Descricao = "O cliente não existe";
@@ -216,14 +214,34 @@ namespace FirstREST.Lib_Primavera
                     else
                     {
 
-                        objCli = PriEngine.Engine.Comercial.Clientes.Edita(cliente.CodCliente);
+                        objCli = PriEngine.Engine.Comercial.Clientes.Edita(id);
                         objCli.set_EmModoEdicao(true);
 
-                        objCli.set_Nome(cliente.NomeCliente);
-                        objCli.set_NumContribuinte(cliente.NumContribuinte);
-                        objCli.set_Moeda(cliente.Moeda);
-                        objCli.set_Morada(cliente.Morada);
-                        
+                        // campos de utilizador
+                        StdBECampos cdu = new StdBECampos();
+
+                        // cdu_email
+                        StdBECampo email = new StdBECampo();
+                        email.Nome = "CDU_Email";
+                        email.Valor = cliente.email;
+                        cdu.Insere(email);
+
+                        // set client fields
+                        objCli.set_Nome(cliente.name);
+                        if (cliente.address.Length <= 50)
+                        {
+                            objCli.set_Morada(cliente.address);
+                        }
+                        else
+                        {
+                            objCli.set_Morada(cliente.address.Substring(0, 50));
+                            objCli.set_Morada2(cliente.address.Substring(50, cliente.address.Length - 50));
+                        }
+                        objCli.set_Telefone(cliente.phone);
+                        objCli.set_CamposUtil(cdu);
+                        objCli.set_Observacoes(cliente.description);
+
+                        // update client
                         PriEngine.Engine.Comercial.Clientes.Actualiza(objCli);
 
                         erro.Erro = 0;
@@ -250,7 +268,7 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-
+        /*
         public static Lib_Primavera.Model.RespostaErro DelCliente(string codCliente)
         {
 
