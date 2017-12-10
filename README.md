@@ -48,6 +48,7 @@
 
 * http://localhost:49822/api/oportunidadeVenda - GET all sales oportunities
 * http://localhost:49822/api/oportunidadeVenda/OPV001 - GET given sales oportunity
+* http://localhost:49822/api/oportunidadeVenda - POST new oportunity (OportunidadeID, DescricaoOp, Entidade, DataEncontro, Local, Vendedor)
 
 #### Products
 
