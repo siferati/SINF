@@ -229,7 +229,7 @@ $(".sale-rep-list").click(function(event) {
 
 
     //HARDCODED EXAMPLE
-    getSalesRepSalesOrders(3);
+    getSalesRepSalesOrders(id);
 
 });
 

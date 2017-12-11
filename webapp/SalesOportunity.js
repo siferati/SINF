@@ -1,3 +1,6 @@
+var pairsDateId = [];
+var currentDataFetched;
+
 
 function getOportunityById(id) {
 
@@ -13,18 +16,47 @@ function getOportunityById(id) {
 }
 
 function getOportunityByIdHandler(data){
-	console.log(data);
+	console.log("Request Successful!");
+    console.log(data);
 
-	var sale = data;
-
-	var html =
-		'<p> Name'
-
+    currentDataFetched = data;
 
 }
 
 
+function prepCalendarData(){
+
+    var data = [];
+
+    for(var i = 0; i < pairsDateId.length; i++)
+    {   
+        var obj = pairsDateId[i];
+
+        data.push({
+            date: obj.date.toString(),
+            badge: true,
+            title: "-",
+            body: "-",
+            footer:"-",
+            classname:"orange-event"
+        })
+
+    }
+
+    console.log(data);
+    return data;
+
+}
+
+function createCalendar(){
+    var calendarData = prepCalendarData();
+    $("#my-calendar").zabuto_calendar({language: "en", data: calendarData});
+}
+
+
 function getAllOportunities() {
+
+
 
     // ajax request to the RESTful web service
     $.ajax({
@@ -43,22 +75,25 @@ function getAllOportunitiesHandler(data) {
     console.log("Request Successful!");
     console.log(data);
 
-
-    var html ='';
-    for(var i = 0; i < data.length; i++){
-    	var sale = data[i];
-
-    	html +=
-    		'<div class="sales-oportunities-item" id?"' + sale.OportunidadeID + '">'
-    			+'<p> Name: ' + sale.Nome + '</p>'
-    			+'<p> Phone: ' + sale.Telemovel + '</p>'
-    			+'<p> Data: ' + sale.Data + '</p>'
-    		+'</div>'
-
+    for(var i = 0; i < data.length; i++)
+    {
+        var date = data[i].Data;
+        date = date.substring(0, 10);
+        var id = data[i].OportunidadeID;
+        pairsDateId.push({date, id});
     }
 
+    console.log(pairsDateId);
+    var test = data[1].Data;
 
-	$('.sales-oportunities').html(html);
+    for(var i = 0; i < pairsDateId.length; i++)
+    {   
+        var obj = pairsDateId[i];
+        console.log(obj);
+    }
+
+    createCalendar();
+
 }
 
 /**
