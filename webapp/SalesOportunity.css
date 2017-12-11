@@ -5,3 +5,7 @@
 .active {
 	background-color: lightblue;
 }
+
+.event-item-text-left p, .event-item-text-right p {
+	margin: 0;
+}
