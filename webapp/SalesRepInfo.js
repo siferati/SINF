@@ -227,7 +227,7 @@ function editSaleRep(id, name, address, phone, email, hired, birthday, descripti
     $.ajax({
         type: 'PUT',
 		contentType: 'application/json',
-        url: 'http://localhost:49822/api/vendedores/3',
+        url: 'http://localhost:49822/api/vendedores/' + id.toString(),
 		data: {
 			"name": name.toString(),
 			"address": address.toString(),
@@ -257,6 +257,7 @@ function editSaleRep(id, name, address, phone, email, hired, birthday, descripti
 $(document).ready(function () {
 
     getAllSalesReps();
+	var help;
 
 });
 
@@ -277,6 +278,7 @@ $(".sale-rep-list").click(function(event) {
     rep.addClass('active');
 
     var id = rep.attr('id')
+	help = id;
     getSalesRepById(id);
     getSalesRepSalesOrders(id);
 
@@ -486,7 +488,7 @@ $('.sale-rep-info-last-row button').click(function(){
 		&& email != "undefined" && hired != "undefined" && birthday != "undefined"){
 				
 		var description = $('.sale-rep-description-text').text();	
-		editSaleRep(3, name, address, phone, email, hired, birthday, description );
+		editSaleRep(help, name, address, phone, email, hired, birthday, description );
 	}else{
 		alert("Please fill all the data!");
 	}

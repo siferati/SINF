@@ -221,11 +221,11 @@ function editCustomer(id, name, address, phone, email, description) {
         url: 'http://localhost:49822/api/clientes/' + id.toString(),
 		
 		data: {
-				"address":"AV. DA BOAVISTA, 373737",
-				"description":"description",
-				"email":"email1",
-				"name":"Solução Z-Informática e Serv., Lda",
-				"phone":"2.3843338"
+				"address": address.toString((),
+				"description": description.toString(),
+				"email": email.toString(),
+				"name": name.toString(),
+				"phone": phone.toString()
 
 			},
         success: function (data) {
@@ -247,7 +247,7 @@ function editCustomer(id, name, address, phone, email, description) {
 $(document).ready(function () {
 
     getAllCustomer();
-
+	var help;
 });
 
 $(".client-list").click(function(event) {
@@ -267,6 +267,7 @@ $(".client-list").click(function(event) {
     rep.addClass('active');
 
     var id = rep.attr('id')
+	help=id;
     getCustomerById(id);
     getCustomerOrders(id);
 
@@ -424,7 +425,7 @@ $('.client-info-last-row button').click(function(){
 		&& email != "undefined"){
 				
 		var description = $('.sale-rep-description-text').text();	
-		editCustomer('SOLUCAO-Z', name, address, phone, email, description );
+		editCustomer(help, name, address, phone, email, description );
 	}else{
 		alert("Please fill all the data!");
 	}
