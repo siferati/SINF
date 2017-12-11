@@ -1,5 +1,4 @@
 var pairsDateId = [];
-var currentDataFetched;
 
 
 function getOportunityById(id) {
@@ -19,10 +18,51 @@ function getOportunityByIdHandler(data){
 	console.log("Request Successful!");
     console.log(data);
 
-    currentDataFetched = data;
+    var html = 
+        '<div class="op-item" id="' + data.OportunidadeID + '">'
+            + '<p class="descricao">' + data.DescricaoOp + '</p>'
+            + '<p class="entidade"> Entidade: ' + data.Entidade + '</p>'
+            + '<p class="hora"> Hora:' + data.Data.substring(11,19) + '</p>'
+            + '<p class="local"> Local: ' + data.Local + '</p>'
+        + '</div>';
+
+    $('.events').append(html);
+
 
 }
 
+function showEventList(opIds){
+
+    //Resets html --- the request will handle its reconstruction
+    $(".events").html("");
+
+    for(var i = 0; i < opIds.length; i++){
+            getOportunityById(opIds[i]);
+    }
+
+}
+
+function expandDate(id){
+    var date = $("#" + id).data("date");
+    var hasEvent = $("#" + id).data("hasEvent");
+
+    console.log(date);
+
+    if(hasEvent){
+        var opIds = [];
+        for(var i = 0; i < pairsDateId.length; i++)
+        {   
+            var obj = pairsDateId[i];
+
+            if (obj.date == date)
+                opIds.push(obj.id);
+        }
+
+        console.log(opIds);
+
+        showEventList(opIds);
+    }
+}
 
 function prepCalendarData(){
 
@@ -40,7 +80,6 @@ function prepCalendarData(){
             footer:"-",
             classname:"orange-event"
         })
-
     }
 
     console.log(data);
@@ -50,7 +89,11 @@ function prepCalendarData(){
 
 function createCalendar(){
     var calendarData = prepCalendarData();
-    $("#my-calendar").zabuto_calendar({language: "en", data: calendarData});
+    $("#my-calendar").zabuto_calendar({
+        language: "en", 
+        data: calendarData,
+        action: function() { expandDate(this.id); }
+    });
 }
 
 
@@ -74,6 +117,9 @@ function getAllOportunitiesHandler(data) {
 
     console.log("Request Successful!");
     console.log(data);
+
+    //Resets data
+    pairsDateId = [];
 
     for(var i = 0; i < data.length; i++)
     {
@@ -105,23 +151,3 @@ $(document).ready(function () {
 
 });
 
-$(".sales-oportunities").click(function(event) {
-    var sale = $(event.target);
-    
-
-    //Finds root element
-    while(!sale.hasClass('sales-oportunities-item'))
-        sale = sale.parent();
-
-    //Resets previous clicked elements
-    var active = $(".sales-oportunities").find('.active');
-    for(var i = 0; i < active.length; i++)
-        $(active[i]).removeClass('active');
-
-    //Sets current element as active
-    sale.addClass('active');
-
-    var id = sale.attr('id')
-
-    console.log(id);
-});
