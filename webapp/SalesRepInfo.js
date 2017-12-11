@@ -120,7 +120,7 @@ function getSalesRepByIdHandler(data) {
     else{
         picture = defaultPath;
     }
-
+/**
     var html = 
             '<div class= "sale-rep-header">'
                 + '<div class= "sale-rep-image">'
@@ -138,15 +138,42 @@ function getSalesRepByIdHandler(data) {
                 + '<p class="fiscal-id"> Fiscal ID: ' + rep.fiscalID + '</p>'
                 + '<div class="sale-rep-info-last-row">'
                     + '<p class="birth-date"> Birth Date: ' + rep.birthDate + '</p>'
-                    + '<button type="button" class="btn btn-default edit-button">Edit</button>'
+                    + '<button id="btn" type="button" class="btn btn-default edit-button">Edit</button>'
                 + '</div>'
             + '</div>'
             + '<div class="sale-rep-description">'
                 + '<h3 class="sale-rep-description-title">Description</h3>'
                 + '<p class="sale-rep-description-text">' + rep.description + '</p>'
             + '</div>';
+	$('.left-col').html(html);
+*/
 
-    $('.left-col').html(html);           
+	if(rep.name.substring(0, 31)) {$('.s-name').text(rep.name.substring(0, 31));}
+	else {$('.s-name').text("Name: undefined");}
+	
+	if(rep.address.length != 0) {$('.s-address').text(rep.address);}
+	else {$('.s-address').text("undefined");}
+	
+	if(rep.phone.length != 0) {$('.phone').text(rep.phone);}
+	else {$('.phone').text("undefined");}
+	
+	if(rep.email.length != 0) {$('.email').text(rep.email);}
+	else {$('.email').text("undefined");}
+	
+	if(rep.fiscalId.length != 0) {$('.fiscal-id').text(rep.fiscalId);}
+	else {$('.fiscal-id').text("undefined");}
+	
+	if(rep.birthDate.length != 0) {$('.birth-date').text(rep.birthDate);}
+	else {$('.birth-date').text("undefined");}
+	
+	if(rep.hiredDate.length != 0) {$('.hired-date').text(rep.hiredDate);}
+	else {$('.hired-date').text("undefined");}
+	
+	if(rep.description.length != 0) {$('.sale-rep-description-text').text(rep.description);}
+	else {$('.sale-rep-description-text').text("No description available");}
+	
+	
+               
 } 
 
 /**
@@ -195,7 +222,32 @@ function getAllSalesRepsHandler(data) {
 
 }
 
+function editSaleRep(id, name, address, phone, email, hired, birthday, description) {
 
+    $.ajax({
+        type: 'PUT',
+		contentType: 'application/json',
+        url: 'http://localhost:49822/api/vendedores/3',
+		data: {
+			"name": name.toString(),
+			"address": address.toString(),
+			"phone": phone.toString(),
+			"email": email.toString(),
+			"hiredDate": hired.toString(),
+			"birthDate": birthday.toString(),
+			"description": description.toString()
+
+		},
+        success: function (data) {
+            console.log("Request successeded!");
+			alert("OK " + data);
+        },
+        error: function (jqXHR, textStatus) {
+            console.log("Request failed!");
+			alert(textStatus + jqXHR.responseText);
+        }
+    });
+}
 
 
 
@@ -226,9 +278,6 @@ $(".sale-rep-list").click(function(event) {
 
     var id = rep.attr('id')
     getSalesRepById(id);
-
-
-    //HARDCODED EXAMPLE
     getSalesRepSalesOrders(id);
 
 });
@@ -254,4 +303,192 @@ $(".sale-products-list").click(function(event) {
 
     getSaleById(id);
 
+});
+
+//editing sale rep name
+$(".s-name").click(function(event){
+    var old_input = $(this).text();
+    $(this).html('');
+    $('<input></input>')
+        .attr({
+            'type': 'text',
+            'id': 'txt_name',
+            'value': old_input
+        })
+        .appendTo(".s-name");
+    $('#txt_name').focus();
+});
+
+$(document).on('blur','#txt_name', function(){
+    var new_input = $(this).val();
+	if(new_input != ''){
+		$('.s-name').text(new_input);
+	}else{
+		$('.s-name').text("undefined");
+	}
+    
+});
+
+//editing sale rep address
+$(".s-address").click(function(event){
+    var old_input = $(this).text();
+    $(this).html('');
+    $('<input></input>')
+        .attr({
+            'type': 'text',
+            'id': 'txt_address',
+            'value': old_input
+        })
+        .appendTo(".s-address");
+    $('#txt_address').focus();
+});
+
+$(document).on('blur','#txt_address', function(){
+    var new_input = $(this).val();
+	if(new_input != ''){
+		$('.s-address').text(new_input);
+	}else{
+		$('.s-address').text("undefined");
+	}
+    
+});
+
+//editing sale rep phone
+$(".phone").click(function(event){
+    var old_input = $(this).text();
+    $(this).html('');
+    $('<input></input>')
+        .attr({
+            'type': 'text',
+            'id': 'txt_phone',
+            'value': old_input
+        })
+        .appendTo(".phone");
+    $('#txt_phone').focus();
+});
+
+$(document).on('blur','#txt_phone', function(){
+    var new_input = $(this).val();
+	if(new_input != ''){
+		$('.phone').text(new_input);
+	}else{
+		$('.phone').text("undefined");
+	}
+    
+});
+
+//editing sale rep email
+$(".email").click(function(event){
+    var old_input = $(this).text();
+    $(this).html('');
+    $('<input></input>')
+        .attr({
+            'type': 'text',
+            'id': 'txt_email',
+            'value': old_input
+        })
+        .appendTo(".email");
+    $('#txt_email').focus();
+});
+
+$(document).on('blur','#txt_email', function(){
+    var new_input = $(this).val();
+	if(new_input != ''){
+		$('.email').text(new_input);
+	}else{
+		$('.email').text("undefined");
+	}
+    
+});
+
+//editing sale rep birthdate
+$(".birth-date").click(function(event){
+    var old_input = $(this).text();
+    $(this).html('');
+    $('<input></input>')
+        .attr({
+            'type': 'text',
+            'id': 'txt_birthdate',
+            'value': old_input
+        })
+        .appendTo(".birth-date");
+    $('#txt_birthdate').focus();
+});
+
+$(document).on('blur','#txt_birthdate', function(){
+    var new_input = $(this).val();
+	if(new_input != ''){
+		$('.birth-date').text(new_input);
+	}else{
+		$('.birth-date').text("undefined");
+	}
+    
+});
+
+//editing sale rep hired date
+$(".hired-date").click(function(event){
+    var old_input = $(this).text();
+    $(this).html('');
+    $('<input></input>')
+        .attr({
+            'type': 'text',
+            'id': 'txt_hireddate',
+            'value': old_input
+        })
+        .appendTo(".hired-date");
+    $('#txt_hireddate').focus();
+});
+
+$(document).on('blur','#txt_hireddate', function(){
+    var new_input = $(this).val();
+	if(new_input != ''){
+		$('.hired-date').text(new_input);
+	}else{
+		$('.hiredh-date').text("undefined");
+	}
+    
+});
+
+//editing sale rep description
+$(".sale-rep-description-text").click(function(event){
+    var old_input = $(this).text();
+    $(this).html('');
+    $('<input></input>')
+        .attr({
+            'type': 'text',
+            'id': 'txt_description',
+            'value': old_input
+        })
+        .appendTo(".sale-rep-description-text");
+    $('#txt_description').focus();
+});
+
+$(document).on('blur','#txt_description', function(){
+    var new_input = $(this).val();
+	if(new_input != ''){
+		$('.sale-rep-description-text').text(new_input);
+	}else{
+		$('.sale-rep-description-text').text("No description available");
+	}
+    
+});
+
+$('.sale-rep-info-last-row button').click(function(){
+	
+	var name = $('.s-name').text();
+	var address = $('.s-address').text();
+	var phone = $('.phone').text();
+	var email = $('.email').text();
+	var hired = $('.hired-date').text();
+	var birthday = $('.birth-day').text();
+	
+    if(name != "undefined" && address != "undefined" && phone != "undefined" 
+		&& email != "undefined" && hired != "undefined" && birthday != "undefined"){
+				
+		var description = $('.sale-rep-description-text').text();	
+		editSaleRep(3, name, address, phone, email, hired, birthday, description );
+	}else{
+		alert("Please fill all the data!");
+	}
+	
 });
