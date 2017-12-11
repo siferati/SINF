@@ -1,5 +1,33 @@
 var pairsDateId = [];
+var adding = false;
 
+function fillEntityOptions(id) {
+
+    // ajax request to the RESTful web service
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:49822/api/clientes/',
+        success: fillEntityOptionsHandler,
+        error: function () {
+            console.log("Request failed!");
+        }
+    });
+}
+
+function fillEntityOptionsHandler(data) {
+
+    console.log(data);
+
+    var html = '';
+
+    for(var i = 0; i < data.length; i++){
+        html = html + '<option value="' + data[i].customerId + '">' + data[i].name + '</option>';
+    }
+
+    $(".details-entity").append(html);
+
+
+}
 
 function getOportunityById(id) {
 
@@ -19,16 +47,18 @@ function getOportunityByIdHandler(data){
     console.log(data);
 
     var html = 
-        '<div class="op-item" id="' + data.OportunidadeID + '">'
-            + '<p class="descricao">' + data.DescricaoOp + '</p>'
-            + '<p class="entidade"> Entidade: ' + data.Entidade + '</p>'
-            + '<p class="hora"> Hora:' + data.Data.substring(11,19) + '</p>'
-            + '<p class="local"> Local: ' + data.Local + '</p>'
-        + '</div>';
+            '<div class="event-item col-md-12" id="' + data.OportunidadeID + '">'
+                + '<div class="col-md-6 event-item-text-left">'
+                    + '<p class="op-name"> Oportunidade: ' + data.DescricaoOp + '</p>'
+                    + '<p class="op-entity"> Entidade: ' + data.Entidade + '</p>'
+                + '</div>'
+                + '<div class="col-md-6 event-item-text-right">'
+                    + '<p class="op-hour"> Hora:  ' + data.Data.substring(11,19) + '</p>'
+                    + '<p class="op-location"> Local:  ' + data.Local + '</p>'
+                + '</div>'
+            + '</div>';
 
-    $('.events').append(html);
-
-
+    $('.events-list').append(html);
 }
 
 function showEventList(opIds){
@@ -148,6 +178,89 @@ function getAllOportunitiesHandler(data) {
 $(document).ready(function () {
 
     getAllOportunities();
+
+});
+
+$(".events-list").click(function(event) {
+    var event = $(event.target);
+    
+
+    //Finds root element
+    while(!event.hasClass('event-item'))
+        event = event.parent();
+
+    //Resets previous clicked elements
+    adding = false;
+    var active = $(".events-list").find('.active');
+    for(var i = 0; i < active.length; i++)
+        $(active[i]).removeClass('active');
+
+    //Sets current element as active
+    event.addClass('active');
+
+    var id = event.attr('id')
+
+    if(id == "add-task")
+        adding = true;
+    else
+        displayOportunityDetails(id);
+
+    console.log(adding);
+});
+
+
+
+function convertToForm(div){
+    var divHtml = $(div).html(); 
+
+    var editableText;
+
+    if($(div).hasClass("details-entity")){
+        editableText = $("<select class=\"col-md-12 edited details-entity\"/>");
+        fillEntityOptions();
+    }
+
+    if($(div).hasClass("details-name"))
+        editableText = $("<input type=\"text\" name=\"name\" class=\"col-md-12 edited details-name\"/>");
+
+
+    if($(div).hasClass("details-date"))
+        editableText = $(" <input type=\"date\" name=\"date\" class=\"col-md-12 edited details-date\">");
+
+    if($(div).hasClass("details-time"))
+        editableText = $(" <input id=\"time\" type=\"time\" name=\"time\" class=\"col-md-12 edited details-time\">");
+
+    if($(div).hasClass("details-location"))
+        editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-location\"/>");
+
+
+    editableText.val(divHtml);
+    $(div).replaceWith(editableText);
+    editableText.focus();
+}
+
+$(".edit").click(function() {
+
+    var divs = $(document).find(".editable");
+
+    for(var i = 0; i < divs.length; i++)
+        convertToForm(divs[i]);
+
+});
+
+$(".confirm").click(function() {
+
+    var name = $(document).find(".details-name").val();
+    var date = $(document).find(".details-date").val();
+    var time = $(document).find(".details-time").val();
+    var location = $(document).find(".details-location").val();
+    var entity = $(document).find(".details-entity").val();
+
+    console.log(name);
+    console.log(date);
+    console.log(time);
+    console.log(location);
+    console.log(entity);
 
 });
 

@@ -18,28 +18,54 @@
 
 		<div id="my-calendar"></div>
 
-		<div class="events">
-			
-			
-                <div class="event-item">
-                    <div class="col-md-6 event-item-text-left">
-						<p class="op-name"> Oportunidade: </p>
-						<p class="op-entity"> Entidade: </p>
-                    </div>
-                    <div class="col-md-6 event-item-text-right">
-						<p class="op-hour"> Hora:  </p>
-						<p class="op-location"> Local:  </p>
-                    </div>
+		<div class="scrollbar" id="style-1">
+            <div class="force-overflow">
+
+				<div class="events-list col-md-12">
+				
+					<div class="event-item col-md-12" id="add-task">
+                    	
+						<p class="op-name"> Adicionar Oportunidade </p>
+
+                	</div>
+
+
+				<!--
+                	<div class="event-item col-md-12">
+                    	<div class="col-md-6 event-item-text-left">
+							<p class="op-name"> Oportunidade: </p>
+							<p class="op-entity"> Entidade: </p>
+                    	</div>
+                    	<div class="col-md-6 event-item-text-right">
+							<p class="op-hour"> Hora:  </p>
+							<p class="op-location"> Local:  </p>
+                    	</div>
+                	</div>
+				-->
                 </div>
-            
-
-
-		</div>
+        	</div>
+        </div>
+		
 
 	</div>
 
-	<div class="event-details">
+	<div class="col-md-6 event-details">
 		
+
+		<div class="col-md-12 details-name editable">Descrição da oportunidade</div>
+
+		<div class="col-md-12 details-date editable">Data</div>
+
+		<div class="col-md-12 details-time editable">Hora</div>
+
+		<div class="col-md-12 details-location editable">Local</div>
+
+		<div class="col-md-12 details-entity editable">Entidade</div>
+
+		<div class="col-md-12">
+			  <button type="button" class="col-md-2 edit btn btn-default">Edit</button>
+			  <button type="button" class="col-md-2 col-md-offset-7 confirm btn btn-default">Confirm</button>
+		</div>
 
 	</div>
 </div>

@@ -9,3 +9,36 @@
 .event-item-text-left p, .event-item-text-right p {
 	margin: 0;
 }
+
+.event-item  {
+	border: 1px solid black;
+	border-bottom: none;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.event-item:hover  {
+	background-color: lightgray;
+}
+
+.event-item:last-child {
+
+	border-bottom: 1px solid black;
+}
+
+.scrollbar
+{
+	height: 100%;
+	width: 100%;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 0;
+}
+
+.active {
+	background-color: lightblue;
+}
