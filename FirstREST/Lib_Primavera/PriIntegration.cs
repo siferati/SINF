@@ -1447,8 +1447,87 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static Model.RespostaErro UpdOpVenda(string id, Model.OportunidadeVenda opVenda)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
 
+            // initialize client
+            CrmBEOportunidadeVenda objOpVenda = new CrmBEOportunidadeVenda();
+
+            try
+            {
+
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+
+                    if (PriEngine.Engine.CRM.OportunidadesVenda.Existe(id) == false)
+                    {
+                        erro.Erro = 1;
+                        erro.Descricao = "O cliente não existe";
+                        return erro;
+                    }
+                    else
+                    {
+
+                        objOpVenda = PriEngine.Engine.CRM.OportunidadesVenda.Edita(id);
+                        objOpVenda.set_EmModoEdicao(true);
+
+                        // campos de utilizador
+                        StdBECampos cdu = new StdBECampos();
+
+                        // cdu_local
+                        StdBECampo local = new StdBECampo();
+                        local.Nome = "CDU_LocalEncontro";
+                        local.Valor = opVenda.Local;
+                        cdu.Insere(local);
+
+                        // cdu_data
+                        StdBECampo data = new StdBECampo();
+                        data.Nome = "CDU_DataEncontro";
+                        data.Valor = opVenda.Data;
+                        cdu.Insere(data);
+
+                        // set opVenda fields
+                        objOpVenda.set_Descricao(opVenda.DescricaoOp);
+                        objOpVenda.set_Entidade(opVenda.Entidade);
+                        objOpVenda.set_Vendedor(opVenda.VendedorCod);
+                        objOpVenda.set_TipoEntidade("C");
+                        objOpVenda.set_DataCriacao(DateTime.Now);
+                        objOpVenda.set_DataExpiracao((DateTime)opVenda.Data);
+                        objOpVenda.set_CicloVenda("CV_SOFT");
+                        objOpVenda.set_Moeda("EUR");
+                        objOpVenda.set_CamposUtil(cdu);
+
+                        // update opVenda
+                        PriEngine.Engine.CRM.OportunidadesVenda.Actualiza(objOpVenda);
+
+                        erro.Erro = 0;
+                        erro.Descricao = "Sucesso";
+                        return erro;
+                    }
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir a empresa";
+                    return erro;
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
+        }
+        
         #endregion OportunidadeVenda
+
+
 
 
         
