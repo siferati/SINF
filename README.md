@@ -29,6 +29,7 @@
 * http://localhost:49822/api/vendedores - GET all sales reps
 * http://localhost:49822/api/vendedores/3 - GET given sales rep
 * http://localhost:49822/api/vendedores/3/orders - GET sales of given rep
+* http://localhost:49822/api/vendedores/3/oportunidadeVenda - GET customer Visits of given rep
 * http://localhost:49822/api/vendedores - POST new sales reps (fiscalId, name, address, phone, email, birthDate, hiredDate, description)
 * http://localhost:49822/api/vendedores/3 - PUT update given sales rep (name, address, phone, email, birthDate, hiredDate, description)
 
