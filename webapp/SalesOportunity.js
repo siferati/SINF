@@ -26,15 +26,16 @@ function displayOportunityDetailsHandler(data) {
 
     editID = data.OportunidadeID;
 
+    html = 
+        '<div class="col-md-12 details-id editable">' + data.OportunidadeID + '</div>'
+        + '<div class="col-md-12 details-name editable">' + data.DescricaoOp + '</div>'
+        + '<div class="col-md-12 details-date editable">' + data.Data.substring(0, 10) + '</div>'
+        + '<div class="col-md-12 details-time editable">' + data.Data.substring(11, 19) + '</div>'
+        + '<div class="col-md-12 details-location editable">' + data.Local + '</div>'
+        + '<div class="col-md-12 details-rep editable">' + data.Entidade + '</div>'
+        + '<div class="col-md-12 details-entity editable">' + data.VendedorCod + '</div>';
 
-    $(document).find(".details-id").html(data.OportunidadeID);
-    $(document).find(".details-name").html(data.DescricaoOp);
-    $(document).find(".details-date").html("Data: " + data.Data.substring(0, 10));
-    $(document).find(".details-time").html("Hora: " + data.Data.substring(11, 19));
-    $(document).find(".details-location").html("Local: " + data.Local);
-    $(document).find(".details-entity").html("Entidade: " + data.Entidade);
-    $(document).find(".details-rep").html("Codido Vendedor: " + data.VendedorCod);
-
+    $('.event-details').html(html);
 }
 
 function addOportunity(id, desc, ent, date, location, vend) {
@@ -48,6 +49,41 @@ var jsonVend = vend.toString();
 
 $.ajax({
         type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'http://localhost:49822/api/oportunidadeVenda/',
+        
+        data: JSON.stringify ({
+                "OportunidadeID": jsonID,
+                "DescricaoOp": jsonDesc,
+                "Entidade": jsonEnt,
+                "Data": jsonDate,
+                "Local": jsonLocation,
+                "VendedorCod": jsonVend
+            }),
+        success: function (data) {
+            console.log("Request succeded!");
+            alert("OK " + data);
+        },
+        error: function (data, textStatus) {
+            console.log("Request failed!");
+            alert(textStatus);
+        }
+    });
+}
+
+function editOportunity(id, desc, ent, date, location, vend) {
+
+var jsonID = id.toString();
+var jsonDesc = desc.toString();
+var jsonEnt = ent.toString();
+var jsonDate = date.toString();
+var jsonLocation = location.toString();
+var jsonVend = vend.toString();
+
+
+$.ajax({
+        type: 'PUT',
         dataType: 'json',
         contentType: 'application/json',
         url: 'http://localhost:49822/api/oportunidadeVenda/',
@@ -273,6 +309,10 @@ $(document).ready(function () {
 $(".events-list").click(function(event) {
     var event = $(event.target);
     
+    if(!$('.confirm').hasClass('hidden'))
+            $('.confirm').addClass('hidden');
+    if(!$('.edit').hasClass('hidden'))
+            $('.edit').addClass('hidden');
 
     //Finds root element
     while(!event.hasClass('event-item'))
@@ -294,16 +334,18 @@ $(".events-list").click(function(event) {
 
         var divs = $(document).find(".editable");
 
+
         for(var i = 0; i < divs.length; i++)
             convertToForm(divs[i]);
 
         $('.confirm').removeClass('hidden');
 
     }
-    else
+    else{
         displayOportunityDetails(id);
+        $('.edit').removeClass('hidden');
+    }
 
-    console.log(adding);
 });
 
 function convertToForm(div){
@@ -316,8 +358,14 @@ function convertToForm(div){
         editableText.append(entityOptionsHtml);
     }
 
-    if($(div).hasClass("details-id"))
-        editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-id\"/>");
+
+    if($(div).hasClass("details-id")){
+        if(adding)
+            editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-id\"/>");
+        else
+            return;
+    }
+
 
     if($(div).hasClass("details-name"))
         editableText = $("<input type=\"text\" name=\"name\" class=\"col-md-12 edited details-name\"/>");
@@ -341,6 +389,18 @@ function convertToForm(div){
     editableText.focus();
 }
 
+$(".edit").click(function() {
+
+    $('.confirm').removeClass('hidden');
+
+    var divs = $(document).find(".editable");
+
+        for(var i = 0; i < divs.length; i++)
+            convertToForm(divs[i]);
+
+
+});
+
 
 $(".confirm").click(function() {
 
@@ -362,7 +422,11 @@ $(".confirm").click(function() {
 
     var finalDate = date + "T" + time;
 
-    addOportunity(id, name, entity, finalDate, location, rep);
+    if(adding)
+        addOportunity(id, name, entity, finalDate, location, rep);
+    else
+        editOportunity(id, name, entity, finalDate, location, rep);
+
 
 });
 
