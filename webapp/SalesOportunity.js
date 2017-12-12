@@ -26,6 +26,8 @@ function displayOportunityDetailsHandler(data) {
 
     editID = data.OportunidadeID;
 
+
+    $(document).find(".details-id").html(data.OportunidadeID);
     $(document).find(".details-name").html(data.DescricaoOp);
     $(document).find(".details-date").html("Data: " + data.Data.substring(0, 10));
     $(document).find(".details-time").html("Hora: " + data.Data.substring(11, 19));
@@ -37,19 +39,27 @@ function displayOportunityDetailsHandler(data) {
 
 function addOportunity(id, desc, ent, date, location, vend) {
 
+var jsonID = id.toString();
+var jsonDesc = desc.toString();
+var jsonEnt = ent.toString();
+var jsonDate = date.toString();
+var jsonLocation = location.toString();
+var jsonVend = vend.toString();
+
 $.ajax({
         type: 'POST',
+        dataType: 'json',
         contentType: 'application/json',
         url: 'http://localhost:49822/api/oportunidadeVenda/',
         
-        data: {
-                "OportunidadeID": id.toString(),
-                "DescricaoOp": desc.toString(),
-                "Entidade": ent.toString(),
-                "DataEncontro": date.toString(),
-                "Local": location.toString(),
-                "Vendedor": vend.toString()
-            },
+        data: JSON.stringify ({
+                "OportunidadeID": jsonID,
+                "DescricaoOp": jsonDesc,
+                "Entidade": jsonEnt,
+                "Data": jsonDate,
+                "Local": jsonLocation,
+                "VendedorCod": jsonVend
+            }),
         success: function (data) {
             console.log("Request succeded!");
             alert("OK " + data);
