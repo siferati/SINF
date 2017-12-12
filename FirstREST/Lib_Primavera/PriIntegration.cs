@@ -1524,12 +1524,43 @@ namespace FirstREST.Lib_Primavera
                 return erro;
             }
         }
-        
+
+        public static List<Model.OportunidadeVenda> GetOpVendaByRep(string id)
+        {
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                // list of sales orders
+                List<Model.OportunidadeVenda> listOpVenda = new List<Model.OportunidadeVenda>();
+
+                // get id of all sales orders for given rep
+                StdBELista queryResult = PriEngine.Engine.Consulta(@"
+                    SELECT Oportunidade
+                    FROM CabecOportunidadesVenda
+                    WHERE Vendedor = '" + id + @"'
+                ");
+
+                while (!queryResult.NoFim())
+                {
+                    // add sales rep
+                    listOpVenda.Add(GetOpVenda(queryResult.Valor("Oportunidade")));
+
+                    // next ite
+                    queryResult.Seguinte();
+
+                }
+
+                return listOpVenda;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
         #endregion OportunidadeVenda
 
 
 
-
-        
     }
 }

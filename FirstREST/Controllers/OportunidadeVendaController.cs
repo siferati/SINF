@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using FirstREST.Lib_Primavera.Model;
-using System.Diagnostics;
-using Interop.CrmBE900;
-using FirstREST.Lib_Primavera;
-using Interop.StdBE900;
 
 namespace FirstREST.Controllers
 {
@@ -32,6 +29,15 @@ namespace FirstREST.Controllers
             }
         }
 
+        // GET: api/vendedores/3/oportunidadeVenda
+        [Route("api/vendedores/{id}/oportunidadeVenda")]
+        public List<OportunidadeVenda> GetByRep(string id)
+        {
+            List<OportunidadeVenda> opVenda = Lib_Primavera.PriIntegration.GetOpVendaByRep(id);
+
+            return opVenda;
+        }
+
         public IEnumerable<Lib_Primavera.Model.OportunidadeVenda> Get()
         {
             return Lib_Primavera.PriIntegration.ListaOpVenda();
@@ -50,7 +56,6 @@ namespace FirstREST.Controllers
 
             else
             {
-                Debug.WriteLine("Fail");
                 return Request.CreateResponse(HttpStatusCode.BadRequest, erro.Descricao);
             }      
         }
