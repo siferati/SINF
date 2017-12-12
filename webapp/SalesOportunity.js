@@ -1,5 +1,65 @@
 var pairsDateId = [];
 var adding = false;
+var entityOptionsHtml;
+var prevActiveDay = 'none';
+var editID;
+
+
+function displayOportunityDetails(id) {
+
+    // ajax request to the RESTful web service
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:49822/api/oportunidadeVenda/' + id.toString(),
+        success: displayOportunityDetailsHandler,
+        error: function () {
+            console.log("Request failed!");
+        }
+    });
+}
+
+function displayOportunityDetailsHandler(data) {
+
+    console.log(data);
+
+    var html = '';
+
+    editID = data.OportunidadeID;
+
+    $(document).find(".details-name").html(data.DescricaoOp);
+    $(document).find(".details-date").html("Data: " + data.Data.substring(0, 10));
+    $(document).find(".details-time").html("Hora: " + data.Data.substring(11, 19));
+    $(document).find(".details-location").html("Local: " + data.Local);
+    $(document).find(".details-entity").html("Entidade: " + data.Entidade);
+    $(document).find(".details-rep").html("Codido Vendedor: " + data.VendedorCod);
+
+}
+
+function addOportunity(id, desc, ent, date, location, vend) {
+
+$.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: 'http://localhost:49822/api/oportunidadeVenda/',
+        
+        data: {
+                "OportunidadeID": id.toString(),
+                "DescricaoOp": desc.toString(),
+                "Entidade": ent.toString(),
+                "DataEncontro": date.toString(),
+                "Local": location.toString(),
+                "Vendedor": vend.toString()
+            },
+        success: function (data) {
+            console.log("Request succeded!");
+            alert("OK " + data);
+        },
+        error: function (data, textStatus) {
+            console.log("Request failed!");
+            alert(textStatus);
+        }
+    });
+}
 
 function fillEntityOptions(id) {
 
@@ -24,9 +84,8 @@ function fillEntityOptionsHandler(data) {
         html = html + '<option value="' + data[i].customerId + '">' + data[i].name + '</option>';
     }
 
-    $(".details-entity").append(html);
-
-
+    entityOptionsHtml = html;
+    
 }
 
 function getOportunityById(id) {
@@ -63,9 +122,6 @@ function getOportunityByIdHandler(data){
 
 function showEventList(opIds){
 
-    //Resets html --- the request will handle its reconstruction
-    $(".events").html("");
-
     for(var i = 0; i < opIds.length; i++){
             getOportunityById(opIds[i]);
     }
@@ -73,12 +129,29 @@ function showEventList(opIds){
 }
 
 function expandDate(id){
+
+    if(prevActiveDay != 'none')
+        prevActiveDay.css("background-color", "white");
+
+    $("#" + id).css("background-color", "lightblue");
+    prevActiveDay = $("#" + id);
+
     var date = $("#" + id).data("date");
     var hasEvent = $("#" + id).data("hasEvent");
+
+    var defaultHtml = 
+                '<div class="event-item col-md-12" id="add-task">'    
+                    + '<p class="op-name"> Adicionar Oportunidade </p>'
+                + '</div>';
+
+
+    //Resets html --- the request will handle its reconstruction
+    $(".events-list").html(defaultHtml);
 
     console.log(date);
 
     if(hasEvent){
+
         var opIds = [];
         for(var i = 0; i < pairsDateId.length; i++)
         {   
@@ -92,6 +165,9 @@ function expandDate(id){
 
         showEventList(opIds);
     }
+
+
+
 }
 
 function prepCalendarData(){
@@ -122,6 +198,7 @@ function createCalendar(){
     $("#my-calendar").zabuto_calendar({
         language: "en", 
         data: calendarData,
+        today: true,
         action: function() { expandDate(this.id); }
     });
 }
@@ -178,6 +255,8 @@ function getAllOportunitiesHandler(data) {
 $(document).ready(function () {
 
     getAllOportunities();
+    fillEntityOptions();
+
 
 });
 
@@ -200,15 +279,22 @@ $(".events-list").click(function(event) {
 
     var id = event.attr('id')
 
-    if(id == "add-task")
+    if(id == "add-task"){
         adding = true;
+
+        var divs = $(document).find(".editable");
+
+        for(var i = 0; i < divs.length; i++)
+            convertToForm(divs[i]);
+
+        $('.confirm').removeClass('hidden');
+
+    }
     else
         displayOportunityDetails(id);
 
     console.log(adding);
 });
-
-
 
 function convertToForm(div){
     var divHtml = $(div).html(); 
@@ -217,8 +303,11 @@ function convertToForm(div){
 
     if($(div).hasClass("details-entity")){
         editableText = $("<select class=\"col-md-12 edited details-entity\"/>");
-        fillEntityOptions();
+        editableText.append(entityOptionsHtml);
     }
+
+    if($(div).hasClass("details-id"))
+        editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-id\"/>");
 
     if($(div).hasClass("details-name"))
         editableText = $("<input type=\"text\" name=\"name\" class=\"col-md-12 edited details-name\"/>");
@@ -233,34 +322,37 @@ function convertToForm(div){
     if($(div).hasClass("details-location"))
         editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-location\"/>");
 
+    if($(div).hasClass("details-rep"))
+        editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-rep\"/>");
+
 
     editableText.val(divHtml);
     $(div).replaceWith(editableText);
     editableText.focus();
 }
 
-$(".edit").click(function() {
-
-    var divs = $(document).find(".editable");
-
-    for(var i = 0; i < divs.length; i++)
-        convertToForm(divs[i]);
-
-});
 
 $(".confirm").click(function() {
 
+    var id = $(document).find(".details-id").val();
     var name = $(document).find(".details-name").val();
     var date = $(document).find(".details-date").val();
     var time = $(document).find(".details-time").val();
     var location = $(document).find(".details-location").val();
     var entity = $(document).find(".details-entity").val();
+    var rep = $(document).find(".details-rep").val();
 
+    console.log(id);
     console.log(name);
     console.log(date);
     console.log(time);
     console.log(location);
     console.log(entity);
+    console.log(rep);
+
+    var finalDate = date + "T" + time;
+
+    addOportunity(id, name, entity, finalDate, location, rep);
 
 });
 

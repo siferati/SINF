@@ -42,3 +42,7 @@
 .active {
 	background-color: lightblue;
 }
+
+.hidden {
+	visibility: hidden;
+}
