@@ -853,6 +853,75 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
+        public static Model.RespostaErro InsereOrder(Model.Order order)
+        {
+            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+            GcpBEDocumentoVenda myOrder = new GcpBEDocumentoVenda();
+
+            GcpBELinhaDocumentoVenda myLin = new GcpBELinhaDocumentoVenda();
+
+            GcpBELinhasDocumentoVenda myLinhas = new GcpBELinhasDocumentoVenda();
+
+            Interop.CrmBE900.PreencheRelacaoVendas rl = new Interop.CrmBE900.PreencheRelacaoVendas();
+            List<Model.Product> lstlindv = new List<Model.Product>();
+
+            try
+            {
+                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+                {
+                    // Atribui valores ao cabecalho do doc
+                    //myEnc.set_DataDoc(dv.Data);
+                    myOrder.set_Entidade(order.customerId);
+                    myOrder.set_Responsavel(order.repId);
+                    myOrder.set_DataDoc(order.orderDate);
+                    myOrder.set_DataDescarga(order.deliveryDate.ToString("G"));
+                    myOrder.set_MoradaEntrega(order.deliveryAddress);
+                    myOrder.set_Tipodoc("ECL");
+                    myOrder.set_TipoEntidade("C");
+                    Debug.WriteLine("sadsa");
+                    //PriEngine.Engine.Comercial.Vendas.PreencheDadosRelacionados(myEnc, rl);
+                    PriEngine.Engine.Comercial.Vendas.PreencheDadosRelacionados(myOrder);
+
+                    foreach (Model.Product lin in order.products)
+                    {
+                        PriEngine.Engine.Comercial.Vendas.AdicionaLinha(myOrder, lin.productId, lin.quantity, "", "", 1, 0.3);
+                    }
+
+
+                    // PriEngine.Engine.Comercial.Compras.TransformaDocumento(
+
+                    PriEngine.Engine.IniciaTransaccao();
+
+                    Debug.WriteLine("sdasdsadaddddddddd");
+                    PriEngine.Engine.Comercial.Vendas.Actualiza(myOrder, "Teste");
+
+                    Debug.WriteLine("sdasdsadaddddddddd");
+                    PriEngine.Engine.TerminaTransaccao();
+
+                    Debug.WriteLine("sdasdsadaddddddddd");
+                    erro.Erro = 0;
+                    erro.Descricao = "Sucesso";
+                    return erro;
+                }
+                else
+                {
+                    erro.Erro = 1;
+                    erro.Descricao = "Erro ao abrir empresa";
+                    return erro;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                PriEngine.Engine.DesfazTransaccao();
+                erro.Erro = 1;
+                erro.Descricao = ex.Message;
+                return erro;
+            }
+        }
+
 
         #endregion Order
 
@@ -1381,5 +1450,7 @@ namespace FirstREST.Lib_Primavera
 
         #endregion OportunidadeVenda
 
+
+        
     }
 }
