@@ -5,12 +5,20 @@ body {
 html, body {
 	height: 100%;
 }
+
+.hidden {
+	visibility: hidden;
+}
+
 .first-row {
 	height: 5%;
 }
 
 .active {
 	background-color: lightblue !important;
+}
+.active-link {
+	background-color: lightgray;
 }
 
 .col {
@@ -24,14 +32,10 @@ html, body {
 	margin-bottom: 2px;
 }
 
-.client-header {
-	margin-bottom: 10%;
-}
 
 .client-image {
-	float: left;
-	width: 25%;
-	margin-right: 2%;
+	width: 100%;
+	margin-right: 0%;
 }
 
 .client-profile-image {
@@ -47,11 +51,6 @@ html, body {
 	margin-bottom: 1%;
 }
 
-
-
-.client-info {
-	margin-bottom: 1%;
-}
 
 .client-info > p {
 	margin-top: 2px;
@@ -120,12 +119,12 @@ html, body {
   	color: black;
 }
 
-.search-icon {
+.plus-icon {
 	margin-left: 2%;
 	margin-top: 1%;
 }
 
-.search-icon:hover {
+.plus-icon:hover {
 	font-size: 16px;
 }
 

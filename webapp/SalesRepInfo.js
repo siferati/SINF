@@ -7,8 +7,10 @@ var curBirth;
 var curHired;
 var curDesc;
 var curID;
-var repNumber;
+var htmlBuffer;
+
 var adding = false;
+
 
 
 function addSalesRep(name, address, phone, email, fiscal, hired, birth, desc) {
@@ -191,6 +193,11 @@ function getSalesRepById(id) {
 
 function getSalesRepByIdHandler(data) {
 
+    if(htmlBuffer != null);{
+        console.log("NULL");
+        $('.left-col').html(htmlBuffer);
+    }
+
     $(".edit").removeClass('hidden');
 
     // debug
@@ -247,6 +254,9 @@ function getSalesRepByIdHandler(data) {
 
     curDesc = rep.description;
     $('.sale-rep-description-text').html(curDesc);
+
+    htmlBuffer = $('.left-col').html();
+
 } 
 
 /**

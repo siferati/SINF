@@ -13,6 +13,23 @@
 
 <body>
 
+
+   	<nav class="navbar navbar-default">
+       	<div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand" >The Office</span>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active-link"><a href="SalesOportunity.html">Dashboard</a></li>
+                <li><a href="ClientInfo.html">Clients</a></li>
+                <li><a href="SalesRepInfo.html">Representatives</a></li>
+                <li><a href="ProductInfo.html">Products</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+<div class="container">
 <div class="row">
 	<div class="col-md-6 left-col">
 
@@ -51,21 +68,53 @@
 
 	<div class="col-md-6 right-col">
 
-		<div class="col-md-12 event-details">
-		
-			<div class="col-md-12 details-id editable">ID da oportunidade</div>
+		<div class="col-md-12 event-details panel panel-default">
 
-			<div class="col-md-12 details-name editable">Descrição da oportunidade</div>
+			<table class="table table-bordered ">
+				<tr>
+					<th> Oportunity ID: </th>
+					<td>
+						<div id="details-id" class="col-md-12 details-id editable ">ID da oportunidade</div>
+					</td>
+				</tr>
 
-			<div class="col-md-12 details-date editable">Data</div>
-
-			<div class="col-md-12 details-time editable">Hora</div>
-
-			<div class="col-md-12 details-location editable">Local</div>
-
-			<div class="col-md-12 details-rep editable">Codigo Vendedor</div>
-
-			<div class="col-md-12 details-entity editable">Entidade</div>
+				<tr>
+					<th> Name: </th>
+					<td>
+				<div id="details-name" class="col-md-12 details-name editable ">Descrição da oportunidade</div>
+					</td>
+				</tr>
+				<tr>
+					<th> Date: </th>
+					<td>
+				<div id="details-date" class="col-md-12 details-date editable ">Data</div>
+					</td>
+				</tr>
+				<tr>
+					<th> Time: </th>
+					<td>
+				<div id="details-time" class="col-md-12 details-time editable">Hora</div>
+					</td>
+				</tr>
+				<tr>
+					<th> Location: </th>
+					<td>
+				<div id="details-location" class="col-md-12 details-location editable ">Local</div>
+					</td>
+				</tr>
+				<tr>
+					<th> Representative's code: </th>
+					<td>
+				<div id="details-rep" class="col-md-12 details-rep editable">Codigo Vendedor</div>
+					</td>
+				</tr>
+				<tr>
+					<th> Entity: </th>
+					<td>
+				<div id="details-entity" class="col-md-12 details-entity editable ">Entidade</div>
+					</td>
+				</tr>
+			</table>
 
 		</div>
 		
@@ -77,6 +126,7 @@
 	</div>
 
 	
+</div>
 </div>
 
 

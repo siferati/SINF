@@ -26,16 +26,14 @@ function displayOportunityDetailsHandler(data) {
 
     editID = data.OportunidadeID;
 
-    html = 
-        '<div class="col-md-12 details-id editable">' + data.OportunidadeID + '</div>'
-        + '<div class="col-md-12 details-name editable">' + data.DescricaoOp + '</div>'
-        + '<div class="col-md-12 details-date editable">' + data.Data.substring(0, 10) + '</div>'
-        + '<div class="col-md-12 details-time editable">' + data.Data.substring(11, 19) + '</div>'
-        + '<div class="col-md-12 details-location editable">' + data.Local + '</div>'
-        + '<div class="col-md-12 details-rep editable">' + data.VendedorCod + '</div>'
-        + '<div class="col-md-12 details-entity editable">' + data.Entidade + '</div>';
+    $('.details-id').html(data.OportunidadeID);
+    $('.details-name').html(data.DescricaoOp);
+    $('.details-date').html(data.Data.substring(0, 10));
+    $('.details-time').html(data.Data.substring(11, 19));
+    $('.details-location').html(data.Local);
+    $('.details-rep').html(data.VendedorCod);
+    $('.details-entity').html(data.Entidade)
 
-    $('.event-details').html(html);
 }
 
 function addOportunity(id, desc, ent, date, location, vend) {

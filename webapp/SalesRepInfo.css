@@ -10,6 +10,10 @@ body {
 	background-color: lightblue !important;
 }
 
+.active-link {
+	background-color: lightgray;
+}
+
 .col {
 	float: left;
 	width: 30%;

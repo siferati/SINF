@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Example</title>
+    <title>Client Info</title>
     <link rel="stylesheet" type="text/css" href="ClientInfo.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="ClientInfo.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand" >The Office</span>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="SalesOportunity.html">Dashboard</a></li>
+                <li class="active-link"><a href="ClientInfo.html">Clients</a></li>
+                <li><a href="SalesRepInfo.html">Representatives</a></li>
+                <li><a href="ProductInfo.html">Products</a></li>
+            </ul>
+        </div>
+    </nav>
 
 <div class="container">
     <div class="first-row">
@@ -17,33 +32,82 @@
             </div>
     </div>
     <div class="row second-row">
-        <div class="col left-col">
+        <div class="col-md-4 left-col">
 
-            <div class= "client-header">
-                <div class= "client-image">
+            <div class= "client-header row">
+                <div class= "client-image col-md-4">
                     <img class= "client-profile-image" src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf2u0RWmYALKJ431XNoTKjzu77ERLBIvXKlOEA-Q3DPo2h2rCB" alt="Profile Image">
                 </div>
 
-                <div class= "client-general-info">				
+                <div class= "client-general-info col-md-7">				
                     <h4 class= "c-name"> Client's Name </h4>
                     <p class="c-address"> Client's Address </p>
                 </div>
             </div>
-			</br>
             <div class="client-info">
-				<label for="phone">Phone: </label>
-                <p id="phone" class="phone"> +351919919919 </p>
-				<label for="email">Email: </label>
-                <p id="email" class="email"> something@else.com </p>
-				<label for="fiscal_id">Fiscal ID: </label>
-                <p id="fiscal_id" class="fiscal-id"> 654321456 </p>
+                <p id="phone" class="phone"> Phone: +351919919919 </p>
+                <p id="email" class="email"> Email: something@else.com </p>
+                
+                <div class="clien-info-last-row row">
+                    <div class="col-md-8">
+                        <p id="fiscal-id" class="fiscal-id"> Fiscal ID: 654321456 </p>
 
-                <div class="client-info-last-row">
-                    <button type="button" class="btn btn-default edit-button">Save changes</button>
+                    </div>
+                    <div class="col-md-2 col-md-offset-2">
+                        <button type="button" class="btn btn-default edit hidden" data-toggle="modal" data-target="#myModal">Edit</button>
+                    </div>
                 </div>
-				
-
             </div>
+
+
+            <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Information Form</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input type="text" class="form-control edit-name" id="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address:</label>
+                                        <input type="text" class="form-control edit-address" id="address">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="phone">Phone:</label>
+                                        <input type="tel" class="form-control edit-phone" id="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control edit-email" id="email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fiscal">Fiscal ID:</label>
+                                        <input type="number" class="form-control edit-fiscal" min="1" max="999999999" id="fiscal">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="desc">Description:</label>
+                                        <textarea class="form-control edit-desc" rows="5" id="desc"></textarea>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default confirm" data-dismiss="modal">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
             <div class="client-description">
@@ -54,7 +118,7 @@
 
         </div>
 
-        <div class="col">
+        <div class="col-md-4">
 
             
 
@@ -72,11 +136,11 @@
             </div>
 
         </div>
-        <div class="col right-column">
+        <div class="col-md-4 right-column">
 
             <div class="search">
                 <input type="text" class="search-term" placeholder="Search...">
-                <span class="glyphicon glyphicon-search search-icon"></span></p>
+                <span class="glyphicon glyphicon-plus plus-icon add"></span></p>
             </div>
 
 

@@ -1,3 +1,85 @@
+var curName;
+var curAddress;
+var curPhone;
+var curEmail;
+var curFiscal;
+var curBirth;
+var curHired;
+var curDesc;
+var curID;
+var htmlBuffer;
+var adding = false;
+
+function addClient(name, address, phone, email, fiscal, desc) {
+
+
+var jsonName = name.toString();
+var jsonAddress = address.toString();
+var jsonPhone = phone.toString();
+var jsonEmail = email.toString();
+var jsonFiscal = fiscal.toString();
+var jsonDesc = desc.toString();
+
+$.ajax({
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'http://localhost:49822/api/clientes/',
+        
+        data: JSON.stringify ({
+                "fiscalID": jsonFiscal,
+                "name": jsonName,
+                "address": jsonAddress,
+                "phone": jsonPhone,
+                "email": jsonEmail,
+                "description": jsonDesc
+            }),
+        success: function (data) {
+            console.log("Request succeded!");
+            alert("Client Added");
+            window.location.reload(true);
+        },
+        error: function (data, textStatus) {
+            console.log("Request failed!");
+            alert(textStatus);
+        }
+    });
+}
+
+function editClient(id, name, address, phone, email, desc) {
+
+var jsonID = id.toString();
+var jsonName = name.toString();
+var jsonAddress = address.toString();
+var jsonPhone = phone.toString();
+var jsonEmail = email.toString();
+var jsonDesc = desc.toString();
+
+$.ajax({
+        type: 'PUT',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'http://localhost:49822/api/clientes/' + jsonID,
+        
+        data: JSON.stringify ({
+                "name": jsonName,
+                "address": jsonAddress,
+                "phone": jsonPhone,
+                "email": jsonEmail,
+                "description": jsonDesc
+            }),
+        success: function (data) {
+            console.log("Request succeded!");
+            alert("Client Edited");
+            window.location.reload(true);
+        },
+        error: function (data, textStatus) {
+            console.log("Request failed!");
+            alert(textStatus);
+        }
+    });
+}
+
 function getOrderById(id){
 
 
@@ -99,11 +181,21 @@ function getCustomerById(id) {
 
 function getCustomerByIdHandler(data) {
 
+    if(htmlBuffer != null);{
+        console.log("NULL");
+        $('.left-col').html(htmlBuffer);
+    }
+
+        $(".edit").removeClass('hidden');
+
+
     // debug
     console.log("Request Successful!");
     console.log(data);
 
     var client = data;
+
+    curID = client.customerId;
 
     var picture = client.picture;
     var defaultPath = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf2u0RWmYALKJ431XNoTKjzu77ERLBIvXKlOEA-Q3DPo2h2rCB';
@@ -120,49 +212,31 @@ function getCustomerByIdHandler(data) {
     else{
         picture = defaultPath;
     }
-/**
-    var html = 
-            '<div class= "client-header">'
-                + '<div class= "client-image">'
-                    + '<img class= "client-profile-image" src= "' + picture + '" alt="Profile Image">'
-                + '</div>'
-                + '<div class= "client-general-info">'            
-                    + '<h4 class= "c-name">' + client.name.substring(0, 31) + '</h4>'
-                    + '<p class="c-address"> Address: ' + client.address + '</p>'
-                + '</div>'
-            + '</div>'
-            + '<div class="client-info">'        
-                + '<p class="phone"> Phone: ' + client.phone + '</p>'
-                + '<p class="email"> Email: ' + client.email + '</p>'
-                + '<p class="fiscal-id"> Fiscal ID: ' + client.fiscalId + '</p>'
-                + '<div class="client-info-last-row">'
-                    + '<p class="birth-date"> Birth Date: ' + client.birthDate + '</p>'
-                    + '<button type="button" class="btn btn-default edit-button">Edit</button>'
-                + '</div>'
-            + '</div>'
-            + '<div class="client-description">'
-                + '<h3 class="client-description-title">Description</h3>'
-                + '<p class="client-description-text">' + client.description + '</p>'
-            + '</div>';
 
-    $('.left-col').html(html);  
+    $('.client-profile-image').attr('src', picture);
 
-*/
+    curName = client.name;
+    $('.c-name').html(curName);   
 
-	if(client.name.substring(0, 31)) {$('.c-name').text(client.name.substring(0, 31));}
-	else {$('.c-name').text("Name: undefined");}
-	
-	if(client.address.length != 0) {$('.c-address').text(client.address);}
-	else {$('.c-address').text("undefined");}
-	
-	if(client.phone) {$('.phone').text(client.phone);}
-	else {$('.phone').text("undefined");}
-	
-	if(client.email.length != 0) {$('.email').text(client.email);}
-	else {$('.email').text("undefined");}
-	
-	if(client.description.length != 0) {$('.client-description-text').text(client.description);}
-	else {$('.client-description-text').text("No description available");}
+    curAddress = client.address;
+    $('.c-address').html(curAddress);
+
+    curPhone = client.phone;
+    var phone = 'Phone: ' + curPhone;
+    $('.phone').html(phone);
+
+    curEmail = client.email;
+    var email = 'Email: ' + curEmail;
+    $('.email').html(email);
+
+    curFiscal =  client.fiscalId;
+    var fiscal = 'Fiscal ID: ' + curFiscal;
+    $('.fiscal-id').html(fiscal);
+
+    curDesc = client.description;
+    $('.client-description-text').html(curDesc);
+
+    htmlBuffer = $('.left-col').html();
 
 	
 } 
@@ -201,7 +275,7 @@ function getAllCustomerHandler(data) {
         var html =
             '<div class="client-item" id="' + client.customerId +'">'
                 + '<div class="client-item-text">'
-                + '<h4 class="client-name">' + client.customerId + '</h4>'
+                + '<h4 class="client-name">' + client.name + '</h4>'
                         +  '<div class="client-information">'
                             + '<span class="sale-number"> Orders: ' + client.orders + '</span>'
                         + '</div>'
@@ -221,7 +295,7 @@ function editCustomer(id, name, address, phone, email, description) {
         url: 'http://localhost:49822/api/clientes/' + id.toString(),
 		
 		data: {
-				"address": address.toString((),
+				"address": address.toString(),
 				"description": description.toString(),
 				"email": email.toString(),
 				"name": name.toString(),
@@ -432,4 +506,48 @@ $('.client-info-last-row button').click(function(){
 });
 
 
+$(".edit").click(function(event) {
 
+    adding = false;
+
+    $('.edit-name').val(curName);
+    $('.edit-address').val(curAddress);
+    $('.edit-phone').val(curPhone);
+    $('.edit-email').val(curEmail);
+    $('.edit-fiscal').val(curFiscal);
+    $('.edit-desc').val(curDesc);
+
+});
+
+$(".add").click(function(event) {
+
+    adding = true;
+
+    $('.edit-name').val('');
+    $('.edit-address').val('');
+    $('.edit-phone').val('');
+    $('.edit-email').val('');
+    $('.edit-fiscal').val('');
+    $('.edit-desc').val('');
+
+    $('#myModal').modal('show'); 
+
+});
+
+$(".confirm").click(function(event) {
+
+    var name = $('.edit-name').val();
+    var address = $('.edit-address').val();
+    var phone = $('.edit-phone').val();
+    var email = $('.edit-email').val();
+    var fiscal = $('.edit-fiscal').val();
+    var desc = $('.edit-desc').val();
+
+
+
+    if(adding)
+        addClient(name, address, phone, email, fiscal, desc);
+    else
+        editClient(curID, name, address, phone, email, desc);
+
+});
