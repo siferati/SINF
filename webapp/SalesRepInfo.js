@@ -1,3 +1,93 @@
+var curName;
+var curAddress;
+var curPhone;
+var curEmail;
+var curFiscal;
+var curBirth;
+var curHired;
+var curDesc;
+var curID;
+var repNumber;
+var adding = false;
+
+
+function addSalesRep(name, address, phone, email, fiscal, hired, birth, desc) {
+
+var jsonName = name.toString();
+var jsonAddress = address.toString();
+var jsonPhone = phone.toString();
+var jsonEmail = email.toString();
+var jsonFiscal = fiscal.toString();
+var jsonHired = hired.toString();
+var jsonBirth = birth.toString();
+var jsonDesc = desc.toString();
+
+$.ajax({
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'http://localhost:49822/api/vendedores/',
+        
+        data: JSON.stringify ({
+                "fiscalID": jsonFiscal,
+                "name": jsonName,
+                "address": jsonAddress,
+                "phone": jsonPhone,
+                "email": jsonEmail,
+                "birthDate": jsonBirth,
+                "hiredDate": jsonHired,
+                "description": jsonDesc
+            }),
+        success: function (data) {
+            console.log("Request succeded!");
+            alert("Rep Added");
+            window.location.reload(true);
+        },
+        error: function (data, textStatus) {
+            console.log("Request failed!");
+            alert(textStatus);
+        }
+    });
+}
+
+function editSalesRep(id, name, address, phone, email, hired, birth, desc) {
+
+var jsonID = id.toString();
+var jsonName = name.toString();
+var jsonAddress = address.toString();
+var jsonPhone = phone.toString();
+var jsonEmail = email.toString();
+var jsonHired = hired.toString();
+var jsonBirth = birth.toString();
+var jsonDesc = desc.toString();
+
+$.ajax({
+        type: 'PUT',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'http://localhost:49822/api/vendedores/' + jsonID,
+        
+        data: JSON.stringify ({
+                "name": jsonName,
+                "address": jsonAddress,
+                "phone": jsonPhone,
+                "email": jsonEmail,
+                "birthDate": jsonBirth,
+                "hiredDate": jsonHired,
+                "description": jsonDesc
+            }),
+        success: function (data) {
+            console.log("Request succeded!");
+            alert("Rep Edited");
+            window.location.reload(true);
+        },
+        error: function (data, textStatus) {
+            console.log("Request failed!");
+            alert(textStatus);
+        }
+    });
+}
+
 function getSaleById(id){
 
 
@@ -61,6 +151,8 @@ function getSalesRepSalesOrdersHandler(data) {
     console.log("Request Successful!");
     console.log(data);
 
+    repNumber = data.length;
+
     var html = '';
     for(var i = 0; i < data.length; i++)
     {
@@ -99,11 +191,15 @@ function getSalesRepById(id) {
 
 function getSalesRepByIdHandler(data) {
 
+    $(".edit").removeClass('hidden');
+
     // debug
     console.log("Request Successful!");
     console.log(data);
 
     var rep = data;
+
+    curID = rep.repId;
 
     var picture = rep.picture;
     var defaultPath = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf2u0RWmYALKJ431XNoTKjzu77ERLBIvXKlOEA-Q3DPo2h2rCB';
@@ -121,32 +217,36 @@ function getSalesRepByIdHandler(data) {
         picture = defaultPath;
     }
 
-    var html = 
-            '<div class= "sale-rep-header">'
-                + '<div class= "sale-rep-image">'
-                    + '<img class= "sale-rep-profile-image" src= "' + picture + '" alt="Profile Image">'
-                + '</div>'
-                + '<div class= "sale-rep-general-info">'            
-                    + '<h4 class= "s-name">' + rep.name.substring(0, 31) + '</h4>'
-                    + '<p class="s-address">' + rep.address + '</p>'
-                    + '<p class="s-zip">' + rep.zip + '</p>'
-                + '</div>'
-            + '</div>'
-            + '<div class="sale-rep-info">'        
-                + '<p class="phone"> Phone: ' + rep.phone + '</p>'
-                + '<p class="email"> Email: ' + rep.email + '</p>'
-                + '<p class="fiscal-id"> Fiscal ID: ' + rep.fiscalID + '</p>'
-                + '<div class="sale-rep-info-last-row">'
-                    + '<p class="birth-date"> Birth Date: ' + rep.birthDate + '</p>'
-                    + '<button type="button" class="btn btn-default edit-button">Edit</button>'
-                + '</div>'
-            + '</div>'
-            + '<div class="sale-rep-description">'
-                + '<h3 class="sale-rep-description-title">Description</h3>'
-                + '<p class="sale-rep-description-text">' + rep.description + '</p>'
-            + '</div>';
+    $('.sale-rep-profile-image').attr('src', picture);
 
-    $('.left-col').html(html);           
+    curName = rep.name;
+    $('.s-name').html(curName);   
+
+    curAddress = rep.address;
+    $('.s-address').html(curAddress);
+
+    curPhone = rep.phone;
+    var phone = 'Phone: ' + curPhone;
+    $('.phone').html(phone);
+
+    curEmail = rep.email;
+    var email = 'Email: ' + curEmail;
+    $('.email').html(email);
+
+    curFiscal =  rep.fiscalId;
+    var fiscal = 'Fiscal ID: ' + curFiscal;
+    $('.fiscal-id').html(fiscal);
+
+    curHired = rep.hiredDate.substring(0, 10);
+    var hired = 'Hired: ' + curHired;
+    $('.hired-date').html(hired);
+
+    curBirth =  rep.birthDate.substring(0, 10);
+    var birth = 'Birth: ' + curBirth;
+    $('.birth-date').html(birth);
+
+    curDesc = rep.description;
+    $('.sale-rep-description-text').html(curDesc);
 } 
 
 /**
@@ -226,9 +326,6 @@ $(".sale-rep-list").click(function(event) {
 
     var id = rep.attr('id')
     getSalesRepById(id);
-
-
-    //HARDCODED EXAMPLE
     getSalesRepSalesOrders(id);
 
 });
@@ -253,5 +350,56 @@ $(".sale-products-list").click(function(event) {
     var id = sale.attr('id')
 
     getSaleById(id);
+
+});
+
+$(".edit").click(function(event) {
+
+    adding = false;
+
+    $('.edit-name').val(curName);
+    $('.edit-address').val(curAddress);
+    $('.edit-phone').val(curPhone);
+    $('.edit-email').val(curEmail);
+    $('.edit-fiscal').val(curFiscal);
+    $('.edit-hired').val(curHired);
+    $('.edit-birth').val(curBirth);
+    $('.edit-desc').val(curDesc);
+
+});
+
+$(".add").click(function(event) {
+
+    adding = true;
+
+    $('.edit-name').val('');
+    $('.edit-address').val('');
+    $('.edit-phone').val('');
+    $('.edit-email').val('');
+    $('.edit-fiscal').val('');
+    $('.edit-hired').val('');
+    $('.edit-birth').val('');
+    $('.edit-desc').val('');
+
+    $('#myModal').modal('show'); 
+
+});
+
+$(".confirm").click(function(event) {
+
+    var name = $('.edit-name').val();
+    var address = $('.edit-address').val();
+    var phone = $('.edit-phone').val();
+    var email = $('.edit-email').val();
+    var fiscal = $('.edit-fiscal').val();
+    var hired = $('.edit-hired').val();
+    var birth = $('.edit-birth').val();
+    var desc = $('.edit-desc').val();
+
+
+    if(adding)
+        addSalesRep(name, address, phone, email, fiscal, hired, birth, desc);
+    else
+        editSalesRep(curID, name, address, phone, email, hired, birth, desc);
 
 });

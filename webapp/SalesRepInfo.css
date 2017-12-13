@@ -2,11 +2,8 @@ body {
     background-color: lightsteelblue;
 }
 
-html, body {
-	height: 100%;
-}
-.first-row {
-	height: 5%;
+.hidden {
+	visibility: hidden;
 }
 
 .active {
@@ -25,13 +22,11 @@ html, body {
 }
 
 .sale-rep-header {
-	margin-bottom: 10%;
+	margin-bottom: 0%;
 }
 
 .sale-rep-image {
-	float: left;
-	width: 25%;
-	margin-right: 2%;
+	width: 100%;
 }
 
 .sale-rep-profile-image {
@@ -39,22 +34,8 @@ html, body {
 	height: 100%;
 }
 
-.s-name {
-	margin-bottom: 0;
-}
-
-.s-address {
-	margin-bottom: 1%;
-}
-
-
-
-.sale-rep-info {
-	margin-bottom: 1%;
-}
 
 .sale-rep-info > p {
-	margin-top: 2px;
 	margin-bottom: 2px;
 }
 
@@ -120,12 +101,12 @@ html, body {
   	color: black;
 }
 
-.search-icon {
+.plus-icon {
 	margin-left: 2%;
 	margin-top: 1%;
 }
 
-.search-icon:hover {
+.plus-icon:hover {
 	font-size: 16px;
 }
 

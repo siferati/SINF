@@ -32,8 +32,8 @@ function displayOportunityDetailsHandler(data) {
         + '<div class="col-md-12 details-date editable">' + data.Data.substring(0, 10) + '</div>'
         + '<div class="col-md-12 details-time editable">' + data.Data.substring(11, 19) + '</div>'
         + '<div class="col-md-12 details-location editable">' + data.Local + '</div>'
-        + '<div class="col-md-12 details-rep editable">' + data.Entidade + '</div>'
-        + '<div class="col-md-12 details-entity editable">' + data.VendedorCod + '</div>';
+        + '<div class="col-md-12 details-rep editable">' + data.VendedorCod + '</div>'
+        + '<div class="col-md-12 details-entity editable">' + data.Entidade + '</div>';
 
     $('.event-details').html(html);
 }
@@ -63,7 +63,8 @@ $.ajax({
             }),
         success: function (data) {
             console.log("Request succeded!");
-            alert("OK " + data);
+            alert("Oportunity Added");
+            window.location.reload(true);
         },
         error: function (data, textStatus) {
             console.log("Request failed!");
@@ -86,10 +87,9 @@ $.ajax({
         type: 'PUT',
         dataType: 'json',
         contentType: 'application/json',
-        url: 'http://localhost:49822/api/oportunidadeVenda/',
+        url: 'http://localhost:49822/api/oportunidadeVenda/' + jsonID,
         
         data: JSON.stringify ({
-                "OportunidadeID": jsonID,
                 "DescricaoOp": jsonDesc,
                 "Entidade": jsonEnt,
                 "Data": jsonDate,
@@ -98,7 +98,7 @@ $.ajax({
             }),
         success: function (data) {
             console.log("Request succeded!");
-            alert("OK " + data);
+            alert("Oportunity Edited");
         },
         error: function (data, textStatus) {
             console.log("Request failed!");
@@ -361,7 +361,7 @@ function convertToForm(div){
 
     if($(div).hasClass("details-id")){
         if(adding)
-            editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-id\"/>");
+            editableText = $("<input type=\"text\" name=\"id\" class=\"col-md-12 edited details-id\"/>");
         else
             return;
     }
@@ -381,7 +381,7 @@ function convertToForm(div){
         editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-location\"/>");
 
     if($(div).hasClass("details-rep"))
-        editableText = $("<input type=\"text\" name=\"location\" class=\"col-md-12 edited details-rep\"/>");
+        editableText = $("<input type=\"text\" name=\"rep\" class=\"col-md-12 edited details-rep\"/>");
 
 
     editableText.val(divHtml);
@@ -404,7 +404,13 @@ $(".edit").click(function() {
 
 $(".confirm").click(function() {
 
-    var id = $(document).find(".details-id").val();
+    var id;
+
+    if(adding)
+        id = $(document).find(".details-id").val();
+    else
+        id = $(".details-id").html();
+
     var name = $(document).find(".details-name").val();
     var date = $(document).find(".details-date").val();
     var time = $(document).find(".details-time").val();
@@ -412,13 +418,6 @@ $(".confirm").click(function() {
     var entity = $(document).find(".details-entity").val();
     var rep = $(document).find(".details-rep").val();
 
-    console.log(id);
-    console.log(name);
-    console.log(date);
-    console.log(time);
-    console.log(location);
-    console.log(entity);
-    console.log(rep);
 
     var finalDate = date + "T" + time;
 

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Example</title>
+    <title>Sales Representative</title>
     <link rel="stylesheet" type="text/css" href="SalesRepInfo.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="SalesRepInfo.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
@@ -17,45 +20,106 @@
             </div>
     </div>
     <div class="row second-row">
-        <div class="col left-col">
+        <div class="col-md-4 left-col">
 
             
-            <div class= "sale-rep-header">
-                <div class= "sale-rep-image">
-                    <img class= "sale-rep-profile-image" src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf2u0RWmYALKJ431XNoTKjzu77ERLBIvXKlOEA-Q3DPo2h2rCB" alt="Profile Image">
-					
+            <div class= "sale-rep-header row">
+                <div class= "sale-rep-image col-md-4">
+                    <img class= "sale-rep-profile-image" src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf2u0RWmYALKJ431XNoTKjzu77ERLBIvXKlOEA-Q3DPo2h2rCB" alt="Profile Image">	
 				</div>
 
-                <div class= "sale-rep-general-info">			
+                <div class= "sale-rep-general-info col-md-7">			
                     <h4 class= "s-name"> Representative's Name </h4>
                     <p class="s-address"> Representative's Address </p>
                 </div>
             </div>
 
             <div class="sale-rep-info">
-				<label for="phone">Phone: </label>
-                <p id="phone" class="phone"> +351919919919 </p>
-				<label for="email">Email:</label>
-                <p id="email" class="email"> something@else.com </p>
-				<label for="fiscla-id">Fiscal ID:</label>
-                <p id="fiscal-id" class="fiscal-id"> 654321456 </p>
+                <p id="phone" class="phone"> Phone: +351919919919 </p>
+                <p id="email" class="email"> Email: something@else.com </p>
+                <p id="fiscal-id" class="fiscal-id"> Fiscal ID: 654321456 </p>
+                <p id="hired-date" class="hired-date"> Hired: 1986-09-13</p>
 
-                <div class="sale-rep-info-last-row">
-					<label for="birth-day">Birth Date:</label>
-                    <p id="birth-date" class="birth-date"> 1986-09-13</p>
-					<label for="hired-date">Hired:</label>
-					<p id="hired-date" class="hired-date"> 1986-09-13</p>
-                    <button type="button" class="btn btn-default edit-button">Save changes</button>
+
+
+                <div class="sale-rep-info-last-row row">
+                    <div class="col-md-8">
+                        <p id="birth-date" class="birth-date"> Birth: 1986-09-13</p>
+                    </div>
+                    <div class="col-md-2 col-md-offset-2">
+                        <button type="button" class="btn btn-default edit hidden" data-toggle="modal" data-target="#myModal">Edit</button>
+                    </div>
                 </div>
-				
 
-            </div>
 
 
             <div class="sale-rep-description">
                 <h3 class="sale-rep-description-title"> Description </h3>
                 <p class="sale-rep-description-text"> Good employee. Likes this company.</p>
             </div>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Editing/Adding</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input type="text" class="form-control edit-name" id="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address:</label>
+                                        <input type="text" class="form-control edit-address" id="address">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="phone">Phone:</label>
+                                        <input type="tel" class="form-control edit-phone" id="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control edit-email" id="email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fiscal">Fiscal ID:</label>
+                                        <input type="number" class="form-control edit-fiscal" min="1" max="999999999" id="fiscal">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="hired">Hired date:</label>
+                                        <input type="date" class="form-control edit-hired" id="hired">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="birth">Birth date:</label>
+                                        <input type="date" class="form-control edit-birth" id="birth">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="desc">Description:</label>
+                                        <textarea class="form-control edit-desc" rows="5" id="desc"></textarea>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default confirm" data-dismiss="modal">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+
+            </div>
+
+
+
 
         
 
@@ -84,7 +148,7 @@
 
         </div>
 
-        <div class="col">
+        <div class="col-md-4">
 
             
 
@@ -113,11 +177,11 @@
             </div>
 
         </div>
-        <div class="col right-column">
+        <div class="col-md-4 right-column">
 
             <div class="search">
                 <input type="text" class="search-term" placeholder="Search...">
-                <span class="glyphicon glyphicon-search search-icon"></span></p>
+                <span class="glyphicon glyphicon-plus plus-icon add"></span></p>
             </div>
 
 
