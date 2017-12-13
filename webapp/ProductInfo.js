@@ -19,20 +19,19 @@ function getProductByIdHandler(data) {
 
     var product = data;
     var productInfo =
-                '<p class="p-name">Name: ' + product.DescArtigo + '</p>' +
-                '<p class="p-type">Type: ' + product.Type + '</p>' +
-                '<p class="p-size">Size: ' + product.Size + '</p>' +
-                '<p class="p-brand">Brand: ' + product.Brand + '</p>' +
-                '<p class="p-price">Price: ' + product.Price + '</p>' +
-                '<p class="p-vat">Vat: ' + product.Vat + '</p>' +
-                '<p class="p-stock">Stock: ' + product.STKAtual + '</p>' +
-                '<p class="p-wight">Weight: ' + product.Weight + '</p>';
+                '<p class="p-name">Name: ' + product.name + '</p>' +
+                '<p class="p-type">Type: ' + product.type + '</p>' +
+                '<p class="p-size">Size: ' + product.size + '</p>' +
+                '<p class="p-price">Price: ' + product.price + '</p>' +
+                '<p class="p-vat">Vat: ' + product.VAT + '</p>' +
+                '<p class="p-stock">Stock: ' + product.stock + '</p>' +
+                '<p class="p-wight">Weight: ' + product.weight + '</p>';
 
 
     $('.product-info').html(productInfo);
 
 
-    var productDescription = product.Description;
+    var productDescription = product.description;
 
     $('.product-description-text').html(productDescription);
 }
@@ -69,12 +68,12 @@ function getAllProductsHandler(data) {
 
         var product = data[i];
         var html =
-            '<div class="product-item" id="' + product.CodArtigo + '">'
+            '<div class="product-item" id="' + product.productId + '">'
                 + '<div class="product-item-text">'
-                + '<h4 class="product-name">' + product.DescArtigo + '</h4>'
+                + '<h4 class="product-name">' + product.name + '</h4>'
                         +  '<div class="product-information">'
                             + '<span class="product-size"> Size: ' + product.size + ' </span>'
-                            + '<span class="product-stock"> Stock: ' + product.STKAtual + ' </span>'
+                            + '<span class="product-stock"> Stock: ' + product.stock + ' </span>'
                             + '<span class="product-price"> Price: ' + product.price + ' </span>'
                         + '</div>'
                     + '</div>'
